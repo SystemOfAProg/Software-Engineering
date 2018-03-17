@@ -5,5 +5,27 @@
 	<view uin="V1hexuhjc7rg2aqh17mfz">
 		<property name="$defaultDiagram" value="true"/>
 		<property name="$metaclass" value="ClassDiagram20"/>
+		<reference referencedUin="design:view:::V1hexuhjchpigob-flmx1k">
+			<property name="bounds" value="237,245,98,168"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="design:view:::V1hexuhjchpk0fpwh1z5w">
+			<property name="bounds" value="5,265,125,140"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.logic.gamelogic.IGameLogicFactory">
+			<property name="bounds" value="267,17,200,185"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:application.logic.gamelogic.IGameLogicFactory:gameLogicFacotry">
+				<property name="sourceAnchor" value="472,203"/>
+				<property name="targetAnchor" value="468,207"/>
+				<property name="bendpoints" value="501,203,501,236,468,236"/>
+				<property name="smooth_bendpoints" value="501,203,501,236,468,236"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:application.logic.gamelogic.GameLogicFactory">
+			<property name="bounds" value="5,5,182,210"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
 	</view>
 </nodeSet>

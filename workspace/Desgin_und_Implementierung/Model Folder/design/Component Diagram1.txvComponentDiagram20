@@ -12,7 +12,7 @@
 			<property name="bounds_setted_by_user" value="true"/>
 		</reference>
 		<reference referencedUin="design:node:::ba089njc7pa1im64wv2h">
-			<property name="bounds" value="55,155,354,160"/>
+			<property name="bounds" value="55,155,354,181"/>
 			<property name="location_set_by_user" value="true"/>
 			<property name="$shortcutReference" value="true"/>
 			<property name="bounds_setted_by_user" value="true"/>
@@ -20,7 +20,7 @@
 				<property name="bounds" value="225,-7,14,14"/>
 				<property name="location_set_by_user" value="true"/>
 				<reference referencedUin="label:$port20InplaceEditing:design:node:::-vedwtdjc7pgrmm-bpt0oa:ba089njc7pa1im64wv2h">
-					<property name="bounds" value="55,-33,119,15"/>
+					<property name="bounds" value="55,-33,141,28"/>
 					<property name="location_set_by_user" value="true"/>
 				</reference>
 			</reference>
@@ -28,24 +28,24 @@
 				<property name="bounds" value="60,-7,14,14"/>
 				<property name="location_set_by_user" value="true"/>
 				<reference referencedUin="label:$port20InplaceEditing:design:node:::-vedwtdjc7pg21e80r457:ba089njc7pa1im64wv2h">
-					<property name="bounds" value="-76,-32,55,15"/>
+					<property name="bounds" value="-76,-32,70,28"/>
 					<property name="location_set_by_user" value="true"/>
 				</reference>
 			</reference>
 			<reference referencedUin="design:node:::lnunqwjc7pa963iqynvm:ba089njc7pa1im64wv2h">
-				<property name="bounds" value="16,25,100,60"/>
+				<property name="bounds" value="16,25,105,68"/>
 				<property name="location_set_by_user" value="true"/>
 			</reference>
 			<reference referencedUin="design:node:::-vedwtdjc7pjn05-8ls33m:ba089njc7pa1im64wv2h">
 				<property name="bounds" value="142,-7,14,14"/>
 				<property name="location_set_by_user" value="true"/>
 				<reference referencedUin="label:$port20InplaceEditing:design:node:::-vedwtdjc7pjn05-8ls33m:ba089njc7pa1im64wv2h">
-					<property name="bounds" value="13,-33,53,15"/>
+					<property name="bounds" value="13,-33,67,28"/>
 					<property name="location_set_by_user" value="true"/>
 				</reference>
 			</reference>
 			<reference referencedUin="design:node:::ba089njc7pah8n-yp3l48:ba089njc7pa1im64wv2h">
-				<property name="bounds" value="176,25,123,60"/>
+				<property name="bounds" value="176,25,142,68"/>
 				<property name="location_set_by_user" value="true"/>
 			</reference>
 		</reference>

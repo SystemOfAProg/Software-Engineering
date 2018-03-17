@@ -130,7 +130,7 @@
 									<property name="sourceAnchor" value="259,796"/>
 									<property name="targetAnchor" value="630,796"/>
 									<reference referencedUin="label:label:sd20_message|1|call|123(design:node:::xr7kapjamf1f6ggvvhyo:7x5rzxjamezh21u1r7bl:7x5rzxjamezh1qy77flp:-y8nsowjambw3wmhvyg4q:-yrgd8ejamblpre-yx2syf)">
-										<property name="bounds" value="327,783,208,32"/>
+										<property name="bounds" value="340,796,208,32"/>
 									</reference>
 								</reference>
 							</reference>
@@ -157,7 +157,7 @@
 									<property name="sourceAnchor" value="259,636"/>
 									<property name="targetAnchor" value="630,636"/>
 									<reference referencedUin="label:label:sd20_message|1|call|123(design:node:::7dcptyjamf1cajv7a7aa:7x5rzxjamezh1xky6yww:7x5rzxjamezh1qy77flp:-y8nsowjambw3wmhvyg4q:-yrgd8ejamblpre-yx2syf)">
-										<property name="bounds" value="355,623,153,32"/>
+										<property name="bounds" value="368,636,153,32"/>
 									</reference>
 								</reference>
 							</reference>
@@ -185,7 +185,7 @@
 									<property name="targetAnchor" value="630,456"/>
 									<property name="location_set_by_user" value="true"/>
 									<reference referencedUin="label:label:sd20_message|1|call|124(design:node:::l2gqtvjamdabtrn9iq5i:7x5rzxjamcvkyo1iouy8:7x5rzxjamcvkye-u00qyx:-y8nsowjambw3wmhvyg4q:-yrgd8ejamblpre-yx2syf)">
-										<property name="bounds" value="397,443,69,32"/>
+										<property name="bounds" value="410,456,69,32"/>
 									</reference>
 								</reference>
 							</reference>
@@ -219,7 +219,7 @@
 											<property name="targetAnchor" value="630,296"/>
 											<property name="location_set_by_user" value="true"/>
 											<reference referencedUin="label:label:sd20_message|1|call|168(design:node:::l2gqtvjamd5uady43llm:7x5rzxjamd5iox-yxjdoy:7x5rzxjamd5ios1lvd5w:7x5rzxjamcvkyi-p6u4mg:7x5rzxjamcvkye-u00qyx:-y8nsowjambw3wmhvyg4q:-yrgd8ejamblpre-yx2syf)">
-												<property name="bounds" value="397,283,69,32"/>
+												<property name="bounds" value="410,296,69,32"/>
 											</reference>
 										</reference>
 									</reference>

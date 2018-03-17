@@ -1,5 +1,5 @@
 package application.logic.gamelogic.port;
 
-public interface GamePort {
+public interface IGameStart {
 
 }
