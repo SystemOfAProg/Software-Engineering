@@ -27,20 +27,20 @@ public class Player {
 	}
 	
 	private void setStartField(Matchfield field) {
-		this.start = field.setStartFiledForPlayer(this);
+		this.start = field.setStartFieldForPlayer(this);
 	}
 	
 	private void createHomeFields() {
 		this.homes = new HomeField[this.figuresCount];
-		for(int i=0; i<this.figuresCount; i++) {
-			this.homes[i] = new HomeField(this);
+		for(HomeField hf: homes) {
+			hf = new HomeField(this);
 		}
 	}
 	
 	private void createFigures() {
 		this.figures = new Figure[this.figuresCount];
-		for(int i=0; i<this.figuresCount; i++) {
-			this.figures[i] = new Figure(this);
+		for(Figure f: this.figures) {
+			f = new Figure(this);
 		}
 	}
 	

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="application.logic.gamelogic.port.GamePort"/>
-    <fullyQualifiedTypeName name="application.logic.gamelogic.port.GameStart"/>
+<fullyQualifiedTypeName name="application.logic.gamelogic.port.GamePort"/>
+<fullyQualifiedTypeName name="application.logic.gamelogic.port.GameStart"/>
+<fullyQualifiedTypeName name="application.logic.observer.Observer"/>
+<fullyQualifiedTypeName name="application.logic.stateMachine.State"/>
+<fullyQualifiedTypeName name="application.logic.gamemodel.Game"/>
+<fullyQualifiedTypeName name="application.logic.gamemodel.matchfield.StartingField"/>
+<fullyQualifiedTypeName name="application.logic.gamemodel.player.Player"/>
+<fullyQualifiedTypeName name="application.logic.gamemodel.matchfield.StandardField"/>
+<fullyQualifiedTypeName name="application.logic.gamemodel.matchfield.Matchfield"/>
+<fullyQualifiedTypeName name="application.logic.gamemodel.matchfield.HomeField"/>
+<fullyQualifiedTypeName name="application.logic.gamemodel.matchfield.AField"/>
+<fullyQualifiedTypeName name="java.awt.print.Printable"/>
 </qualifiedTypeNameHistroy>

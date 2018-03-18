@@ -10,8 +10,8 @@ public class Matchfield {
 	
 	public Matchfield(int matchfieldSize, int playerCount, Game game) {
 		this.fields = new AField[matchfieldSize];
-		for(int i=0; i<matchfieldSize; i++) {
-			this.fields[i] = new StandardField();
+		for(AField sf: this.fields) {
+			sf = new StandardField();
 		}
 	}
 
@@ -19,8 +19,10 @@ public class Matchfield {
 		return this.fields;
 	}
 	
-	public StartingField setStartFiledForPlayer(Player Player) {
-		return new StartingField();
+	public StartingField setStartFieldForPlayer(Player player) {
+		StartingField stf = new StartingField(player);
+		this.fields[0] = stf;
+		return stf;
 	}
 	
 }

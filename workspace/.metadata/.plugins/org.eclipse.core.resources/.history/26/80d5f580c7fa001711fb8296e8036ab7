@@ -1,9 +1,0 @@
-package application.logic.gamelogic;
-
-public interface GameLogicFactory {
-	
-	GameLogicFactory = new GameLogicFactoryImpl();
-	
-	GamePort gamePort();
-	
-}

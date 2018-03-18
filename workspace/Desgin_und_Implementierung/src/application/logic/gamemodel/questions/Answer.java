@@ -2,6 +2,14 @@ package application.logic.gamemodel.questions;
 
 public class Answer {
 
-	private Question question;
+	private String answerSentence;
+	
+	public Answer(String answerSentence) {
+		this.answerSentence = answerSentence;
+	}
+	
+	public String getAnswerSentence() {
+		return this.answerSentence;
+	}
 	
 }

@@ -1,0 +1,64 @@
+{
+
+	"questions" : [
+			{
+				"question" : "Was ist 1+1?",
+				"answers" : [
+					"2",
+					"3",
+					"11",
+					"e"
+				],
+				"correct" : 0,
+				"category": 0
+			},
+			{
+				"question" : "Ist diese Frage eine gute Frage?",
+				"answers" : [
+					"Ja",
+					"Nein",
+					"Vielleicht",
+					"Nur bei Vollmond"
+				],
+				"correct" : 1,
+				"category": 1
+			},
+			{
+				"question" : "Wie viele Finger hat ein Pinguin?",
+				"answers" : [
+					"27",
+					"35",
+					"123456",
+					"Backe, Backe Kuchen, der Bäcker hat gerufen."
+				],
+				"correct" : 2,
+				"category": 2
+			},
+			{
+				"question" : "Mag ich JSONs oder XMLs lieber?",
+				"answers" : [
+					"JSONs",
+					"XMLs",
+					"Text-Files",
+					"Daten binär auf Magnetbänder gespeichert"
+				],
+				"correct" : 3,
+				"category": 3
+			}
+	],
+	"categories": [
+		{
+			"name": "Mathematik"
+		},
+		{
+			"name": "Philosophie"
+		},
+		{
+			"name": "Biologie"
+		},
+		{
+			"name": "Informatik"
+		}
+	]
+
+}
