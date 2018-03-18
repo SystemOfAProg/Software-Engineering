@@ -102,19 +102,19 @@ public class QuestionReader {
 	}
 	
 	public void printQuestions() {
-		System.out.println("———————————————————————————————————————————————————————————————————");
+		System.out.println("------------------------------------------------------------------------");
 		System.out.println("> " + this.questions.length + " questions found in " + this.fileLocation + " :");
-		System.out.println("———————————————————————————————————————————————————————————————————");
+		System.out.println("------------------------------------------------------------------------");
 		for(Question q: this.questions) {
-			System.out.println("———————————————————————————————————————————————————————————————————");
-			System.out.println("|——— Question:   '"+ q.getQuestionSentence() + "'");
-			System.out.println("|——— Answers:");
+			System.out.println("------------------------------------------------------------------------");
+			System.out.println("|--- Question:   '"+ q.getQuestionSentence() + "'");
+			System.out.println("|--- Answers:");
 			for (Answer a: q.getAnswers()) {
-				System.out.println("|    |——— Answer: '"+ a.getAnswerSentence() + "'");
+				System.out.println("|    |--- Answer: '"+ a.getAnswerSentence() + "'");
 			}
-			System.out.println("|——— Category: '" + q.getCategory().getName() + "'");
-			System.out.println("|——— Correct Answer: '" + q.getCorrectAnswer().getAnswerSentence() + "'");
-			System.out.println("———————————————————————————————————————————————————————————————————");
+			System.out.println("|--- Category: '" + q.getCategory().getName() + "'");
+			System.out.println("|--- Correct Answer: '" + q.getCorrectAnswer().getAnswerSentence() + "'");
+			System.out.println("------------------------------------------------------------------------");
 			System.out.println();
 		}
 	}
