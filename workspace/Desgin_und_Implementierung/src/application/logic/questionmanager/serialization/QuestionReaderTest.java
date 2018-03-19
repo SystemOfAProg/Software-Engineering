@@ -1,4 +1,4 @@
-package application.logic.questionmanager;
+package application.logic.questionmanager.serialization;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import application.logic.gamemodel.implementation.questions.*;
-import application.logic.questionmanager.QuestionReader;
 
 public class QuestionReaderTest {
 

@@ -1,4 +1,4 @@
-package application.logic.questionmanager;
+package application.logic.questionmanager.serialization;
 
 import java.io.IOException;
 

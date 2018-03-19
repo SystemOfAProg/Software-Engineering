@@ -4,7 +4,7 @@ import application.logic.gamemodel.implementation.player.*;
 import application.logic.gamemodel.implementation.matchfield.*;
 import application.logic.gamemodel.implementation.questions.*;
 import application.logic.gamemodel.interfaces.*;
-import application.logic.questionmanager.QuestionReader;
+import application.logic.questionmanager.serialization.QuestionReader;
 
 public class Question {
 
