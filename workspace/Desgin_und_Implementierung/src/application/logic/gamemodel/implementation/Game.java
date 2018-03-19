@@ -1,8 +1,9 @@
-package application.logic.gamemodel;
+package application.logic.gamemodel.implementation;
 
-import application.logic.gamemodel.player.*;
-import application.logic.gamemodel.matchfield.*;
-import application.logic.gamemodel.questions.*;
+import application.logic.gamemodel.implementation.player.*;
+import application.logic.gamemodel.implementation.matchfield.*;
+import application.logic.gamemodel.implementation.questions.*;
+import application.logic.gamemodel.interfaces.*;
 import application.logic.questionmanager.QuestionReader;
 
 public class Game {
@@ -54,6 +55,24 @@ public class Game {
 	
 	public Question[] getQuestions() {
 		return this.questions;
+	}
+	
+
+	// ~~~~~~~~~~~~~~~~~ Data Manipulation ~~~~~~~~~~~~~~~~~~
+
+	public AField[] getFigurePositionsOfPlayer(Player player) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Collision movePlayer(int steps, Figure figure, Player player) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean addFigureForPlayer(Player player) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

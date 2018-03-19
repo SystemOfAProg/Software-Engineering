@@ -6,12 +6,12 @@
 		<property name="$defaultDiagram" value="true"/>
 		<property name="$metaclass" value="ClassDiagram20"/>
 		<property name="__options" value="option.nlayout.recursive=true"/>
-		<reference referencedUin="jdt:e_class:src:application.logic.gamelogic.impl.GameStartImpl">
-			<property name="bounds" value="5,125,131,154"/>
+		<reference referencedUin="jdt:e_class:src:application.logic.gamelogic.impl.GamePlay">
+			<property name="bounds" value="5,5,121,80"/>
 			<property name="location_set_by_user" value="true"/>
 		</reference>
-		<reference referencedUin="jdt:e_class:src:application.logic.gamelogic.impl.GamePlayImpl">
-			<property name="bounds" value="5,5,121,80"/>
+		<reference referencedUin="jdt:e_class:src:application.logic.gamelogic.impl.GameStart">
+			<property name="bounds" value="5,125,131,154"/>
 			<property name="location_set_by_user" value="true"/>
 		</reference>
 	</view>

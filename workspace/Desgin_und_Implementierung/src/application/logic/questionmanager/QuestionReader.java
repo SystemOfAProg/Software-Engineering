@@ -1,13 +1,15 @@
 package application.logic.questionmanager;
 
 import java.io.IOException;
+
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import com.google.gson.*;
-import application.logic.gamemodel.questions.*;
+
+import application.logic.gamemodel.implementation.questions.*;
 
 /**
  * Reading questions from JSON File and parse them to Question-Objects

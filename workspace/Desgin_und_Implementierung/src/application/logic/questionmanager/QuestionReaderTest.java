@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import application.logic.gamemodel.questions.Answer;
-import application.logic.gamemodel.questions.Question;
+import application.logic.gamemodel.implementation.questions.*;
+import application.logic.questionmanager.QuestionReader;
 
 public class QuestionReaderTest {
 

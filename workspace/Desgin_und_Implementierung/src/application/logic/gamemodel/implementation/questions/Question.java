@@ -1,6 +1,10 @@
-package application.logic.gamemodel.questions;
+package application.logic.gamemodel.implementation.questions;
 
-import application.logic.gamemodel.Game;
+import application.logic.gamemodel.implementation.player.*;
+import application.logic.gamemodel.implementation.matchfield.*;
+import application.logic.gamemodel.implementation.questions.*;
+import application.logic.gamemodel.interfaces.*;
+import application.logic.questionmanager.QuestionReader;
 
 public class Question {
 

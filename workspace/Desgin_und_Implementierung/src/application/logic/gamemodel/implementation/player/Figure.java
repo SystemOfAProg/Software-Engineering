@@ -1,4 +1,4 @@
-package application.logic.gamemodel.player;
+package application.logic.gamemodel.implementation.player;
 
 public class Figure {
 

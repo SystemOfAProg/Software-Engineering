@@ -1,4 +1,4 @@
-package application.logic.gamemodel.questions;
+package application.logic.gamemodel.implementation.questions;
 
 public class Answer {
 
