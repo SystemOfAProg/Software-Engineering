@@ -10,12 +10,15 @@ import application.logic.questionmanager.serialization.QuestionReader;
 public class Matchfield {
 
 	private AField[] fields;
+	private int playerFieldRatio;
 	private Game game;
 	
-	public Matchfield(int matchfieldSize, int playerCount, Game game) {
-		this.fields = new AField[matchfieldSize];
-		for(AField sf: this.fields) {
-			sf = new StandardField();
+	public Matchfield(int gameFieldSize, int playerCount, Game game) {
+		this.playerFieldRatio = (gameFieldSize / playerCount);
+		this.fields = new AField[gameFieldSize];
+		System.out.println("> Create matchfield of size " + this.fields.length);
+		for(int i=0; i<this.fields.length; i++) {
+			this.fields[i] = new StandardField(i);
 		}
 	}
 
@@ -24,9 +27,19 @@ public class Matchfield {
 	}
 	
 	public StartingField setStartFieldForPlayer(Player player) {
-		StartingField stf = new StartingField(player);
-		this.fields[0] = stf;
-		return stf;
+		int startingFieldIndex = player.getPlayerCount() * this.playerFieldRatio;
+		this.fields[startingFieldIndex] = new StartingField(player, startingFieldIndex);
+		return (StartingField)this.fields[startingFieldIndex];
+	}
+
+	public AField calculateNewField(AField oldField, int steps) {
+		AField newField;
+		if(oldField instanceof StandardField || oldField instanceof StartingField) {
+			newField = fields[oldField.getFieldCounter() + steps];
+		} else {
+			newField = oldField;
+		}
+		return newField;
 	}
 	
 }

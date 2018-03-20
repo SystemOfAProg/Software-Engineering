@@ -10,8 +10,6 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO: Generate new Game with all components
 		printStartSequence();
-		Game game = new Game(40, 4);
-		System.out.println("Super-Duper fun gameplay hahahahahahaha...");
 		printEndSequence();
 	}
 	

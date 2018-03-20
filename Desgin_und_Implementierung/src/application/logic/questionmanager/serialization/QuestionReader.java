@@ -99,14 +99,10 @@ public class QuestionReader {
 	
 	private String readFile(String path, Charset encoding) throws IOException {
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
-		System.out.println(encoded);
 		return new String(encoded, encoding);
 	}
 	
 	public void printQuestions() {
-		System.out.println("------------------------------------------------------------------------");
-		System.out.println("> " + this.questions.length + " questions found in " + this.fileLocation + " :");
-		System.out.println("------------------------------------------------------------------------");
 		for(Question q: this.questions) {
 			System.out.println("------------------------------------------------------------------------");
 			System.out.println("|--- Question:   '"+ q.getQuestionSentence() + "'");
@@ -119,6 +115,10 @@ public class QuestionReader {
 			System.out.println("------------------------------------------------------------------------");
 			System.out.println();
 		}
+	}
+	
+	public void printQuestionCountAndLocation() {
+		System.out.println("> " + this.questions.length + " questions found in " + this.fileLocation);
 	}
 	
 }

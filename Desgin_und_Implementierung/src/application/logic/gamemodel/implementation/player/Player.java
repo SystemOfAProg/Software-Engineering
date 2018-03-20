@@ -35,15 +35,19 @@ public class Player {
 	
 	private void createHomeFields() {
 		this.homes = new HomeField[this.figuresCount];
-		for(HomeField hf: homes) {
-			hf = new HomeField(this);
+		for(int i=0; i<this.homes.length; i++){
+			this.homes[i] = new HomeField(this, i);
 		}
 	}
 	
 	private void createFigures() {
 		this.figures = new Figure[this.figuresCount];
-		for(Figure f: this.figures) {
-			f = new Figure(this);
+		for(int i=0; i<this.figuresCount; i++) {
+			this.figures[i] = new Figure(this, this.homes[i], i);
+			if(this.figures[i].move(homes[i]).collisionHappened()) {
+				// When starting there are no collisions allowed
+				throw new IllegalStateException();
+			}
 		}
 	}
 	
@@ -53,6 +57,27 @@ public class Player {
 	
 	public String getPlayerName() {
 		return this.name;
+	}
+	
+	public Figure[] getFigures() {
+		return this.figures;
+	}
+	
+	/**
+	 * Check if both Players reference the same player.
+	 * @param player Player to check
+	 * @return true if both player-counts are identical
+	 */
+	public boolean equals(Player player) {
+		if(player != null) {
+			return this.getPlayerCount() == player.getPlayerCount();			
+		} else {
+			return false;
+		}
+	}
+
+	public AField getStartingField() {
+		return this.start;
 	}
 	
 }
