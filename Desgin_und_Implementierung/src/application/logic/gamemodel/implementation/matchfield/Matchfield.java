@@ -26,6 +26,10 @@ public class Matchfield {
 		return this.fields;
 	}
 	
+	public int getSize() {
+		return this.fields.length;
+	}
+	
 	public StartingField setStartFieldForPlayer(Player player) {
 		int startingFieldIndex = player.getPlayerCount() * this.playerFieldRatio;
 		this.fields[startingFieldIndex] = new StartingField(player, startingFieldIndex);
@@ -35,7 +39,7 @@ public class Matchfield {
 	public AField calculateNewField(AField oldField, int steps) {
 		AField newField;
 		if(oldField instanceof StandardField || oldField instanceof StartingField) {
-			newField = fields[oldField.getFieldCounter() + steps];
+			newField = fields[((oldField.getFieldCounter() + steps) % this.fields.length)];
 		} else {
 			newField = oldField;
 		}

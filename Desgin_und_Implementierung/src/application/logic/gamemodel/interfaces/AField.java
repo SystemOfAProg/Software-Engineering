@@ -1,5 +1,6 @@
 package application.logic.gamemodel.interfaces;
 
+import java.util.Collection;
 import java.util.LinkedList;
 
 import application.logic.gamemodel.implementation.matchfield.Collision;
@@ -17,7 +18,7 @@ public abstract class AField {
 		Collision collision;
 		if( !this.figuresOnThisField.isEmpty()) {
 			Player playerOnField = this.figuresOnThisField.getFirst().getPlayer();
-			collision = new Collision(newFigure.getPlayer(), playerOnField, this);
+			collision = new Collision(playerOnField, newFigure.getPlayer(), this);
 		} else {
 			collision = new Collision();
 		}
@@ -39,12 +40,8 @@ public abstract class AField {
 				+ this.fieldCounter;
 	}
 
-	public Figure getFigure() {
-		if (!this.figuresOnThisField.isEmpty()) {
-			return this.figuresOnThisField.getFirst();
-		} else {
-			return null;
-		}
+	public LinkedList<Figure> getFigures() {
+		return this.figuresOnThisField;
 	}
 	
 }

@@ -20,10 +20,11 @@ public class Player {
 	private String name;
 	private int playerCounter;
 	
-	public Player(Game game, int count, Matchfield field) {
+	public Player(Game game, int count, Matchfield field, int figuresPerPlayer) {
 		this.game = game;
 		this.name = "Player "+ Integer.toString(count);
 		this.playerCounter = count;
+		this.figuresCount = figuresPerPlayer;
 		setStartField(field);
 		createHomeFields();
 		createFigures();

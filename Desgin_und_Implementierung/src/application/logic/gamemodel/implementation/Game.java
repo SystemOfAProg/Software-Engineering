@@ -21,13 +21,14 @@ public class Game {
 	 * @param gameFieldSizeFactor 	How many Fields per Players:
 	 * 								4 Players, Factor 10 -> 40 Fields
 	 * @param playerCount 			Count of Players
+	 * @param figureForPlayer		How many figures should be added for each player
 	 */
-	public Game(int gameFieldSizeFactor, int playerCount) {
-		if (gameFieldSizeFactor > 0 && playerCount > 0){
+	public Game(int gameFieldSizeFactor, int playerCount, int figuresPerPlayer) {
+		if (gameFieldSizeFactor > 0 && playerCount > 0 && figuresPerPlayer > 0){
 			int gameFieldSize = gameFieldSizeFactor * playerCount;
 			System.out.println("> Create new Game...");
 			createMatchfield(gameFieldSize, playerCount);
-			createPlayers(playerCount);
+			createPlayers(playerCount, figuresPerPlayer);
 			createQuestions();
 			System.out.println("> Game successfully created!");
 		} else {
@@ -35,14 +36,15 @@ public class Game {
 		}
 	}
 	
+	
 	private void createMatchfield(int gameFieldSize, int playerCount) {
 		this.field = new Matchfield(gameFieldSize, playerCount, this);
 	}
 	
-	private void createPlayers(int size) {
+	private void createPlayers(int size, int figuresPerPlayer) {
 		players = new Player[size];
 		for(int i=0; i<size; i++) {
-			players[i] = new Player(this, i, this.field);
+			players[i] = new Player(this, i, this.field, figuresPerPlayer);
 		}
 		System.out.println("> Created " + this.players.length + " players");
 	}
@@ -78,19 +80,24 @@ public class Game {
 		return positions;
 	}
 
-	public Collision movePlayer(int steps, Figure figure, Player player) {
+	public int getMatchfieldSize() {
+		return this.field.getSize();
+	}
+	
+	public Collision moveFigure(int steps, Figure figure) {
+		Player player = figure.getPlayer();
 		AField oldField = figure.getCurrentLocation();
 		AField newField = this.field.calculateNewField(oldField, steps);
 		return figure.move(newField);
 	}
 
-	public Collision addFigureForPlayer(Player player) {
+	public Collision addFigureForPlayer(Player player) throws IllegalAccessError {
 		for(Figure figure: player.getFigures()) {
 			if(!figure.isInField()) {
 				return figure.move(player.getStartingField());
 			}
 		}
-		return new Collision();
+		throw new IllegalAccessError("All figures for player" + player.getPlayerName() + " are already added to the matchfield!");
 	}
 	
 	public boolean allFiguresInMatchfield(Player player) {
@@ -106,13 +113,17 @@ public class Game {
 	
 	public void printField() {
 		for(AField field: this.field.getAllFields()) {
+			String fieldViewContent = "";
+			if(!(field.getFigures().isEmpty())) {
+				for(Figure occupant: field.getFigures()) {
+					fieldViewContent += Integer.toString(occupant.getPlayer().getPlayerCount());
+				}
+			} else {
+				fieldViewContent = " ";
+			}
 			if(StartingField.class.isInstance(field)) {
-				Figure occupant = field.getFigure();
-				String fieldViewContent = (occupant == null)? " ": Integer.toString(occupant.getPlayer().getPlayerCount());
 				System.out.println("> ( " + fieldViewContent + " ) " + field.getFieldIdentifier() );				
 			} else if (StandardField.class.isInstance(field)){
-				Figure occupant = field.getFigure();
-				String fieldViewContent = (occupant == null)? " ": Integer.toString(occupant.getPlayer().getPlayerCount());
 				System.out.println("> ( "+ fieldViewContent +" ) " + field.getFieldIdentifier());
 			}
 		}		
