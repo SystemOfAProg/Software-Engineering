@@ -16,7 +16,6 @@ public class Matchfield {
 	public Matchfield(int gameFieldSize, int playerCount, Game game) {
 		this.playerFieldRatio = (gameFieldSize / playerCount);
 		this.fields = new AField[gameFieldSize];
-		System.out.println("> Create matchfield of size " + this.fields.length);
 		for(int i=0; i<this.fields.length; i++) {
 			this.fields[i] = new StandardField(i);
 		}

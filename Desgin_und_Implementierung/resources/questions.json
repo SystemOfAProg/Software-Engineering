@@ -3,45 +3,55 @@
 	"questions" : [
 			{
 				"question" : "Was ist 1+1?",
-				"answers" : [
-					"2",
-					"3",
-					"11",
-					"e"
-				],
+				"answers" : [ "2", "3",	"11",	"e" ],
+				"correct" : 0,
+				"category": 0
+			},
+			{
+				"question" : "Was hat ein Duell im Morgengrauen mit Platonischen Körpern zu tun?",
+				"answers" : [ "Gleicher Boii", "Nix",	"Was...",	"Weiß nicht" ],
+				"correct" : 0,
+				"category": 0
+			},
+			{
+				"question" : "Wie viele Ecken hat ein Kreis?",
+				"answers" : [ "Kein", "Unendlich Viele", "Alle",	"4" ],
+				"correct" : 0,
+				"category": 0
+			},
+			{
+				"question" : "Wie viele Chicken Tender gibt es für 40GBP?",
+				"answers" : [ "2", "3",	"11",	"keine, reeeeeee" ],
 				"correct" : 0,
 				"category": 0
 			},
 			{
 				"question" : "Ist diese Frage eine gute Frage?",
-				"answers" : [
-					"Ja",
-					"Nein",
-					"Vielleicht",
-					"Nur bei Vollmond"
-				],
+				"answers" : [ "Ja", "Nein", "Vielleicht", "Nur bei Vollmond" ],
+				"correct" : 1,
+				"category": 1
+			},
+			{
+				"question" : "Sind Deepfried Memes besser als Surreal Memes?",
+				"answers" : [ "Ja", "Nein", "Begone Thot!", "Uganda Knuckle ist besser" ],
+				"correct" : 1,
+				"category": 1
+			},
+			{
+				"question" : "Warum?",
+				"answers" : [ "Ja", "Nein", "Aiaiaiaiai", "Rarrrrw" ],
 				"correct" : 1,
 				"category": 1
 			},
 			{
 				"question" : "Wie viele Finger hat ein Pinguin?",
-				"answers" : [
-					"27",
-					"35",
-					"123456",
-					"Backe, Backe Kuchen, der Bäcker hat gerufen."
-				],
+				"answers" : [ "27", "35", "123456", "Backe, Backe Kuchen." ],
 				"correct" : 2,
 				"category": 2
 			},
 			{
 				"question" : "Mag ich JSONs oder XMLs lieber?",
-				"answers" : [
-					"JSONs",
-					"XMLs",
-					"Text-Files",
-					"Daten binär auf Magnetbänder gespeichert"
-				],
+				"answers" : [ "JSONs", "XMLs", "Text-Files", "Daten binär auf Magnetbänder gespeichert" ],
 				"correct" : 3,
 				"category": 3
 			}

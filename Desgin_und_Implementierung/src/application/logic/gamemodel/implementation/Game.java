@@ -1,6 +1,11 @@
 package application.logic.gamemodel.implementation;
 
 import application.logic.gamemodel.implementation.player.*;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 import application.logic.gamemodel.implementation.matchfield.*;
 import application.logic.gamemodel.implementation.questions.*;
 import application.logic.gamemodel.interfaces.*;
@@ -11,6 +16,7 @@ public class Game {
 	private Player[] players;
 	private Matchfield field;
 	private Question[] questions;
+	private QuestionCategory[] questionCategories;
 	// File-Location where the questions, answers and categories are stored
 	private String questionFileLocation = "./resources/questions.json";
 	
@@ -26,11 +32,10 @@ public class Game {
 	public Game(int gameFieldSizeFactor, int playerCount, int figuresPerPlayer) {
 		if (gameFieldSizeFactor > 0 && playerCount > 0 && figuresPerPlayer > 0){
 			int gameFieldSize = gameFieldSizeFactor * playerCount;
-			System.out.println("> Create new Game...");
 			createMatchfield(gameFieldSize, playerCount);
 			createPlayers(playerCount, figuresPerPlayer);
 			createQuestions();
-			System.out.println("> Game successfully created!");
+			setQuestionCategories();
 		} else {
 			throw new IllegalArgumentException("Please insert valid playercount and fieldSizeFactor!");
 		}
@@ -46,13 +51,22 @@ public class Game {
 		for(int i=0; i<size; i++) {
 			players[i] = new Player(this, i, this.field, figuresPerPlayer);
 		}
-		System.out.println("> Created " + this.players.length + " players");
 	}
 	
 	private void createQuestions() {
 		QuestionReader qr = new QuestionReader(this.questionFileLocation);
 		this.questions = qr.getQuestion();
-		qr.printQuestionCountAndLocation();
+	}
+	
+	private void setQuestionCategories() {
+		ArrayList<QuestionCategory> categories = new ArrayList<QuestionCategory>();
+		for(Question question: this.questions) {
+			QuestionCategory category = question.getCategory();
+			if(!categories.contains(category)) {
+				categories.add(category);
+			}
+		}
+		this.questionCategories = categories.toArray(new QuestionCategory[categories.size()]);
 	}
 	
 	// ~~~~~~~~~~~~~~~~~ Getter ~~~~~~~~~~~~~~~~~~
@@ -69,6 +83,9 @@ public class Game {
 		return this.questions;
 	}
 	
+	public QuestionCategory[] getQuestionCategories() {
+		return this.questionCategories;
+	}
 
 	// ~~~~~~~~~~~~~~~~~ Data Manipulation ~~~~~~~~~~~~~~~~~~
 
