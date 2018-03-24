@@ -24,6 +24,10 @@ public class Question {
 		return index == this.correctAnswerIndex;
 	}
 	
+	public boolean isAnswerCorrect(Answer answer) {
+		return java.util.Arrays.asList(this.answers).indexOf(answer) == this.correctAnswerIndex;
+	}
+	
 	public String getQuestionSentence() {
 		return this.question;
 	}
@@ -38,6 +42,10 @@ public class Question {
 	
 	public Answer getCorrectAnswer() {
 		return this.answers[correctAnswerIndex];
+	}
+	
+	public int getCorrectAnswerIndex() {
+		return this.correctAnswerIndex;
 	}
 	
 }

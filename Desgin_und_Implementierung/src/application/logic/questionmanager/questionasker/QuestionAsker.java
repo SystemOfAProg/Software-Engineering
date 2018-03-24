@@ -1,5 +1,6 @@
 package application.logic.questionmanager.questionasker;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
@@ -19,7 +20,8 @@ public class QuestionAsker {
 		this.game = game;
 		this.alreadyAsked = new HashMap<QuestionCategory, LinkedList<Question>>();
 		this.toAsk = new HashMap<QuestionCategory, LinkedList<Question>>();
-		Question[] questions = this.shuffleQuestions(this.game.getQuestions());
+		LinkedList<Question> questions = new LinkedList<>(Arrays.asList(this.game.getQuestions()));
+		questions = this.shuffleQuestions(questions);
 		for(Question question: questions) {
 			LinkedList<Question> alreadyAdded = (this.toAsk.get(question) == null)? new LinkedList<>():this.toAsk.get(question);
 			alreadyAdded.add(question);
@@ -28,25 +30,25 @@ public class QuestionAsker {
 	}
 
 	// Fisher-Yates Shuffle
-	private Question[] shuffleQuestions(Question[] ar) {
+	private LinkedList<Question> shuffleQuestions(LinkedList<Question> ar) {
 		// If running on Java 6 or older, use `new Random()` on RHS here
 		Random rnd = ThreadLocalRandom.current();
-		for (int i = ar.length - 1; i > 0; i--) {
+		for (int i = ar.size() - 1; i > 0; i--) {
 			int index = rnd.nextInt(i + 1);
 			// Simple swap
-			Question a = ar[index];
-			ar[index] = ar[i];
-			ar[i] = a;
+			Question a = ar.get(index);
+			ar.set(index, ar.get(i));
+			ar.set(i, a);
 		}
 		return ar;
 	}
 	
 	public Question getNextQuestion(QuestionCategory category) {
 		if(this.toAsk.get(category).isEmpty()) {
-			Question[] alreadyAsked = (Question[])this.alreadyAsked.get(category).toArray();
+			LinkedList<Question> alreadyAsked = this.alreadyAsked.get(category);
 			alreadyAsked = this.shuffleQuestions(alreadyAsked);
 			for(Question question: alreadyAsked) {
-				LinkedList<Question> alreadyAdded = this.toAsk.get(question);
+				LinkedList<Question> alreadyAdded = (this.toAsk.get(question)!=null)? this.toAsk.get(question): new LinkedList<Question>();
 				alreadyAdded.add(question);
 				this.toAsk.put(question.getCategory(), alreadyAdded);
 			}
