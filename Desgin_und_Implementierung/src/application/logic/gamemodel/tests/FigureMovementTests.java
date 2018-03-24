@@ -14,16 +14,17 @@ public class FigureMovementTests {
 	public int playerCount = 4;
 	public int fieldsPerPlayer = 10;
 	public int figuresPerPlayer = 3;
+	public int knowledgeIndicatorSize = 5;
 	
 	@Test
 	public void testGameParameterization() {
 		// standardField
-		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer);
+		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
 		assertEquals(game.getMatchfieldSize(), 					(this.fieldsPerPlayer * this.playerCount));
 		assertEquals(game.getPlayers().length, 					this.playerCount);
 		assertEquals(game.getPlayers()[0].getFigures().length, 	this.figuresPerPlayer);
 		// non standard
-		Game game2 = new Game(this.fieldsPerPlayer + 2, this.playerCount + 1, this.figuresPerPlayer + 3);
+		Game game2 = new Game(this.fieldsPerPlayer + 2, this.playerCount + 1, this.figuresPerPlayer + 3, this.knowledgeIndicatorSize);
 		assertEquals(game2.getMatchfieldSize(), 					((this.fieldsPerPlayer+2)  * (this.playerCount+1)));
 		assertEquals(game2.getPlayers().length, 					(this.playerCount+1));
 		assertEquals(game2.getPlayers()[0].getFigures().length, 	(this.figuresPerPlayer+3));
@@ -31,7 +32,7 @@ public class FigureMovementTests {
 
 	@Test
 	public void testMatchfieldMovementOverflow() {
-		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer);
+		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
 		Player player = game.getPlayers()[0];
 		Figure figure = player.getFigures()[0];
 		game.addFigureForPlayer(player);
@@ -45,7 +46,7 @@ public class FigureMovementTests {
 	
 	@Test
 	public void testAddingNewPlayers() {
-		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer);
+		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
 		for(Player player: game.getPlayers()) {
 			for(Figure figure: player.getFigures()) {
 				game.addFigureForPlayer(player);				
@@ -64,7 +65,7 @@ public class FigureMovementTests {
 	
 	@Test
 	public void testCollisionAndOccupationOrder() {
-		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer);
+		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
 		Player player1 = game.getPlayers()[0];
 		Player player2 = game.getPlayers()[1];
 		Collision collision1 = game.addFigureForPlayer(player1);

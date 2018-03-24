@@ -29,13 +29,13 @@ public class Game {
 	 * @param playerCount 			Count of Players
 	 * @param figureForPlayer		How many figures should be added for each player
 	 */
-	public Game(int gameFieldSizeFactor, int playerCount, int figuresPerPlayer) {
-		if (gameFieldSizeFactor > 0 && playerCount > 0 && figuresPerPlayer > 0){
+	public Game(int gameFieldSizeFactor, int playerCount, int figuresPerPlayer, int knowledgeIndicatorSize) {
+		if (gameFieldSizeFactor > 0 && playerCount > 0 && figuresPerPlayer > 0 && knowledgeIndicatorSize > 0){
 			int gameFieldSize = gameFieldSizeFactor * playerCount;
 			createMatchfield(gameFieldSize, playerCount);
-			createPlayers(playerCount, figuresPerPlayer);
 			createQuestions();
 			setQuestionCategories();
+			createPlayers(playerCount, figuresPerPlayer, knowledgeIndicatorSize);
 		} else {
 			throw new IllegalArgumentException("Please insert valid playercount and fieldSizeFactor!");
 		}
@@ -46,10 +46,10 @@ public class Game {
 		this.field = new Matchfield(gameFieldSize, playerCount, this);
 	}
 	
-	private void createPlayers(int size, int figuresPerPlayer) {
+	private void createPlayers(int size, int figuresPerPlayer, int knowledgeIndicatorSize) {
 		players = new Player[size];
 		for(int i=0; i<size; i++) {
-			players[i] = new Player(this, i, this.field, figuresPerPlayer);
+			players[i] = new Player(this, i, this.field, figuresPerPlayer, knowledgeIndicatorSize, this.questionCategories);
 		}
 	}
 	

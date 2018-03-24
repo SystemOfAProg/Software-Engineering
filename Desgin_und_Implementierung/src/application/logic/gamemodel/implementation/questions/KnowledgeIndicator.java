@@ -40,4 +40,8 @@ public class KnowledgeIndicator {
 		return this.position == this.max;
 	}
 	
+	public QuestionCategory getCategory() {
+		return this.category;
+	}
+	
 }

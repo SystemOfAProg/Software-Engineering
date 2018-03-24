@@ -5,7 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import application.logic.gamemodel.implementation.Game;
+import application.logic.gamemodel.implementation.player.Player;
 import application.logic.gamemodel.implementation.questions.Answer;
+import application.logic.gamemodel.implementation.questions.KnowledgeIndicator;
 import application.logic.gamemodel.implementation.questions.Question;
 import application.logic.gamemodel.implementation.questions.QuestionCategory;
 import application.logic.questionmanager.questionasker.QuestionAsker;
@@ -15,11 +17,12 @@ public class QuestionAskerTests {
 	public int playerCount = 4;
 	public int fieldsPerPlayer = 10;
 	public int figuresPerPlayer = 3;
+	public int knowledgeIndicatorSize = 5;
 	
 	@Test
 	public void getQuestions() {
 		// standardField
-		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer);
+		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
 		QuestionAsker asker = new QuestionAsker(game);
 		QuestionCategory[] categories = game.getQuestionCategories();
 		for (int i=0; i<categories.length; i++) {
@@ -37,7 +40,7 @@ public class QuestionAskerTests {
 	@Test
 	public void testAnswering() {
 		// standardField
-		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer);
+		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
 		QuestionAsker asker = new QuestionAsker(game);
 		QuestionCategory[] categories = game.getQuestionCategories();
 		for (int i=0; i<categories.length; i++) {
@@ -61,7 +64,7 @@ public class QuestionAskerTests {
 	
 	@Test
 	public void testGetCategoriesOrder() {
-		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer);
+		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
 		QuestionCategory[] categoriesTemplate = game.getQuestionCategories();
 		QuestionCategory[] categories;
 		for(int i=0; i<50; i++) {
@@ -69,6 +72,24 @@ public class QuestionAskerTests {
 			for(int j=0; j<categories.length; j++) {
 				// Check if Array always has the same order
 				assertEquals(categoriesTemplate[j].getName(), categories[j].getName());				
+			}
+		}
+	}
+	
+	@Test
+	public void testKnowledgeIndicators() {
+		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
+		Player[] players = game.getPlayers();
+		for(Player player: players) {
+			for(KnowledgeIndicator i: player.getKnowledgeIndicators()) {
+				QuestionCategory expected = i.getCategory();
+				QuestionCategory actual = null;
+				for(QuestionCategory c: game.getQuestionCategories()) {
+					if(i.getCategory().equals(c)) {
+						actual = c;
+					}
+				}
+				assertTrue(expected.equals(actual));
 			}
 		}
 	}

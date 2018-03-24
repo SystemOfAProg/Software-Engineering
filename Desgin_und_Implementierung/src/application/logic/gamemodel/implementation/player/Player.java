@@ -20,7 +20,7 @@ public class Player {
 	private String name;
 	private int playerCounter;
 	
-	public Player(Game game, int count, Matchfield field, int figuresPerPlayer) {
+	public Player(Game game, int count, Matchfield field, int figuresPerPlayer, int knowledgeIndicatorSize, QuestionCategory[] categories) {
 		this.game = game;
 		this.name = "Player "+ Integer.toString(count);
 		this.playerCounter = count;
@@ -28,6 +28,7 @@ public class Player {
 		setStartField(field);
 		createHomeFields();
 		createFigures();
+		createKnowledgeIndicators(knowledgeIndicatorSize, categories);
 	}
 	
 	private void setStartField(Matchfield field) {
@@ -52,6 +53,13 @@ public class Player {
 		}
 	}
 	
+	private void createKnowledgeIndicators(int knowledgeIndicatorSize, QuestionCategory[] categories) {
+		this.indicators = new KnowledgeIndicator[categories.length];
+		for(int i=0; i<categories.length; i++) {
+			this.indicators[i] = new KnowledgeIndicator(0, knowledgeIndicatorSize, categories[i], this);
+		}
+	}
+	
 	public int getPlayerCount() {
 		return this.playerCounter;
 	}
@@ -62,6 +70,19 @@ public class Player {
 	
 	public Figure[] getFigures() {
 		return this.figures;
+	}
+	
+	public KnowledgeIndicator[] getKnowledgeIndicators() {
+		return this.indicators;
+	}
+	
+	public KnowledgeIndicator getKnowledgeIndicatorForCategory(QuestionCategory category) {
+		for(KnowledgeIndicator indicator: this.indicators) {
+			if(indicator.getCategory().equals(category)) {
+				return indicator;
+			}
+		}
+		return null;
 	}
 	
 	/**
