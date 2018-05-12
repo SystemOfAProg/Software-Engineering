@@ -37,6 +37,9 @@ public class QuestionAskerTests {
 		}
 	}
 	
+	/**
+	 * Test if answering the question correctly is handled correctly
+	 */
 	@Test
 	public void testAnswering() {
 		// standardField
@@ -62,6 +65,9 @@ public class QuestionAskerTests {
 		}
 	}
 	
+	/**
+	 * Check if all Question Categories are always returned in the right order
+	 */
 	@Test
 	public void testGetCategoriesOrder() {
 		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
@@ -76,6 +82,9 @@ public class QuestionAskerTests {
 		}
 	}
 	
+	/**
+	 * Check if all Knowledge Indicators are initialized properly
+	 */
 	@Test
 	public void testKnowledgeIndicators() {
 		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);

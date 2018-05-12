@@ -31,7 +31,6 @@ public class QuestionAsker {
 
 	// Fisher-Yates Shuffle
 	private LinkedList<Question> shuffleQuestions(LinkedList<Question> ar) {
-		// If running on Java 6 or older, use `new Random()` on RHS here
 		Random rnd = ThreadLocalRandom.current();
 		for (int i = ar.size() - 1; i > 0; i--) {
 			int index = rnd.nextInt(i + 1);
