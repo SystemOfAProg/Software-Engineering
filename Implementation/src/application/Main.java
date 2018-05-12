@@ -4,13 +4,19 @@ import java.awt.print.Printable;
 
 import application.logic.gamemodel.implementation.Game;
 
-// Start for application "Ich weiss, was was du nicht weiss."
+// Meta-Klasse "System" aus Foliensatz 2, Seite 221
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO: Generate new Game with all components
+		// ~~~~~ Setup Process ~~~~~
+		// Create Model
+		// Create View with reference to model
+		// View attaches itself to the model
+		// View creates a controller with reference to itself and the model
+		// Controller attaches itself to the Model
+		// ~~~~~ Start Event Loop ~~~~~
+		// Start the actual Game
 		printStartSequence();
-		Game game = new Game(10, 4, 4, 5);
 		printEndSequence();
 	}
 	
