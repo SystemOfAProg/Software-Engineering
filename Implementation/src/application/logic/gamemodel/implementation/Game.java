@@ -11,6 +11,7 @@ import application.logic.gamemodel.implementation.questions.*;
 import application.logic.gamemodel.interfaces.*;
 import application.logic.questionmanager.serialization.QuestionReader;
 
+// Fassade für den Zugriff auf Zustand des Spiels
 public class Game {
 
 	private Player[] players;

@@ -1,15 +1,14 @@
 package application;
 
-import java.awt.print.Printable;
-
-import application.logic.gamemodel.implementation.Game;
+import application.logic.gamelogic.IGameLogicFactory;
 
 // Meta-Klasse "System" aus Foliensatz 2, Seite 221
 public class Main {
-
+	
 	public static void main(String[] args) {
 		// ~~~~~ Setup Process ~~~~~
 		// Create Model
+		IGameLogicFactory logicFactory = IGameLogicFactory.FACTORY;
 		// Create View with reference to model
 		// View attaches itself to the model
 		// View creates a controller with reference to itself and the model

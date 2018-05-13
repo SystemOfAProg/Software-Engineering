@@ -1,10 +1,19 @@
 package application.gui;
 
+import application.logic.gamelogic.GameLogicFactory;
+import application.logic.gamelogic.port.IGamePort;
 import application.logic.observerandsubject.IObserver;
 import application.logic.stateMachine.IState;
 
 public class GUI implements IObserver  {
 
+	// Feld um "getData()" auszuführen (Folie 2, Seite 220)
+	IGamePort game;
+	
+	public GUI(GameLogicFactory logic) {
+		this.game = logic.gamePort();
+	}
+	
 	@Override
 	public void update(IState newSate) {
 		// TODO: React to changes in Logic depending of the given state

@@ -4,7 +4,7 @@ import application.logic.gamelogic.port.IGamePort;
 
 public interface IGameLogicFactory {
 	
-	IGameLogicFactory gameLogicFacotry = new GameLogicFactory();
+	IGameLogicFactory FACTORY = new GameLogicFactory();
 	
 	IGamePort gamePort();
 	
