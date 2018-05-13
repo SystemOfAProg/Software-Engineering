@@ -17,6 +17,7 @@ public class GUI implements IObserver  {
 	@Override
 	public void update(IState newSate) {
 		// TODO: React to changes in Logic depending of the given state
+		
 	}
 	
 	private static void printStartSequence() {
