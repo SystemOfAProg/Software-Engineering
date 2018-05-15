@@ -6,17 +6,17 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-import application.logic.gamemodel.impl.Game;
+import application.logic.gamemodel.impl.GameModel;
 import application.logic.gamemodel.impl.questions.Question;
 import application.logic.gamemodel.impl.questions.QuestionCategory;
 
 public class QuestionAsker {
 
-	private Game game;
+	private GameModel game;
 	private HashMap<QuestionCategory, LinkedList<Question>> toAsk;
 	private HashMap<QuestionCategory, LinkedList<Question>> alreadyAsked;
 	
-	public QuestionAsker(Game game) {
+	public QuestionAsker(GameModel game) {
 		this.game = game;
 		this.alreadyAsked = new HashMap<QuestionCategory, LinkedList<Question>>();
 		this.toAsk = new HashMap<QuestionCategory, LinkedList<Question>>();

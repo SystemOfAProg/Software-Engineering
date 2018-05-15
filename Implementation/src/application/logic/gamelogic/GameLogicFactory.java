@@ -4,7 +4,7 @@ import application.logic.gamelogic.port.IGamePlay;
 import application.logic.gamelogic.port.IGamePort;
 import application.logic.gamelogic.port.IGameStart;
 import application.logic.gamemodel.impl.AField;
-import application.logic.gamemodel.impl.Game;
+import application.logic.gamemodel.impl.GameModel;
 import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.player.Figure;
@@ -41,7 +41,7 @@ public class GameLogicFactory implements IGameLogicFactory, IGamePort, IGamePlay
 	// ========== Implementation of GameStart ==========
 	
 	@Override
-	public Game createNewGame(int gameFieldSizeFactor, int playerCount, int figuresPerPlayer,
+	public GameModel createNewGame(int gameFieldSizeFactor, int playerCount, int figuresPerPlayer,
 			int knowledgeIndicatorSize) {
 		// TODO Auto-generated method stub
 		return null;

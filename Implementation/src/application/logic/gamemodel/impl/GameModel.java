@@ -4,16 +4,14 @@ import java.util.ArrayList;
 
 import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
-import application.logic.gamemodel.impl.matchfield.StandardField;
-import application.logic.gamemodel.impl.matchfield.StartingField;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.gamemodel.impl.questions.Question;
 import application.logic.gamemodel.impl.questions.QuestionCategory;
+import application.logic.gamemodel.port.IGameModel;
 import application.logic.questionmanager.impl.QuestionReader;
 
-// Facade for Game State
-public class Game {
+public class GameModel implements IGameModel{
 
 	private Player[] players;
 	private Matchfield field;
@@ -23,7 +21,6 @@ public class Game {
 	private String questionFileLocation = "./resources/questions.json";
 	
 	// ~~~~~~~~~~~~~~~~~ Create new Game ~~~~~~~~~~~~~~~~~~
-	
 	/**
 	 * Creates a new game with all its neccessary components
 	 * @param gameFieldSizeFactor 	How many Fields per Players:
@@ -31,7 +28,7 @@ public class Game {
 	 * @param playerCount 			Count of Players
 	 * @param figureForPlayer		How many figures should be added for each player
 	 */
-	public Game(int gameFieldSizeFactor, int playerCount, int figuresPerPlayer, int knowledgeIndicatorSize) {
+	public GameModel(int gameFieldSizeFactor, int playerCount, int figuresPerPlayer, int knowledgeIndicatorSize) {
 		if (gameFieldSizeFactor > 0 && playerCount > 0 && figuresPerPlayer > 0 && knowledgeIndicatorSize > 0){
 			int gameFieldSize = gameFieldSizeFactor * playerCount;
 			createMatchfield(gameFieldSize, playerCount);
@@ -89,8 +86,6 @@ public class Game {
 		return this.questionCategories;
 	}
 
-	// ~~~~~~~~~~~~~~~~~ Data Manipulation ~~~~~~~~~~~~~~~~~~
-
 	public AField[] getFigurePositionsOfPlayer(Player player) {
 		AField[] positions = new AField[player.getFigures().length];
 		for(int i=0; i<player.getFigures().length; i++) {
@@ -103,6 +98,16 @@ public class Game {
 		return this.field.getSize();
 	}
 	
+	public boolean allFiguresInMatchfield(Player player) {
+		for(Figure figure: player.getFigures()) {
+			if(!figure.isInField()) {
+				return false;
+			}
+		}
+		return true;
+	}	
+
+	// ~~~~~~~~~~~~~~~~~ Data Manipulation ~~~~~~~~~~~~~~~~~~
 	public Collision moveFigure(int steps, Figure figure) {
 		Player player = figure.getPlayer();
 		AField oldField = figure.getCurrentLocation();
@@ -117,48 +122,6 @@ public class Game {
 			}
 		}
 		throw new IllegalAccessError("All figures for player" + player.getPlayerName() + " are already added to the matchfield!");
-	}
-	
-	public boolean allFiguresInMatchfield(Player player) {
-		for(Figure figure: player.getFigures()) {
-			if(!figure.isInField()) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	// ~~~~~~~~~~~~~~~~~ Utils ~~~~~~~~~~~~~~~~~~
-	// Should not be used for view functions !!!
-	
-	public void printField() {
-		for(AField field: this.field.getAllFields()) {
-			String fieldViewContent = "";
-			if(!(field.getFigures().isEmpty())) {
-				for(Figure occupant: field.getFigures()) {
-					fieldViewContent += Integer.toString(occupant.getPlayer().getPlayerCount());
-				}
-			} else {
-				fieldViewContent = " ";
-			}
-			if(StartingField.class.isInstance(field)) {
-				System.out.println("> ( " + fieldViewContent + " ) " + field.getFieldIdentifier() );				
-			} else if (StandardField.class.isInstance(field)){
-				System.out.println("> ( "+ fieldViewContent +" ) " + field.getFieldIdentifier());
-			}
-		}		
-	}
-	
-	public void printCurrentState() {
-		// TODO: print summary of the current status of the game
-		for(Player player: this.players) {
-			System.out.println("Informationen zu " + player.getPlayerName());
-			System.out.println(" | --- Figuren:");
-			for(Figure figure: player.getFigures()) {
-				System.out.println(" |     |--- " + figure.getFigureIdentifier());
-				System.out.println(" |     |         | --- Location: " + figure.getCurrentLocation().getFieldIdentifier());
-			}
-		}
 	}
 	
 }

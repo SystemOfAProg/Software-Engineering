@@ -1,17 +1,26 @@
 package application.gui.impl;
 
 import application.logic.gamelogic.GameLogicFactory;
-import application.logic.gamelogic.port.IGamePort;
+import application.logic.gamelogic.IGameLogicFactory;
+import application.logic.gamemodel.impl.AField;
+import application.logic.gamemodel.impl.matchfield.StandardField;
+import application.logic.gamemodel.impl.matchfield.StartingField;
+import application.logic.gamemodel.impl.player.Figure;
+import application.logic.gamemodel.impl.player.Player;
+import application.logic.gamemodel.impl.questions.Answer;
+import application.logic.gamemodel.impl.questions.Question;
 import application.logic.stateMachine.port.IObserver;
 import application.logic.stateMachine.port.IState;
 
 public class GUI implements IObserver  {
 
-	// Feld um "getData()" auszuführen (Folie 2, Seite 220)
-	IGamePort game;
+	// IGameLogicFactory as outer Logic Component
+	// -> Facade for operations on Model
+	// -> Every Operation should be acessible from here
+	private IGameLogicFactory gameLogicFactory;
 	
 	public GUI(GameLogicFactory logic) {
-		this.game = logic.gamePort();
+		this.gameLogicFactory = IGameLogicFactory.FACTORY;
 	}
 	
 	@Override
@@ -42,6 +51,55 @@ public class GUI implements IObserver  {
 		System.out.println("+————————————————————————————————————————————————————————————————+");
 		System.out.println("|                            ENDE                                |");
 		System.out.println("+————————————————————————————————————————————————————————————————+");
+	}
+	
+	public void printField(AField[] fields) {
+		for(AField field: fields) {
+			String fieldViewContent = "";
+			if(!(field.getFigures().isEmpty())) {
+				for(Figure occupant: field.getFigures()) {
+					fieldViewContent += Integer.toString(occupant.getPlayer().getPlayerCount());
+				}
+			} else {
+				fieldViewContent = " ";
+			}
+			if(StartingField.class.isInstance(field)) {
+				System.out.println("> ( " + fieldViewContent + " ) " + field.getFieldIdentifier() );				
+			} else if (StandardField.class.isInstance(field)){
+				System.out.println("> ( "+ fieldViewContent +" ) " + field.getFieldIdentifier());
+			}
+		}		
+	}
+	
+	public void printCurrentState(Player[] players) {
+		// TODO: print summary of the current status of the game
+		for(Player player: players) {
+			System.out.println("Informationen zu " + player.getPlayerName());
+			System.out.println(" | --- Figuren:");
+			for(Figure figure: player.getFigures()) {
+				System.out.println(" |     |--- " + figure.getFigureIdentifier());
+				System.out.println(" |     |         | --- Location: " + figure.getCurrentLocation().getFieldIdentifier());
+			}
+		}
+	}
+	
+	public void printQuestions(Question[] questions) {
+		for(Question q: questions) {
+			System.out.println("------------------------------------------------------------------------");
+			System.out.println("|--- Question:   '"+ q.getQuestionSentence() + "'");
+			System.out.println("|--- Answers:");
+			for (Answer a: q.getAnswers()) {
+				System.out.println("|    |--- Answer: '"+ a.getAnswerSentence() + "'");
+			}
+			System.out.println("|--- Category: '" + q.getCategory().getName() + "'");
+			System.out.println("|--- Correct Answer: '" + q.getCorrectAnswer().getAnswerSentence() + "'");
+			System.out.println("------------------------------------------------------------------------");
+			System.out.println();
+		}
+	}
+	
+	public void printQuestionCountAndLocation(Question[] questions, String fileLocation) {
+		System.out.println("> " + questions.length + " questions found in " + fileLocation);
 	}
 	
 }

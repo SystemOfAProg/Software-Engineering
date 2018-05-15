@@ -1,7 +1,7 @@
 package application.logic.gamemodel.impl.player;
 
 import application.logic.gamemodel.impl.AField;
-import application.logic.gamemodel.impl.Game;
+import application.logic.gamemodel.impl.GameModel;
 import application.logic.gamemodel.impl.matchfield.HomeField;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.matchfield.StartingField;
@@ -10,7 +10,7 @@ import application.logic.gamemodel.impl.questions.QuestionCategory;
 
 public class Player {
 
-	private Game game;
+	private GameModel game;
 	private Figure[] figures;
 	private StartingField start;
 	private HomeField[] homes;
@@ -21,7 +21,7 @@ public class Player {
 	private String name;
 	private int playerCounter;
 	
-	public Player(Game game, int count, Matchfield field, int figuresPerPlayer, int knowledgeIndicatorSize, QuestionCategory[] categories) {
+	public Player(GameModel game, int count, Matchfield field, int figuresPerPlayer, int knowledgeIndicatorSize, QuestionCategory[] categories) {
 		this.game = game;
 		this.name = "Player "+ Integer.toString(count);
 		this.playerCounter = count;

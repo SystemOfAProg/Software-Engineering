@@ -1,16 +1,16 @@
 package application.logic.gamemodel.impl.matchfield;
 
 import application.logic.gamemodel.impl.AField;
-import application.logic.gamemodel.impl.Game;
+import application.logic.gamemodel.impl.GameModel;
 import application.logic.gamemodel.impl.player.Player;
 
 public class Matchfield {
 
 	private AField[] fields;
 	private int playerFieldRatio;
-	private Game game;
+	private GameModel game;
 	
-	public Matchfield(int gameFieldSize, int playerCount, Game game) {
+	public Matchfield(int gameFieldSize, int playerCount, GameModel game) {
 		this.playerFieldRatio = (gameFieldSize / playerCount);
 		this.fields = new AField[gameFieldSize];
 		for(int i=0; i<this.fields.length; i++) {

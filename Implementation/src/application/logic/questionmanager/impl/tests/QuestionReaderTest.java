@@ -55,7 +55,6 @@ public class QuestionReaderTest {
 			// Check Correct Answer
 			assert(question.getCorrectAnswer().getAnswerSentence().contains(correctSignature));
 		}
-		qr.printQuestions();
 	}
 	
 }

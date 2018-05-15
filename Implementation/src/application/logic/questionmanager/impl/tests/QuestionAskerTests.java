@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import application.logic.gamemodel.impl.Game;
+import application.logic.gamemodel.impl.GameModel;
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.gamemodel.impl.questions.Answer;
 import application.logic.gamemodel.impl.questions.KnowledgeIndicator;
@@ -24,7 +24,7 @@ public class QuestionAskerTests {
 	@Test
 	public void getQuestions() {
 		// standardField
-		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
+		GameModel game = new GameModel(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
 		QuestionAsker asker = new QuestionAsker(game);
 		QuestionCategory[] categories = game.getQuestionCategories();
 		for (int i=0; i<categories.length; i++) {
@@ -45,7 +45,7 @@ public class QuestionAskerTests {
 	@Test
 	public void testAnswering() {
 		// standardField
-		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
+		GameModel game = new GameModel(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
 		QuestionAsker asker = new QuestionAsker(game);
 		QuestionCategory[] categories = game.getQuestionCategories();
 		for (int i=0; i<categories.length; i++) {
@@ -72,7 +72,7 @@ public class QuestionAskerTests {
 	 */
 	@Test
 	public void testGetCategoriesOrder() {
-		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
+		GameModel game = new GameModel(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
 		QuestionCategory[] categoriesTemplate = game.getQuestionCategories();
 		QuestionCategory[] categories;
 		for(int i=0; i<50; i++) {
@@ -89,7 +89,7 @@ public class QuestionAskerTests {
 	 */
 	@Test
 	public void testKnowledgeIndicators() {
-		Game game = new Game(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
+		GameModel game = new GameModel(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
 		Player[] players = game.getPlayers();
 		for(Player player: players) {
 			for(KnowledgeIndicator i: player.getKnowledgeIndicators()) {

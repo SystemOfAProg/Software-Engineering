@@ -41,6 +41,7 @@ public class QuestionReader {
 		return this.questions;
 	}
 	
+	// Reread questions from file and build question objects
 	public boolean refreshQuestions() {
 		try {
 			String questionsJSON = this.readFile(this.fileLocation, StandardCharsets.UTF_8);
@@ -104,25 +105,6 @@ public class QuestionReader {
 	private String readFile(String path, Charset encoding) throws IOException {
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, encoding);
-	}
-	
-	public void printQuestions() {
-		for(Question q: this.questions) {
-			System.out.println("------------------------------------------------------------------------");
-			System.out.println("|--- Question:   '"+ q.getQuestionSentence() + "'");
-			System.out.println("|--- Answers:");
-			for (Answer a: q.getAnswers()) {
-				System.out.println("|    |--- Answer: '"+ a.getAnswerSentence() + "'");
-			}
-			System.out.println("|--- Category: '" + q.getCategory().getName() + "'");
-			System.out.println("|--- Correct Answer: '" + q.getCorrectAnswer().getAnswerSentence() + "'");
-			System.out.println("------------------------------------------------------------------------");
-			System.out.println();
-		}
-	}
-	
-	public void printQuestionCountAndLocation() {
-		System.out.println("> " + this.questions.length + " questions found in " + this.fileLocation);
 	}
 	
 }
