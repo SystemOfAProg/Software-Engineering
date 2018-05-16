@@ -7,8 +7,8 @@ import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
-import application.logic.gamemodel.impl.questions.Question;
-import application.logic.gamemodel.impl.questions.QuestionCategory;
+import application.logic.questionmanager.impl.Question;
+import application.logic.questionmanager.impl.QuestionCategory;
 
 // Utility for delegating requests for Game-Play Functions
 // to Game Facade

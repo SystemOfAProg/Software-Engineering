@@ -11,10 +11,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import application.logic.gamemodel.impl.questions.Answer;
-import application.logic.gamemodel.impl.questions.Question;
-import application.logic.gamemodel.impl.questions.QuestionCategory;
-
 /**
  * Reading questions from JSON File and parse them to Question-Objects
  * 
@@ -27,6 +23,14 @@ public class QuestionReader {
 	
 	private String defaultFileLocation = "./resources/questions.json";
 	private String fileLocation = "";
+	
+	/**
+	 * Create Question Reader with default File Location
+	 */
+	public QuestionReader() {
+		this.fileLocation = this.defaultFileLocation;
+		this.refreshQuestions();
+	}
 	
 	public QuestionReader(String fileLocation) {
 		if(fileLocation.trim().length() == 0) {

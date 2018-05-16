@@ -1,4 +1,4 @@
-package application.logic.gamemodel.impl.questions;
+package application.logic.questionmanager.impl;
 
 import application.logic.gamemodel.impl.player.Player;
 

@@ -1,11 +1,11 @@
-package application.logic.questionmanager.impl.tests;
+package application.logic.questionmanager.test;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import application.logic.gamemodel.impl.questions.Answer;
-import application.logic.gamemodel.impl.questions.Question;
+import application.logic.questionmanager.impl.Answer;
+import application.logic.questionmanager.impl.Question;
 import application.logic.questionmanager.impl.QuestionReader;
 
 public class QuestionReaderTest {

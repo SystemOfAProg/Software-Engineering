@@ -5,8 +5,6 @@ import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
-import application.logic.gamemodel.impl.questions.Question;
-import application.logic.gamemodel.impl.questions.QuestionCategory;
 
 public interface IGameModel {
 
@@ -25,19 +23,7 @@ public interface IGameModel {
 	Matchfield 			getMatchfield();
 	
 	/**
-	 * Returns all Questions as one Array from all categories.
-	 * @return Question Objects as Array
-	 */
-	Question[] 			getQuestions();
-	
-	/**
-	 * Returns all existing question categories.
-	 * @return Question Categories as Array
-	 */
-	QuestionCategory[] 	getQuestionCategories();
-	
-	/**
-	 * Looks up where all figures of a specific players figures are located and 
+	 * Looks up where all figures of a specific players figures are located and
 	 * return their position.
 	 * @param player Player whose figures position should be searched
 	 * @return Fields the figures are placed on as array
@@ -45,13 +31,34 @@ public interface IGameModel {
 	AField[] 			getFigurePositionsOfPlayer(Player player);
 	
 	/**
-	 * 
-	 * @return
+	 * Get count of fields of the Matchfield excluding HomeFields
+	 * @return count of starting- and standard fields
 	 */
 	int 				getMatchfieldSize();
+	
+	/**
+	 * Checks if all figures of a player are in the matchfield.
+	 * No figure is left over in the Home-Fields
+	 * @param player Player whose figures should be looked for
+	 * @return True if all figures are in the matchifield
+	 */
 	boolean 			allFiguresInMatchfield(Player player);
+
 	// ~~~~~~~~~~~~~~~~~ Write State ~~~~~~~~~~~~~~~~~~
+	
+	/**
+	 * Move a specific figure a specific distance
+	 * @param steps How many Fields should the figure move?
+	 * @param figure Which Figure should be moved?
+	 * @return Collision Object that represents the state and information if collision happened
+	 */
 	Collision 			moveFigure(int steps, Figure figure);
+
+	/**
+	 * 
+	 * @param player
+	 * @return
+	 */
 	Collision 			addFigureForPlayer(Player player);
 	void 				reset();
 }

@@ -6,8 +6,6 @@ import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
-import application.logic.gamemodel.impl.questions.Question;
-import application.logic.gamemodel.impl.questions.QuestionCategory;
 import application.logic.gamemodel.port.IGameModel;
 import application.logic.gamemodel.port.IGameModelPort;
 
@@ -59,18 +57,6 @@ public class GameModelFactory implements IGameModelFactory, IGameModelPort, IGam
 	public Matchfield getMatchfield() {
 		this.mkGameModel();
 		return this.game.getMatchfield();
-	}
-
-	@Override
-	public Question[] getQuestions() {
-		this.mkGameModel();
-		return this.game.getQuestions();
-	}
-
-	@Override
-	public QuestionCategory[] getQuestionCategories() {
-		this.mkGameModel();
-		return this.game.getQuestionCategories();
 	}
 
 	@Override

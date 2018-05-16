@@ -9,8 +9,8 @@ import application.logic.gamemodel.impl.matchfield.StandardField;
 import application.logic.gamemodel.impl.matchfield.StartingField;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
-import application.logic.gamemodel.impl.questions.Answer;
-import application.logic.gamemodel.impl.questions.Question;
+import application.logic.questionmanager.impl.Answer;
+import application.logic.questionmanager.impl.Question;
 import application.logic.stateMachine.port.IState;
 
 public class View implements IObserver, IView {

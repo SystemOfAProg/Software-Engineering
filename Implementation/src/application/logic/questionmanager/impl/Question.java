@@ -1,4 +1,4 @@
-package application.logic.gamemodel.impl.questions;
+package application.logic.questionmanager.impl;
 
 public class Question {
 

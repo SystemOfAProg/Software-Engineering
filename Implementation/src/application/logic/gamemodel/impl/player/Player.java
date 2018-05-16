@@ -5,8 +5,6 @@ import application.logic.gamemodel.impl.GameModel;
 import application.logic.gamemodel.impl.matchfield.HomeField;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.matchfield.StartingField;
-import application.logic.gamemodel.impl.questions.KnowledgeIndicator;
-import application.logic.gamemodel.impl.questions.QuestionCategory;
 
 public class Player {
 
@@ -14,14 +12,13 @@ public class Player {
 	private Figure[] figures;
 	private StartingField start;
 	private HomeField[] homes;
-	private KnowledgeIndicator[] indicators;
 	
 	private int figuresCount = 3;
 	
 	private String name;
 	private int playerCounter;
 	
-	public Player(GameModel game, int count, Matchfield field, int figuresPerPlayer, int knowledgeIndicatorSize, QuestionCategory[] categories) {
+	public Player(GameModel game, int count, Matchfield field, int figuresPerPlayer) {
 		this.game = game;
 		this.name = "Player "+ Integer.toString(count);
 		this.playerCounter = count;
@@ -29,7 +26,6 @@ public class Player {
 		setStartField(field);
 		createHomeFields();
 		createFigures();
-		createKnowledgeIndicators(knowledgeIndicatorSize, categories);
 	}
 	
 	private void setStartField(Matchfield field) {
@@ -53,14 +49,7 @@ public class Player {
 			}
 		}
 	}
-	
-	private void createKnowledgeIndicators(int knowledgeIndicatorSize, QuestionCategory[] categories) {
-		this.indicators = new KnowledgeIndicator[categories.length];
-		for(int i=0; i<categories.length; i++) {
-			this.indicators[i] = new KnowledgeIndicator(0, knowledgeIndicatorSize, categories[i], this);
-		}
-	}
-	
+		
 	public int getPlayerCount() {
 		return this.playerCounter;
 	}
@@ -72,20 +61,7 @@ public class Player {
 	public Figure[] getFigures() {
 		return this.figures;
 	}
-	
-	public KnowledgeIndicator[] getKnowledgeIndicators() {
-		return this.indicators;
-	}
-	
-	public KnowledgeIndicator getKnowledgeIndicatorForCategory(QuestionCategory category) {
-		for(KnowledgeIndicator indicator: this.indicators) {
-			if(indicator.getCategory().equals(category)) {
-				return indicator;
-			}
-		}
-		return null;
-	}
-	
+		
 	/**
 	 * Check if both Players reference the same player.
 	 * @param player Player to check
