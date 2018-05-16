@@ -25,6 +25,8 @@ public class GameModelImplTest {
 	public int figuresPerPlayer = 3;
 	public int knowledgeIndicatorSize = 5;
 	
+	// ======================== Tests ======================
+	
 	@Test
 	public void testGameParameterization() {
 		// standardField
@@ -76,6 +78,8 @@ public class GameModelImplTest {
 			assertTrue(game.allFiguresInMatchfield(player));
 		}
 	}
+	
+	// ====================== Utility Functions for some tasks ======================
 	
 	/**
 	 * Add all figures ov every player to the matchfield.

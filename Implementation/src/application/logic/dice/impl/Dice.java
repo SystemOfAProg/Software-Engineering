@@ -9,18 +9,34 @@ public class Dice implements IDice{
 	private Random random;
 	private int lowerBound;
 	private int upperBound;
+	private int lastResult;
 	
-	/**
-	 * creates standard Dice with lowerBound=1 and upperBound=6
-	 */
 	public Dice() {
-		this.upperBound = 6;
-		this.lowerBound = 1;
+		new Dice(6,1);
+	}
+	
+	public Dice(int upperBound, int lowerBound) {
+		if(!(upperBound > lowerBound)) {
+			throw new IllegalArgumentException("The upper bound of the dice must be greate than the lower one.");
+		}
+		this.upperBound = upperBound;
+		this.lowerBound = lowerBound;
+		this.lastResult = this.lowerBound - 1;
 		this.random = new Random();
 	}
 	
 	public int roll() {
-		return (random.nextInt(upperBound - lowerBound) + lowerBound);
+		this.lastResult = (random.nextInt(upperBound - lowerBound) + lowerBound);
+		return this.lastResult;
+	}
+
+	@Override
+	public int getLastResult() {
+		if((this.lastResult <= this.upperBound) && (this.lastResult >= this.lowerBound)) {
+			return this.lastResult;			
+		} else {
+			throw new IllegalStateException("Last result could not be read. The dice has never been thrown.");
+		}
 	}
 	
 }

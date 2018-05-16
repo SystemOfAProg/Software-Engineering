@@ -32,5 +32,16 @@ public class DiceComponentTest {
 			assert(diceResult >= 1 && diceResult <=6);
 		}
 	}
+	
+	@Test
+	public void testStandardResult() {
+		IDice dice = this.dicePort.getDice();
+		int diceResult;
+		for(int i=0; i<500; i++) {
+			diceResult = dice.roll();
+			assert(diceResult >= 1 && diceResult <=6);
+		}
+	}
+
 
 }

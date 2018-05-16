@@ -35,4 +35,10 @@ public class DiceFactory implements IDiceFactory, IDicePort, IDice {
 		return this.dice.roll();
 	}
 
+	@Override
+	public int getLastResult() {
+		this.mkDice();
+		return this.dice.getLastResult();
+	}
+
 }
