@@ -12,7 +12,7 @@ public class Dice implements IDice{
 	private int lastResult;
 	
 	public Dice() {
-		new Dice(6,1);
+		this(6,1);
 	}
 	
 	public Dice(int upperBound, int lowerBound) {
