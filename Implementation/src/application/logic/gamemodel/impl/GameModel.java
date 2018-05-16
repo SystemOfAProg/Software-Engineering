@@ -20,6 +20,11 @@ public class GameModel implements IGameModel{
 	// File-Location where the questions, answers and categories are stored
 	private String questionFileLocation = "./resources/questions.json";
 	
+	private int gameFieldSizeFactor;
+	private int playerCount;
+	private int figuresPerPlayer;
+	private int knowledgeIndicatorSize;
+	
 	// ~~~~~~~~~~~~~~~~~ Create new Game ~~~~~~~~~~~~~~~~~~
 	/**
 	 * Creates a new game with all its neccessary components
@@ -29,15 +34,11 @@ public class GameModel implements IGameModel{
 	 * @param figureForPlayer		How many figures should be added for each player
 	 */
 	public GameModel(int gameFieldSizeFactor, int playerCount, int figuresPerPlayer, int knowledgeIndicatorSize) {
-		if (gameFieldSizeFactor > 0 && playerCount > 0 && figuresPerPlayer > 0 && knowledgeIndicatorSize > 0){
-			int gameFieldSize = gameFieldSizeFactor * playerCount;
-			createMatchfield(gameFieldSize, playerCount);
-			createQuestions();
-			setQuestionCategories();
-			createPlayers(playerCount, figuresPerPlayer, knowledgeIndicatorSize);
-		} else {
-			throw new IllegalArgumentException("Please insert valid playercount and fieldSizeFactor!");
-		}
+		this.gameFieldSizeFactor = gameFieldSizeFactor;
+		this.playerCount = playerCount;
+		this.figuresPerPlayer = figuresPerPlayer;
+		this.knowledgeIndicatorSize = knowledgeIndicatorSize;
+		this.reset();
 	}
 	
 	
@@ -68,7 +69,7 @@ public class GameModel implements IGameModel{
 		this.questionCategories = categories.toArray(new QuestionCategory[categories.size()]);
 	}
 	
-	// ~~~~~~~~~~~~~~~~~ Getter ~~~~~~~~~~~~~~~~~~
+	// ~~~~~~~~~~~~~~~~~ Reading current State of Game ~~~~~~~~~~~~~~~~~~
 	
 	public Player[] getPlayers() {
 		return this.players;
@@ -107,7 +108,7 @@ public class GameModel implements IGameModel{
 		return true;
 	}	
 
-	// ~~~~~~~~~~~~~~~~~ Data Manipulation ~~~~~~~~~~~~~~~~~~
+	// ~~~~~~~~~~~~~~~~~ Changing current State of Game ~~~~~~~~~~~~~~~~~~
 	public Collision moveFigure(int steps, Figure figure) {
 		Player player = figure.getPlayer();
 		AField oldField = figure.getCurrentLocation();
@@ -123,5 +124,18 @@ public class GameModel implements IGameModel{
 		}
 		throw new IllegalAccessError("All figures for player" + player.getPlayerName() + " are already added to the matchfield!");
 	}
-	
+
+	@Override
+	public void reset() {
+		if (gameFieldSizeFactor > 0 && playerCount > 0 && figuresPerPlayer > 0 && knowledgeIndicatorSize > 0){
+			int gameFieldSize = gameFieldSizeFactor * playerCount;
+			createMatchfield(gameFieldSize, playerCount);
+			createQuestions();
+			setQuestionCategories();
+			createPlayers(playerCount, figuresPerPlayer, knowledgeIndicatorSize);
+		} else {
+			throw new IllegalArgumentException("Please insert valid playercount and fieldSizeFactor!");
+		}
+	}
+
 }

@@ -18,7 +18,9 @@ public class DiceComponentTest {
 	
 	@Before 
 	public void init() {
-		this.dicePort = IDiceFactory.FACTORY.getDicePort();       
+		if(this.dicePort == null) {
+			this.dicePort = IDiceFactory.FACTORY.getDicePort();       			
+		}
     }
 	
 	@Test

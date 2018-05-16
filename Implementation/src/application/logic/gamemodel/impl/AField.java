@@ -42,5 +42,9 @@ public abstract class AField {
 	public LinkedList<Figure> getFigures() {
 		return this.figuresOnThisField;
 	}
+
+	public boolean isOccupied() {
+		return this.occupied;
+	}
 	
 }

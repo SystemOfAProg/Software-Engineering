@@ -1,5 +1,7 @@
 package application.gui.impl;
 
+import application.gui.port.IObserver;
+import application.gui.port.IView;
 import application.logic.gamelogic.GameLogicFactory;
 import application.logic.gamelogic.IGameLogicFactory;
 import application.logic.gamemodel.impl.AField;
@@ -9,17 +11,16 @@ import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.gamemodel.impl.questions.Answer;
 import application.logic.gamemodel.impl.questions.Question;
-import application.logic.stateMachine.port.IObserver;
 import application.logic.stateMachine.port.IState;
 
-public class GUI implements IObserver  {
+public class View implements IObserver, IView {
 
 	// IGameLogicFactory as outer Logic Component
 	// -> Facade for operations on Model
 	// -> Every Operation should be acessible from here
 	private IGameLogicFactory gameLogicFactory;
 	
-	public GUI(GameLogicFactory logic) {
+	public View(GameLogicFactory logic) {
 		this.gameLogicFactory = IGameLogicFactory.FACTORY;
 	}
 	
@@ -38,10 +39,6 @@ public class GUI implements IObserver  {
 		System.out.println("|        _| |_\\  /\\  /\\  /\\  /\\  /\\  / |/ /| |\\  \\  /\\  /        |");
 		System.out.println("|        \\___/ \\/  \\/  \\/  \\/  \\/  \\/|___/ \\_| \\_/\\/  \\/         |");
 		System.out.println("|                Ich weiß was, was du nicht weißt©               |");
-		System.out.println("+————————————————————————————————————————————————————————————————+");
-		System.out.println("|           Written in 2017-2018 by:                             |");
-		System.out.println("|            - Fabian Sorn                                       |");
-		System.out.println("|            - Robin Hoffmann                                    |");
 		System.out.println("+————————————————————————————————————————————————————————————————+");
 		System.out.println();
 	}
