@@ -12,15 +12,6 @@ public interface IKnowledgeIndicatorManager {
 	void reset();
 	
 	/**
-	 * Initializes a KnoledgeIndicator Manager that keeps track of all players
-	 * KnowledgeIndicators.
-	 * @param players All Players that get a KnowledgeIndicator
-	 * @param categories 
-	 * @param indicatorSize
-	 */
-	void init(Player[] players, QuestionCategory[] categories, int indicatorSize);
-	
-	/**
 	 * Increases a players Knowledge Indicator for a specific question category.
 	 * @param player Player whose indicator is supposed to be increased.
 	 * @param category Category of the indicator
@@ -54,5 +45,6 @@ public interface IKnowledgeIndicatorManager {
 	 * Get all Players that have Maxed out Knowledge Indicators
 	 * @return Player that have their Knowledge Indicators at max.
 	 */
-	Player[] playerWithMaxIndicator();	
+	Player[] playerWithMaxIndicators();
+	
 }

@@ -18,7 +18,8 @@ public class QuestionManagerFactory implements
 	
 	private Player[] players;
 	private QuestionCategory[] categories;
-	private int indicatorSize;
+	private int indicatorMax;
+	private int indicatorMin;
 	
 	// For Lazy Creation of Components
 	private void mkQuestionAsker() {
@@ -33,7 +34,8 @@ public class QuestionManagerFactory implements
 			this.knowledgeIndicatorManager = new KnowledgeIndicatorManager(
 					this.players,
 					this.categories,
-					this.indicatorSize
+					this.indicatorMin,
+					this.indicatorMax
 			);
 		}
 	}
@@ -58,76 +60,70 @@ public class QuestionManagerFactory implements
 	// ==================== IQuestionAsker ====================
 	@Override
 	public Question getNextQuestion(QuestionCategory category) {
-		// TODO Auto-generated method stub
-		return null;
+		this.mkQuestionAsker();
+		return this.questionAsker.getNextQuestion(category);
 	}
 
 	@Override
 	public Question[] getAllQuestions() {
-		// TODO Auto-generated method stub
-		return null;
+		this.mkQuestionAsker();
+		return this.questionAsker.getAllQuestions();
 	}
 
 	@Override
 	public QuestionCategory[] getQuestionCategories() {
-		// TODO Auto-generated method stub
-		return null;
+		this.mkQuestionAsker();
+		return this.questionAsker.getQuestionCategories();
 	}
 
 	@Override
 	public boolean answerQuestion(Answer answer, Question question) {
-		// TODO Auto-generated method stub
-		return false;
+		this.mkQuestionAsker();
+		return this.questionAsker.answerQuestion(answer, question);
 	}
 
 	@Override
 	public boolean answerQuestion(int index, Question question) {
-		// TODO Auto-generated method stub
-		return false;
+		this.mkQuestionAsker();
+		return this.questionAsker.answerQuestion(index, question);
 	}
 	
 	
 	// ==================== IKnowledgeIndicatorManager ====================
 	@Override
 	public void reset() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void init(Player[] players, QuestionCategory[] categories, int indicatorSize) {
-		// TODO Auto-generated method stub
-		
+		this.mkKnowledgeIndicatorManager();
+		this.knowledgeIndicatorManager.reset();
 	}
 
 	@Override
 	public boolean increase(Player player, QuestionCategory categoryOfIndicator) {
-		// TODO Auto-generated method stub
-		return false;
+		this.mkKnowledgeIndicatorManager();
+		return this.knowledgeIndicatorManager.increase(player, categoryOfIndicator);
 	}
 
 	@Override
 	public boolean decrease(Player player, QuestionCategory categoryOfIndicator) {
-		// TODO Auto-generated method stub
-		return false;
+		this.mkKnowledgeIndicatorManager();
+		return this.knowledgeIndicatorManager.decrease(player, categoryOfIndicator);
 	}
 
 	@Override
 	public boolean hasPlayerAllIndicatorsAtMax(Player player) {
-		// TODO Auto-generated method stub
-		return false;
+		this.mkKnowledgeIndicatorManager();
+		return this.knowledgeIndicatorManager.hasPlayerAllIndicatorsAtMax(player);
 	}
 
 	@Override
 	public QuestionCategory[] getNonMaxedOutCategories(Player player) {
-		// TODO Auto-generated method stub
-		return null;
+		this.mkKnowledgeIndicatorManager();
+		return this.knowledgeIndicatorManager.getNonMaxedOutCategories(player);
 	}
 
 	@Override
-	public Player[] playerWithMaxIndicator() {
-		// TODO Auto-generated method stub
-		return null;
+	public Player[] playerWithMaxIndicators() {
+		this.mkKnowledgeIndicatorManager();
+		return this.knowledgeIndicatorManager.playerWithMaxIndicators();
 	}
 
 }

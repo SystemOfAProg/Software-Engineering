@@ -1,5 +1,8 @@
 package application.logic.questionmanager.impl;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.questionmanager.port.IKnowledgeIndicatorManager;
 
@@ -7,54 +10,93 @@ public class KnowledgeIndicatorManager implements IKnowledgeIndicatorManager {
 
 	private Player[] players;
 	private QuestionCategory[] categories;
-	private int indicatorSize;
+	private int indicatorMin;
+	private int indicatorMax;
+	// Order of the KnowledgeIndicators is the same as the one in Categories
+	HashMap<Player, KnowledgeIndicator[] > indicators;
 	
-	public KnowledgeIndicatorManager(Player[] players, QuestionCategory[] categories, int indicatorSize) {
+	public KnowledgeIndicatorManager(Player[] players, QuestionCategory[] categories, int indicatorMin, int indicatorMax) {
 		this.players = players;
 		this.categories = categories;
-		this.indicatorSize = indicatorSize;
-		this.init(players, categories, indicatorSize);
+		this.indicatorMin = indicatorMin;
+		this.indicatorMax = indicatorMax;
+		this.reset();
+	}
+	
+	private void init() {
+		for(Player player: this.players) {
+			KnowledgeIndicator[] indicatorsOfPlayer = this.indicators.get(player);
+			if(indicatorsOfPlayer == null || (indicatorsOfPlayer.length != this.categories.length)) {
+				indicatorsOfPlayer = new KnowledgeIndicator[this.categories.length];
+			}
+			for(int i=0; i<this.categories.length; i++) {
+				indicatorsOfPlayer[i] = new KnowledgeIndicator(this.indicatorMin, this.indicatorMax, categories[i], player);
+			}
+			this.indicators.put(player, indicatorsOfPlayer);
+		}
 	}
 	
 	@Override
 	public void reset() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void init(Player[] players, QuestionCategory[] categories, int indicatorSize) {
-		// TODO Auto-generated method stub
-
+		this.indicators = new HashMap<>();
+		this.init();
 	}
 
 	@Override
 	public boolean increase(Player player, QuestionCategory categoryOfIndicator) {
-		// TODO Auto-generated method stub
-		return false;
+		return (this.getKIOfPlayer(player, categoryOfIndicator).increment() == this.indicatorMax);
 	}
 
 	@Override
 	public boolean decrease(Player player, QuestionCategory categoryOfIndicator) {
-		// TODO Auto-generated method stub
-		return false;
+		return (this.getKIOfPlayer(player, categoryOfIndicator).decrement() == this.indicatorMin);
 	}
 
 	@Override
 	public boolean hasPlayerAllIndicatorsAtMax(Player player) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean isAtMax = false;
+		for(Player p: this.indicators.keySet()) {
+			for(KnowledgeIndicator ki: this.indicators.get(p)) {
+				isAtMax = (ki.isAtMax())? true: isAtMax;
+			}
+		}
+		return isAtMax;
 	}
 
 	@Override
 	public QuestionCategory[] getNonMaxedOutCategories(Player player) {
-		// TODO Auto-generated method stub
-		return null;
+		LinkedList<QuestionCategory> nonMaxedOut = new LinkedList<>();
+		for(KnowledgeIndicator ki: this.indicators.get(player)) {
+			if(!ki.isAtMax()) {
+				nonMaxedOut.add(ki.getCategory());
+			}
+		}
+		QuestionCategory[] asArray = new QuestionCategory[nonMaxedOut.size()];
+		nonMaxedOut.toArray(asArray);
+		return asArray;
 	}
 
 	@Override
-	public Player[] playerWithMaxIndicator() {
-		// TODO Auto-generated method stub
+	public Player[] playerWithMaxIndicators() {
+		LinkedList<Player> winners = new LinkedList<>();
+		for(Player player: this.players) {
+			if(this.hasPlayerAllIndicatorsAtMax(player)) {
+				winners.add(player);
+			}
+		}
+		Player[] asArray = new Player[winners.size()];
+		winners.toArray(asArray);
+		return asArray;
+	}
+	
+	// ==================== Utils ====================
+	
+	private KnowledgeIndicator getKIOfPlayer(Player player, QuestionCategory category) {
+		for(KnowledgeIndicator ki: this.indicators.get(player)) {
+			if(ki.getCategory().equals(category)) {
+				return ki;
+			}
+		}
 		return null;
 	}
 
