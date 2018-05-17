@@ -2,7 +2,10 @@ package application.logic.stateMachine.port;
 
 public interface IStateMachine {
 
-	// Player currentPayer
-	// GameState 
+	public void setState(IState state);
+
+	public IState getState();
+	
+	public IState resetCurrentState();
 	
 }

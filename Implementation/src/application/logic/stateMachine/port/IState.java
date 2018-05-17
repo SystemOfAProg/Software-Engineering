@@ -12,9 +12,24 @@ public interface IState {
 
 	public enum State implements IState {
 
-		Started, ValidationFailed, Login(Started, ValidationFailed), //
-		SelectUseCase, EditMember, NotAllowed, ManageMembers(EditMember, NotAllowed), //
-		Initialized(SelectUseCase, ManageMembers);
+		// Initial State
+		GameNotStarted,
+		// Substates for gameActive
+		getNextPlayer, throwDice, movePlayer, chooseCategory,
+		chooseNextQuestion, checkAnswer, moveFigure, adjustIndicators,
+		// Complex State Game Active
+		GameActive(
+				getNextPlayer,
+				throwDice,
+				movePlayer,
+				chooseCategory,
+				chooseNextQuestion,
+				checkAnswer,
+				moveFigure,
+				adjustIndicators
+		),
+		// Game completed
+		GameCompleted;
 
 		/**
 		 * @clientNavigability NAVIGABLE
