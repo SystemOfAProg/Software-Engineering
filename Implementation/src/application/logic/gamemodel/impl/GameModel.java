@@ -16,7 +16,6 @@ public class GameModel implements IGameModel{
 	private int gameFieldSizeFactor;
 	private int playerCount;
 	private int figuresPerPlayer;
-	private int knowledgeIndicatorSize;
 	
 	// ~~~~~~~~~~~~~~~~~ Create new Game ~~~~~~~~~~~~~~~~~~
 	/**
@@ -26,11 +25,10 @@ public class GameModel implements IGameModel{
 	 * @param playerCount 			Count of Players
 	 * @param figureForPlayer		How many figures should be added for each player
 	 */
-	public GameModel(int gameFieldSizeFactor, int playerCount, int figuresPerPlayer, int knowledgeIndicatorSize) {
+	public GameModel(int gameFieldSizeFactor, int playerCount, int figuresPerPlayer) {
 		this.gameFieldSizeFactor = gameFieldSizeFactor;
 		this.playerCount = playerCount;
 		this.figuresPerPlayer = figuresPerPlayer;
-		this.knowledgeIndicatorSize = knowledgeIndicatorSize;
 		this.reset();
 	}
 	
@@ -39,7 +37,7 @@ public class GameModel implements IGameModel{
 		this.field = new Matchfield(gameFieldSize, playerCount, this);
 	}
 	
-	private void createPlayers(int size, int figuresPerPlayer, int knowledgeIndicatorSize) {
+	private void createPlayers(int size, int figuresPerPlayer) {
 		players = new Player[size];
 		for(int i=0; i<size; i++) {
 			players[i] = new Player(this, i, this.field, figuresPerPlayer);
@@ -48,14 +46,17 @@ public class GameModel implements IGameModel{
 	
 	// ~~~~~~~~~~~~~~~~~ Reading current State of Game ~~~~~~~~~~~~~~~~~~
 	
+	@Override
 	public Player[] getPlayers() {
 		return this.players;
 	}
 	
+	@Override
 	public Matchfield getMatchfield() {
 		return this.field;
 	}
 
+	@Override
 	public AField[] getFigurePositionsOfPlayer(Player player) {
 		AField[] positions = new AField[player.getFigures().length];
 		for(int i=0; i<player.getFigures().length; i++) {
@@ -64,10 +65,12 @@ public class GameModel implements IGameModel{
 		return positions;
 	}
 
+	@Override
 	public int getMatchfieldSize() {
 		return this.field.getSize();
 	}
 	
+	@Override
 	public boolean allFiguresInMatchfield(Player player) {
 		for(Figure figure: player.getFigures()) {
 			if(!figure.isInField()) {
@@ -78,6 +81,7 @@ public class GameModel implements IGameModel{
 	}	
 
 	// ~~~~~~~~~~~~~~~~~ Changing current State of Game ~~~~~~~~~~~~~~~~~~
+	@Override
 	public Collision moveFigure(int steps, Figure figure) {
 		Player player = figure.getPlayer();
 		AField oldField = figure.getCurrentLocation();
@@ -85,6 +89,7 @@ public class GameModel implements IGameModel{
 		return figure.move(newField);
 	}
 
+	@Override
 	public Collision addFigureForPlayer(Player player) throws IllegalAccessError {
 		for(Figure figure: player.getFigures()) {
 			if(!figure.isInField()) {
@@ -96,10 +101,10 @@ public class GameModel implements IGameModel{
 
 	@Override
 	public void reset() {
-		if (gameFieldSizeFactor > 0 && playerCount > 0 && figuresPerPlayer > 0 && knowledgeIndicatorSize > 0){
+		if (gameFieldSizeFactor > 0 && playerCount > 0 && figuresPerPlayer > 0){
 			int gameFieldSize = gameFieldSizeFactor * playerCount;
 			createMatchfield(gameFieldSize, playerCount);
-			createPlayers(playerCount, figuresPerPlayer, knowledgeIndicatorSize);
+			createPlayers(playerCount, figuresPerPlayer);
 		} else {
 			throw new IllegalArgumentException("Please insert valid playercount and fieldSizeFactor!");
 		}

@@ -23,19 +23,18 @@ public class GameModelImplTest {
 	public int playerCount = 4;
 	public int fieldsPerPlayer = 10;
 	public int figuresPerPlayer = 3;
-	public int knowledgeIndicatorSize = 5;
 	
 	// ======================== Tests ======================
 	
 	@Test
 	public void testGameParameterization() {
 		// standardField
-		GameModel game = new GameModel(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
+		GameModel game = new GameModel(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer);
 		assertEquals(game.getMatchfieldSize(), 				   (this.fieldsPerPlayer * this.playerCount));
 		assertEquals(game.getPlayers().length, 					this.playerCount);
 		assertEquals(game.getPlayers()[0].getFigures().length, 	this.figuresPerPlayer);
 		// non standard
-		GameModel game2 = new GameModel(this.fieldsPerPlayer + 2, this.playerCount + 1, this.figuresPerPlayer + 3, this.knowledgeIndicatorSize);
+		GameModel game2 = new GameModel(this.fieldsPerPlayer + 2, this.playerCount + 1, this.figuresPerPlayer + 3);
 		assertEquals(game2.getMatchfieldSize(), 				   ((this.fieldsPerPlayer+2)  * (this.playerCount+1)));
 		assertEquals(game2.getPlayers().length, 					(this.playerCount+1));
 		assertEquals(game2.getPlayers()[0].getFigures().length, 	(this.figuresPerPlayer+3));
@@ -43,7 +42,7 @@ public class GameModelImplTest {
 
 	@Test
 	public void testMatchfieldMovementOverflow() {
-		GameModel game = new GameModel(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
+		GameModel game = new GameModel(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer);
 		Player player = game.getPlayers()[0];
 		Figure figure = player.getFigures()[0];
 		game.addFigureForPlayer(player);
@@ -57,7 +56,7 @@ public class GameModelImplTest {
 	
 	@Test
 	public void testGameModelResetFigurePositions() {
-		GameModel game = new GameModel(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer, this.knowledgeIndicatorSize);
+		GameModel game = new GameModel(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer);
 		this.addAllFigures(game);
 		this.moveAllFiguresOnField(game);
 		for(Player player: game.getPlayers()) {

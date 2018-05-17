@@ -8,22 +8,20 @@ import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.gamemodel.port.IGameModel;
 import application.logic.gamemodel.port.IGameModelPort;
+import application.logic.gamesettings.IGameSettingsFactory;
+import application.logic.gamesettings.port.IGameModelSettings;
 
 public class GameModelFactory implements IGameModelFactory, IGameModelPort, IGameModel {
 
 	private IGameModel game;
-	private int gameFieldSizeFactor = 10;
-	private int playerCount = 4;
-	private int figuresPerPlayer = 4;
-	private int knowledgeIndicatorSize = 4;
+	private IGameModelSettings settings = IGameSettingsFactory.FACTORY.getGameSettingsPort().getGameModelSettings();
 	
 	private void mkGameModel() {
 		if(this.game == null) {
 			this.game = new GameModel(
-				this.gameFieldSizeFactor, 
-				this.playerCount,
-				this.figuresPerPlayer,
-				this.knowledgeIndicatorSize
+				settings.getFieldsPerPlayer(), 
+				settings.getPlayerCount(),
+				settings.getFiguresPerPlayer()
 			);
 		}
 	}

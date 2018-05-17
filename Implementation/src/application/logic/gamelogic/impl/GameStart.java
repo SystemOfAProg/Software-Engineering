@@ -11,7 +11,8 @@ public class GameStart implements IGameStart {
 	@Override
 	public GameModel createNewGame(int gameFieldSizeFactor, int playerCount, int figuresPerPlayer,
 			int knowledgeIndicatorSize) {
-		return new GameModel(gameFieldSizeFactor, playerCount, figuresPerPlayer, knowledgeIndicatorSize);
+		// Create Game Settings instance and pass it to Game Model and Question Manager
+		return new GameModel(gameFieldSizeFactor, playerCount, figuresPerPlayer);
 	}
 	
 }
