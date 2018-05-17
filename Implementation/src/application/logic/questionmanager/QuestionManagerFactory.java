@@ -2,6 +2,7 @@ package application.logic.questionmanager;
 
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.questionmanager.impl.Answer;
+import application.logic.questionmanager.impl.KnowledgeIndicator;
 import application.logic.questionmanager.impl.KnowledgeIndicatorManager;
 import application.logic.questionmanager.impl.Question;
 import application.logic.questionmanager.impl.QuestionAsker;
@@ -124,6 +125,12 @@ public class QuestionManagerFactory implements
 	public Player[] playerWithMaxIndicators() {
 		this.mkKnowledgeIndicatorManager();
 		return this.knowledgeIndicatorManager.playerWithMaxIndicators();
+	}
+
+	@Override
+	public KnowledgeIndicator[] getKnowledgeIndicators(Player player) {
+		this.mkKnowledgeIndicatorManager();
+		return this.knowledgeIndicatorManager.getKnowledgeIndicators(player);
 	}
 
 }

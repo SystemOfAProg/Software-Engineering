@@ -1,6 +1,7 @@
 package application.logic.questionmanager.port;
 
 import application.logic.gamemodel.impl.player.Player;
+import application.logic.questionmanager.impl.KnowledgeIndicator;
 import application.logic.questionmanager.impl.QuestionCategory;
 
 public interface IKnowledgeIndicatorManager {
@@ -10,6 +11,11 @@ public interface IKnowledgeIndicatorManager {
 	 * Keeps players and categories, just resets the progress.
 	 */
 	void reset();
+	
+	/**
+	 * 
+	 */
+	KnowledgeIndicator[] getKnowledgeIndicators(Player player);
 	
 	/**
 	 * Increases a players Knowledge Indicator for a specific question category.

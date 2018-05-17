@@ -100,4 +100,9 @@ public class KnowledgeIndicatorManager implements IKnowledgeIndicatorManager {
 		return null;
 	}
 
+	@Override
+	public KnowledgeIndicator[] getKnowledgeIndicators(Player player) {
+		return this.indicators.get(player);
+	}
+
 }
