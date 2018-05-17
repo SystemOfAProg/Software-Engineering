@@ -7,6 +7,7 @@ import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
+import application.logic.gamesettings.port.IGameModelSettings;
 import application.logic.questionmanager.impl.Question;
 import application.logic.questionmanager.impl.QuestionCategory;
 
@@ -17,8 +18,8 @@ public class GamePlay implements IGamePlay{
 	private GameModel game;
 	
 	// You can use the Game-Facade Instance from Game Start
-	public GamePlay(GameModel game) {
-		this.game = game;
+	public GamePlay(IGameModelSettings gameModelSettings) {
+		this.game = new GameModel(gameModelSettings);
 	}
 
 	@Override

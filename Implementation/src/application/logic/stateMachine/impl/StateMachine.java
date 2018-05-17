@@ -1,5 +1,6 @@
 package application.logic.stateMachine.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import application.gui.port.IObserver;
@@ -15,11 +16,13 @@ public class StateMachine implements IStateMachine, ISubject {
 	
 	public StateMachine() {
 		this.currentState = State.GameNotStarted;
+		this.observers = new ArrayList<>();
 	}
 	
 	@Override
 	public void setState(IState state) {
 		this.currentState = state;
+		this.notifyObservers();
 	}
 
 	@Override
@@ -36,6 +39,13 @@ public class StateMachine implements IStateMachine, ISubject {
 	@Override
 	public void detach(IObserver obs) {
 		this.observers.remove(obs);
+	}
+	
+	@Override
+	public void notifyObservers() {
+		for(IObserver obs: this.observers) {
+			obs.update(this.currentState);
+		}
 	}
 
 	@Override

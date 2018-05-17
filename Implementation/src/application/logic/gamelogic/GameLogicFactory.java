@@ -1,14 +1,17 @@
 package application.logic.gamelogic;
 
+import application.logic.gamelogic.impl.GamePlay;
+import application.logic.gamelogic.impl.GameStart;
 import application.logic.gamelogic.port.IGamePlay;
 import application.logic.gamelogic.port.IGamePort;
 import application.logic.gamelogic.port.IGameStart;
 import application.logic.gamemodel.impl.AField;
-import application.logic.gamemodel.impl.GameModel;
 import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
+import application.logic.gamesettings.port.IGameModelSettings;
+import application.logic.gamesettings.port.IGameQuestionSettings;
 import application.logic.questionmanager.impl.Question;
 import application.logic.questionmanager.impl.QuestionCategory;
 
@@ -20,6 +23,18 @@ public class GameLogicFactory implements IGameLogicFactory, IGamePort, IGamePlay
 	
 	private IGamePlay gamePlay;
 	private IGameStart gameStart;
+	
+	private void mkGameStart() {
+		if(this.gameStart == null) {
+			this.gameStart = new GameStart();
+		}
+	}
+	
+	private void mkGamePlay() {
+		if(this.gamePlay == null) {
+			this.gamePlay = new GamePlay(this.gameStart.getGameModelSettings());
+		}
+	}
 
 	// ========== Create Ports and Interfaces ==========
 	
@@ -41,8 +56,13 @@ public class GameLogicFactory implements IGameLogicFactory, IGamePort, IGamePlay
 	// ========== Implementation of GameStart ==========
 	
 	@Override
-	public GameModel createNewGame(int gameFieldSizeFactor, int playerCount, int figuresPerPlayer,
-			int knowledgeIndicatorSize) {
+	public IGameModelSettings getGameModelSettings() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IGameQuestionSettings getGameQuestionSettings() {
 		// TODO Auto-generated method stub
 		return null;
 	}

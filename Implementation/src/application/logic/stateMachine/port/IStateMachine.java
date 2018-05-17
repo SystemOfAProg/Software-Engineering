@@ -1,6 +1,6 @@
 package application.logic.stateMachine.port;
 
-public interface IStateMachine {
+public interface IStateMachine extends ISubject {
 
 	public void setState(IState state);
 

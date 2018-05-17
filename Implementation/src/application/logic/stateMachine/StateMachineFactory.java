@@ -1,5 +1,6 @@
 package application.logic.stateMachine;
 
+import application.gui.port.IObserver;
 import application.logic.stateMachine.impl.StateMachine;
 import application.logic.stateMachine.port.IState;
 import application.logic.stateMachine.port.IStateMachine;
@@ -47,6 +48,24 @@ public class StateMachineFactory implements IStateMachineFactory, IStateMachineP
 	public IState resetCurrentState() {
 		this.mkStateMachine();
 		return this.stateMachine.resetCurrentState();
+	}
+
+	@Override
+	public void attach(IObserver obs) {
+		this.mkStateMachine();
+		this.stateMachine.attach(obs);
+	}
+
+	@Override
+	public void detach(IObserver obs) {
+		this.mkStateMachine();
+		this.stateMachine.detach(obs);
+	}
+
+	@Override
+	public void notifyObservers() {
+		this.mkStateMachine();
+		this.stateMachine.notifyObservers();
 	}
 	
 }
