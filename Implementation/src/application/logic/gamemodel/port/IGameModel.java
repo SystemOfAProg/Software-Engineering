@@ -61,4 +61,5 @@ public interface IGameModel {
 	 */
 	Collision 			addFigureForPlayer(Player player);
 	void 				reset();
+	
 }

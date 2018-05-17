@@ -5,13 +5,14 @@ import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.gamemodel.port.IGameModel;
+import application.logic.gamesettings.port.IGameModelSettings;
 
 public class GameModel implements IGameModel{
 
 	private Player[] players;
 	private Matchfield field;
-	// File-Location where the questions, answers and categories are stored
-	private String questionFileLocation = "./resources/questions.json";
+	
+	private IGameModelSettings gameModelSettings;
 	
 	private int gameFieldSizeFactor;
 	private int playerCount;
@@ -25,10 +26,10 @@ public class GameModel implements IGameModel{
 	 * @param playerCount 			Count of Players
 	 * @param figureForPlayer		How many figures should be added for each player
 	 */
-	public GameModel(int gameFieldSizeFactor, int playerCount, int figuresPerPlayer) {
-		this.gameFieldSizeFactor = gameFieldSizeFactor;
-		this.playerCount = playerCount;
-		this.figuresPerPlayer = figuresPerPlayer;
+	public GameModel(IGameModelSettings settings) {
+		this.gameFieldSizeFactor = settings.getFieldsPerPlayer();
+		this.playerCount = settings.getPlayerCount();
+		this.figuresPerPlayer = settings.getFiguresPerPlayer();
 		this.reset();
 	}
 	

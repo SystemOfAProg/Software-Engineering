@@ -18,11 +18,7 @@ public class GameModelFactory implements IGameModelFactory, IGameModelPort, IGam
 	
 	private void mkGameModel() {
 		if(this.game == null) {
-			this.game = new GameModel(
-				settings.getFieldsPerPlayer(), 
-				settings.getPlayerCount(),
-				settings.getFiguresPerPlayer()
-			);
+			this.game = new GameModel(settings);
 		}
 	}
 	

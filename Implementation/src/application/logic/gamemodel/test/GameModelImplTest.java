@@ -14,35 +14,36 @@ import application.logic.gamemodel.impl.matchfield.HomeField;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.gamemodel.port.IGameModel;
+import application.logic.gamesettings.IGameSettingsFactory;
+import application.logic.gamesettings.port.IGameModelSettings;
 
 /**
  * Tests for provided implementation of Game Model
  */
 public class GameModelImplTest {
 
-	public int playerCount = 4;
-	public int fieldsPerPlayer = 10;
-	public int figuresPerPlayer = 3;
-	
-	// ======================== Tests ======================
-	
 	@Test
 	public void testGameParameterization() {
 		// standardField
-		GameModel game = new GameModel(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer);
-		assertEquals(game.getMatchfieldSize(), 				   (this.fieldsPerPlayer * this.playerCount));
-		assertEquals(game.getPlayers().length, 					this.playerCount);
-		assertEquals(game.getPlayers()[0].getFigures().length, 	this.figuresPerPlayer);
+		IGameModelSettings settings = IGameSettingsFactory.FACTORY.getGameSettingsPort().getGameModelSettings();
+		GameModel game = new GameModel(settings);
+		assertEquals(game.getMatchfieldSize(), (settings.getFieldsPerPlayer() * settings.getPlayerCount()));
+		assertEquals(game.getPlayers().length, settings.getPlayerCount());
+		assertEquals(game.getPlayers()[0].getFigures().length, settings.getFiguresPerPlayer());
 		// non standard
-		GameModel game2 = new GameModel(this.fieldsPerPlayer + 2, this.playerCount + 1, this.figuresPerPlayer + 3);
-		assertEquals(game2.getMatchfieldSize(), 				   ((this.fieldsPerPlayer+2)  * (this.playerCount+1)));
-		assertEquals(game2.getPlayers().length, 					(this.playerCount+1));
-		assertEquals(game2.getPlayers()[0].getFigures().length, 	(this.figuresPerPlayer+3));
+		settings.setFieldsPerPlayer(IGameModelSettings.DEFAULT_FIELDSPERPLAYER+2);
+		settings.setPlayerCount(IGameModelSettings.DEFAULT_PLAYERCOUNT+1);
+		settings.setFiguresPerPlayer(IGameModelSettings.DEFAULT_FIGURESPERPLAYER+3);
+		GameModel game2 = new GameModel(settings);
+		assertEquals(game2.getMatchfieldSize(), (settings.getFieldsPerPlayer() * settings.getPlayerCount()) );
+		assertEquals(game2.getPlayers().length, settings.getPlayerCount() );
+		assertEquals(game2.getPlayers()[0].getFigures().length, settings.getFiguresPerPlayer());
 	}
 
 	@Test
 	public void testMatchfieldMovementOverflow() {
-		GameModel game = new GameModel(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer);
+		IGameModelSettings settings = IGameSettingsFactory.FACTORY.getGameSettingsPort().getGameModelSettings();
+		GameModel game = new GameModel(settings);
 		Player player = game.getPlayers()[0];
 		Figure figure = player.getFigures()[0];
 		game.addFigureForPlayer(player);
@@ -56,7 +57,8 @@ public class GameModelImplTest {
 	
 	@Test
 	public void testGameModelResetFigurePositions() {
-		GameModel game = new GameModel(this.fieldsPerPlayer, this.playerCount, this.figuresPerPlayer);
+		IGameModelSettings settings = IGameSettingsFactory.FACTORY.getGameSettingsPort().getGameModelSettings();
+		GameModel game = new GameModel(settings);
 		this.addAllFigures(game);
 		this.moveAllFiguresOnField(game);
 		for(Player player: game.getPlayers()) {
