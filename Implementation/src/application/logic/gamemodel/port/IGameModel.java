@@ -5,6 +5,7 @@ import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
+import application.logic.gamesettings.port.IGameModelSettings;
 
 public interface IGameModel {
 
@@ -14,13 +15,13 @@ public interface IGameModel {
 	 * Returns all players included in the current game.
 	 * @return All Players as Array
 	 */
-	Player[] 			getPlayers();
+	Player[] getPlayers();
 	
 	/**
 	 * Returns the current matchfield.
 	 * @return Matchfield
 	 */
-	Matchfield 			getMatchfield();
+	Matchfield getMatchfield();
 	
 	/**
 	 * Looks up where all figures of a specific players figures are located and
@@ -28,13 +29,13 @@ public interface IGameModel {
 	 * @param player Player whose figures position should be searched
 	 * @return Fields the figures are placed on as array
 	 */
-	AField[] 			getFigurePositionsOfPlayer(Player player);
+	AField[] getFigurePositionsOfPlayer(Player player);
 	
 	/**
 	 * Get count of fields of the Matchfield excluding HomeFields
 	 * @return count of starting- and standard fields
 	 */
-	int 				getMatchfieldSize();
+	int getMatchfieldSize();
 	
 	/**
 	 * Checks if all figures of a player are in the matchfield.
@@ -42,7 +43,7 @@ public interface IGameModel {
 	 * @param player Player whose figures should be looked for
 	 * @return True if all figures are in the matchifield
 	 */
-	boolean 			allFiguresInMatchfield(Player player);
+	boolean allFiguresInMatchfield(Player player);
 
 	// ~~~~~~~~~~~~~~~~~ Write State ~~~~~~~~~~~~~~~~~~
 	
@@ -52,14 +53,24 @@ public interface IGameModel {
 	 * @param figure Which Figure should be moved?
 	 * @return Collision Object that represents the state and information if collision happened
 	 */
-	Collision 			moveFigure(int steps, Figure figure);
+	Collision moveFigure(int steps, Figure figure);
 
 	/**
-	 * 
-	 * @param player
-	 * @return
+	 * Add a Figure from outside the matchfield to the actual matchfield
+	 * @param player Player whose figure shall be added
+	 * @return Collision Object representing the potential Collision that happens at the figure movement
 	 */
-	Collision 			addFigureForPlayer(Player player);
-	void 				reset();
+	Collision addFigureForPlayer(Player player);
+	
+	/**
+	 * Reset the complete Game Model and set everything to its initial state
+	 */
+	void reset();
+	
+	/**
+	 * Apply settings and reset the current game to the initial states given by the settings object
+	 * @param settings Settings that should be used for the game when resetting
+	 */
+	void setSettingsAndReset(IGameModelSettings settings);
 	
 }

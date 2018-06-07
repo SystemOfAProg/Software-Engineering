@@ -3,6 +3,7 @@ package application.logic.gamemodel.impl.player;
 import application.logic.gamemodel.impl.AField;
 import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.HomeField;
+import application.logic.gamemodel.impl.matchfield.StartingField;
 
 public class Figure {
 
@@ -41,6 +42,10 @@ public class Figure {
 	
 	public boolean isInField() {
 		return !(this.currentLocation instanceof HomeField);
+	}
+	
+	public boolean isOnStartingField() {
+		return (this.currentLocation instanceof StartingField);
 	}
 	
 }

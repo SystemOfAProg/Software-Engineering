@@ -42,9 +42,9 @@ public class StateMachineComponentTest {
 		assertEquals(State.throwDice, this.stateMachine.getState());
 		assertEquals(State.throwDice, observer.getCurrentState());
 		
-		this.stateMachine.setState(State.movePlayer);
-		assertEquals(State.movePlayer, this.stateMachine.getState());
-		assertEquals(State.movePlayer, observer.getCurrentState());
+		this.stateMachine.setState(State.chooseFigureInField);
+		assertEquals(State.chooseFigureInField, this.stateMachine.getState());
+		assertEquals(State.chooseFigureInField, observer.getCurrentState());
 		
 		this.stateMachine.setState(State.chooseCategory);
 		assertEquals(State.chooseCategory, this.stateMachine.getState());

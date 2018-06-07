@@ -15,13 +15,14 @@ public interface IState {
 		// Initial State
 		GameNotStarted,
 		// Substates for gameActive
-		getNextPlayer, throwDice, movePlayer, chooseCategory,
+		getNextPlayer, throwDice, chooseFigureInField, addFigureToMatchField, chooseCategory,
 		chooseNextQuestion, checkAnswer, moveFigure, adjustIndicators,
 		// Complex State Game Active
 		GameActive(
 				getNextPlayer,
 				throwDice,
-				movePlayer,
+				chooseFigureInField,
+				addFigureToMatchField,
 				chooseCategory,
 				chooseNextQuestion,
 				checkAnswer,

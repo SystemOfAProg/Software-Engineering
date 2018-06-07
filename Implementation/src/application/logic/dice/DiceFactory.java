@@ -41,4 +41,16 @@ public class DiceFactory implements IDiceFactory, IDicePort, IDice {
 		return this.dice.getLastResult();
 	}
 
+	@Override
+	public int getLowerBound() {
+		this.mkDice();
+		return this.dice.getLowerBound();
+	}
+
+	@Override
+	public int getUpperBound() {
+		this.mkDice();
+		return this.dice.getUpperBound();
+	}
+
 }

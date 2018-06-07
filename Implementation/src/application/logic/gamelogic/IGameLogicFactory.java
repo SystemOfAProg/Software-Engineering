@@ -6,6 +6,6 @@ public interface IGameLogicFactory {
 	
 	IGameLogicFactory FACTORY = new GameLogicFactory();
 	
-	IGamePort gamePort();
+	IGamePort getGamePort();
 	
 }

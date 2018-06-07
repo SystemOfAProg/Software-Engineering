@@ -1,5 +1,7 @@
 package application.logic.gamemodel.impl.player;
 
+import java.util.Arrays;
+
 import application.logic.gamemodel.impl.AField;
 import application.logic.gamemodel.impl.GameModel;
 import application.logic.gamemodel.impl.matchfield.HomeField;
@@ -60,6 +62,12 @@ public class Player {
 	
 	public Figure[] getFigures() {
 		return this.figures;
+	}
+	
+	public Figure[] getFiguresInField() {
+		return (Figure[]) Arrays.stream(this.figures).filter(figure -> {
+			return figure.isInField();
+		}).toArray();
 	}
 		
 	/**

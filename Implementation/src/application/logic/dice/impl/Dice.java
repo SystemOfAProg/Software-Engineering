@@ -25,6 +25,7 @@ public class Dice implements IDice{
 		this.random = new Random();
 	}
 	
+	@Override
 	public int roll() {
 		this.lastResult = (random.nextInt(upperBound - lowerBound) + lowerBound);
 		return this.lastResult;
@@ -37,6 +38,16 @@ public class Dice implements IDice{
 		} else {
 			throw new IllegalStateException("Last result could not be read. The dice has never been thrown.");
 		}
+	}
+
+	@Override
+	public int getLowerBound() {
+		return this.lowerBound;
+	}
+
+	@Override
+	public int getUpperBound() {
+		return this.upperBound;
 	}
 	
 }

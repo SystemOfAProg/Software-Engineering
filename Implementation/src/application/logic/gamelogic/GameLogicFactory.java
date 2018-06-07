@@ -17,12 +17,10 @@ import application.logic.questionmanager.impl.QuestionCategory;
 
 public class GameLogicFactory implements IGameLogicFactory, IGamePort, IGamePlay, IGameStart {
 
-	public GameLogicFactory() {
-		
-	}
-	
 	private IGamePlay gamePlay;
 	private IGameStart gameStart;
+	
+	public GameLogicFactory() {}
 	
 	private void mkGameStart() {
 		if(this.gameStart == null) {
@@ -39,17 +37,17 @@ public class GameLogicFactory implements IGameLogicFactory, IGamePort, IGamePlay
 	// ========== Create Ports and Interfaces ==========
 	
 	@Override
-	public IGamePort gamePort() {
+	public IGamePort getGamePort() {
 		return this;
 	};
 
 	@Override
-	public IGamePlay gamePlay() {
+	public IGamePlay getGamePlay() {
 		return this;
 	}
 
 	@Override
-	public IGameStart gameStart() {
+	public IGameStart getGameStart() {
 		return this;
 	}
 
@@ -57,70 +55,124 @@ public class GameLogicFactory implements IGameLogicFactory, IGamePort, IGamePlay
 	
 	@Override
 	public IGameModelSettings getGameModelSettings() {
-		// TODO Auto-generated method stub
-		return null;
+		this.mkGameStart();
+		return this.gameStart.getGameModelSettings();
 	}
 
 	@Override
 	public IGameQuestionSettings getGameQuestionSettings() {
-		// TODO Auto-generated method stub
-		return null;
+		this.mkGameStart();
+		return this.gameStart.getGameQuestionSettings();
 	}
 
 	// ========== Implementation of GamePlay ==========
 	
 	@Override
 	public Player[] getPlayers() {
-		// TODO Auto-generated method stub
-		return null;
+		this.mkGamePlay();
+		return this.gamePlay.getPlayers();
 	}
 
 	@Override
 	public Matchfield getMatchfield() {
-		// TODO Auto-generated method stub
-		return null;
+		this.mkGamePlay();
+		return this.gamePlay.getMatchfield();
 	}
 
 	@Override
 	public Question[] getQuestions() {
-		// TODO Auto-generated method stub
-		return null;
+		this.mkGamePlay();
+		return this.gamePlay.getQuestions();
 	}
 
 	@Override
 	public QuestionCategory[] getQuestionCategories() {
-		// TODO Auto-generated method stub
-		return null;
+		this.mkGamePlay();
+		return this.gamePlay.getQuestionCategories();
 	}
 
 	@Override
 	public AField[] getFigurePositionsOfPlayer(Player player) {
-		// TODO Auto-generated method stub
-		return null;
+		this.mkGamePlay();
+		return this.getFigurePositionsOfPlayer(player);
 	}
 
 	@Override
 	public int getMatchfieldSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		this.mkGamePlay();
+		return this.getMatchfieldSize();
 	}
 
 	@Override
 	public Collision moveFigure(int steps, Figure figure) {
-		// TODO Auto-generated method stub
-		return null;
+		this.mkGamePlay();
+		return this.gamePlay.moveFigure(steps, figure);
 	}
 
 	@Override
 	public Collision addFigureForPlayer(Player player) {
-		// TODO Auto-generated method stub
-		return null;
+		this.mkGamePlay();
+		return this.addFigureForPlayer(player);
 	}
 
 	@Override
 	public boolean allFiguresInMatchfield(Player player) {
-		// TODO Auto-generated method stub
-		return false;
+		this.mkGamePlay();
+		return this.gamePlay.allFiguresInMatchfield(player);
+	}
+
+	@Override
+	public void handleAdjustIndicators() {
+		this.mkGamePlay();
+		this.gamePlay.handleAdjustIndicators();
+	}
+
+	@Override
+	public void handleMoveFigure() {
+		this.mkGamePlay();
+		this.gamePlay.handleMoveFigure();
+	}
+
+	@Override
+	public void handleCheckAnswer(int controllerInput) {
+		this.mkGamePlay();
+		this.gamePlay.handleCheckAnswer(controllerInput);
+	}
+
+	@Override
+	public void handleChooseNextQuestion() {
+		this.mkGamePlay();
+		this.gamePlay.handleChooseNextQuestion();
+	}
+
+	@Override
+	public void handleChooseCategory(int controllerInput) {
+		this.mkGamePlay();
+		this.gamePlay.handleChooseCategory(controllerInput);
+	}
+
+	@Override
+	public void handleAddFigureToMatchfield() {
+		this.mkGamePlay();
+		this.gamePlay.handleAddFigureToMatchfield();
+	}
+
+	@Override
+	public void handleChooseFigureInField(int controllerInput) {
+		this.mkGamePlay();
+		this.gamePlay.handleChooseFigureInField(controllerInput);
+	}
+
+	@Override
+	public void handleGetNextPlayer() {
+		this.mkGamePlay();
+		this.gamePlay.handleGetNextPlayer();
+	}
+
+	@Override
+	public void handleThrowDice() {
+		this.mkGamePlay();
+		this.gamePlay.handleThrowDice();
 	}
 	
 }

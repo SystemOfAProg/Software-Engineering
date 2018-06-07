@@ -21,5 +21,15 @@ public interface IGamePlay {
 	Collision moveFigure(int steps, Figure figure);
 	Collision addFigureForPlayer(Player player);
 	boolean allFiguresInMatchfield(Player player);
+	// Handle Requests from Controller
+	void handleAdjustIndicators();
+	void handleMoveFigure();
+	void handleCheckAnswer(int controllerInput);
+	void handleChooseNextQuestion();
+	void handleChooseCategory(int controllerInput);
+	void handleAddFigureToMatchfield();
+	void handleChooseFigureInField(int controllerInput);
+	void handleGetNextPlayer();
+	void handleThrowDice();
 	
 }

@@ -111,4 +111,11 @@ public class GameModel implements IGameModel{
 		}
 	}
 
+
+	@Override
+	public void setSettingsAndReset(IGameModelSettings settings) {
+		this.gameModelSettings = settings;
+		this.reset();
+	}
+
 }

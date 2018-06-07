@@ -83,4 +83,10 @@ public class GameModelFactory implements IGameModelFactory, IGameModelPort, IGam
 		return this.game.addFigureForPlayer(player);
 	}
 
+	@Override
+	public void setSettingsAndReset(IGameModelSettings settings) {
+		this.mkGameModel();
+		this.game.setSettingsAndReset(settings);
+	}
+
 }
