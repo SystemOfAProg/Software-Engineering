@@ -1,35 +1,50 @@
 package application.logic.gamelogic.port;
 
 import application.logic.gamemodel.impl.AField;
-import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
-import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.questionmanager.impl.Question;
 import application.logic.questionmanager.impl.QuestionCategory;
 
 public interface IGamePlay {
-	
+
 	// Read State
 	Player[] getPlayers();
+
 	Matchfield getMatchfield();
+
 	Question[] getQuestions();
+
 	QuestionCategory[] getQuestionCategories();
+
 	AField[] getFigurePositionsOfPlayer(Player player);
+
 	int getMatchfieldSize();
+
 	// Manipulate State
-	Collision moveFigure(int steps, Figure figure);
-	Collision addFigureForPlayer(Player player);
 	boolean allFiguresInMatchfield(Player player);
+
+	void reset();
+
 	// Handle Requests from Controller
 	void handleAdjustIndicators();
+
 	void handleMoveFigure();
+
 	void handleCheckAnswer(int controllerInput);
+
 	void handleChooseNextQuestion();
+
 	void handleChooseCategory(int controllerInput);
+
 	void handleAddFigureToMatchfield();
+
 	void handleChooseFigureInField(int controllerInput);
+
 	void handleGetNextPlayer();
+
 	void handleThrowDice();
-	
+
+	void handleChooseRepeat(boolean controllerInput);
+
 }

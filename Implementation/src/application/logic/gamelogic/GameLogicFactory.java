@@ -6,9 +6,7 @@ import application.logic.gamelogic.port.IGamePlay;
 import application.logic.gamelogic.port.IGamePort;
 import application.logic.gamelogic.port.IGameStart;
 import application.logic.gamemodel.impl.AField;
-import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
-import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.gamesettings.port.IGameModelSettings;
 import application.logic.gamesettings.port.IGameQuestionSettings;
@@ -19,23 +17,24 @@ public class GameLogicFactory implements IGameLogicFactory, IGamePort, IGamePlay
 
 	private IGamePlay gamePlay;
 	private IGameStart gameStart;
-	
-	public GameLogicFactory() {}
-	
+
+	public GameLogicFactory() {
+	}
+
 	private void mkGameStart() {
-		if(this.gameStart == null) {
+		if (this.gameStart == null) {
 			this.gameStart = new GameStart();
 		}
 	}
-	
+
 	private void mkGamePlay() {
-		if(this.gamePlay == null) {
+		if (this.gamePlay == null) {
 			this.gamePlay = new GamePlay(this.gameStart.getGameModelSettings());
 		}
 	}
 
 	// ========== Create Ports and Interfaces ==========
-	
+
 	@Override
 	public IGamePort getGamePort() {
 		return this;
@@ -52,7 +51,7 @@ public class GameLogicFactory implements IGameLogicFactory, IGamePort, IGamePlay
 	}
 
 	// ========== Implementation of GameStart ==========
-	
+
 	@Override
 	public IGameModelSettings getGameModelSettings() {
 		this.mkGameStart();
@@ -66,7 +65,7 @@ public class GameLogicFactory implements IGameLogicFactory, IGamePort, IGamePlay
 	}
 
 	// ========== Implementation of GamePlay ==========
-	
+
 	@Override
 	public Player[] getPlayers() {
 		this.mkGamePlay();
@@ -101,18 +100,6 @@ public class GameLogicFactory implements IGameLogicFactory, IGamePort, IGamePlay
 	public int getMatchfieldSize() {
 		this.mkGamePlay();
 		return this.getMatchfieldSize();
-	}
-
-	@Override
-	public Collision moveFigure(int steps, Figure figure) {
-		this.mkGamePlay();
-		return this.gamePlay.moveFigure(steps, figure);
-	}
-
-	@Override
-	public Collision addFigureForPlayer(Player player) {
-		this.mkGamePlay();
-		return this.addFigureForPlayer(player);
 	}
 
 	@Override
@@ -174,5 +161,17 @@ public class GameLogicFactory implements IGameLogicFactory, IGamePort, IGamePlay
 		this.mkGamePlay();
 		this.gamePlay.handleThrowDice();
 	}
-	
+
+	@Override
+	public void handleChooseRepeat(boolean controllerInput) {
+		this.mkGamePlay();
+		this.gamePlay.handleChooseRepeat(controllerInput);
+	}
+
+	@Override
+	public void reset() {
+		this.mkGamePlay();
+		this.gamePlay.reset();
+	}
+
 }

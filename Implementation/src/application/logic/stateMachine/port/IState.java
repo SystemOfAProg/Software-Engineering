@@ -5,32 +5,25 @@ import java.util.Arrays;
 import java.util.List;
 
 public interface IState {
-	
+
 	public boolean isSubStateOf(IState state);
 
 	public boolean isSuperStateOf(IState state);
 
 	public enum State implements IState {
 
-		// Initial State
-		GameNotStarted,
+		// Substates of ChooseGameSettings
+		showTutorial, useStandardSettings, choosePlayerCount, chooseFieldsPerPlayer, chooseFiguresPerPlayer, chooseKnowledgeInditcatorSize,
+		// Before Starting Game to Choose Settings
+		ChooseSettings(showTutorial, useStandardSettings, choosePlayerCount, chooseFieldsPerPlayer,
+				chooseFiguresPerPlayer, chooseKnowledgeInditcatorSize),
 		// Substates for gameActive
-		getNextPlayer, throwDice, chooseFigureInField, addFigureToMatchField, chooseCategory,
-		chooseNextQuestion, checkAnswer, moveFigure, adjustIndicators,
+		getNextPlayer, throwDice, chooseFigureInField, addFigureToMatchField, chooseCategory, chooseNextQuestion, checkAnswer, moveFigure, adjustIndicators,
 		// Complex State Game Active
-		GameActive(
-				getNextPlayer,
-				throwDice,
-				chooseFigureInField,
-				addFigureToMatchField,
-				chooseCategory,
-				chooseNextQuestion,
-				checkAnswer,
-				moveFigure,
-				adjustIndicators
-		),
+		GameActive(getNextPlayer, throwDice, chooseFigureInField, addFigureToMatchField, chooseCategory,
+				chooseNextQuestion, checkAnswer, moveFigure, adjustIndicators),
 		// Game completed
-		GameCompleted;
+		chooseRepeat, GameCompleted(chooseRepeat);
 
 		/**
 		 * @clientNavigability NAVIGABLE
@@ -57,5 +50,5 @@ public interface IState {
 			return (state == null) ? false : state.isSuperStateOf(this);
 		}
 	}
-	
+
 }

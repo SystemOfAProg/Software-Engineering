@@ -13,12 +13,12 @@ public class StateMachine implements IStateMachine, ISubject {
 
 	private IState currentState;
 	private List<IObserver> observers;
-	
+
 	public StateMachine() {
-		this.currentState = State.GameNotStarted;
+		this.currentState = State.ChooseSettings;
 		this.observers = new ArrayList<>();
 	}
-	
+
 	@Override
 	public void setState(IState state) {
 		this.currentState = state;
@@ -40,17 +40,17 @@ public class StateMachine implements IStateMachine, ISubject {
 	public void detach(IObserver obs) {
 		this.observers.remove(obs);
 	}
-	
+
 	@Override
 	public void notifyObservers() {
-		for(IObserver obs: this.observers) {
+		for (IObserver obs : this.observers) {
 			obs.update(this.currentState);
 		}
 	}
 
 	@Override
 	public IState resetCurrentState() {
-		this.setState(State.GameNotStarted);
+		this.setState(State.ChooseSettings);
 		return this.getState();
 	}
 

@@ -42,12 +42,14 @@ public class QuestionManagerFactory implements
 	}
 
 	// ==================== QuestionManagerFactory ====================
+	
 	@Override
 	public IQuestionManagerPort getQuestionManagerPort() {
 		return this;
 	}
 	
 	// ==================== IQuestionManagerPort ====================
+	
 	@Override
 	public IQuestionAsker getQuestionAsker() {
 		return this;
@@ -59,6 +61,7 @@ public class QuestionManagerFactory implements
 	}
 	
 	// ==================== IQuestionAsker ====================
+	
 	@Override
 	public Question getNextQuestion(QuestionCategory category) {
 		this.mkQuestionAsker();
@@ -91,6 +94,7 @@ public class QuestionManagerFactory implements
 	
 	
 	// ==================== IKnowledgeIndicatorManager ====================
+	
 	@Override
 	public void reset() {
 		this.mkKnowledgeIndicatorManager();
