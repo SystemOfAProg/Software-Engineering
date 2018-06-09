@@ -4,6 +4,8 @@ import application.gui.port.IObserver;
 import application.gui.port.IView;
 import application.logic.gamelogic.GameLogicFactory;
 import application.logic.gamelogic.IGameLogicFactory;
+import application.logic.gamelogic.port.IGamePlay;
+import application.logic.gamelogic.port.IGameStart;
 import application.logic.gamemodel.impl.AField;
 import application.logic.gamemodel.impl.matchfield.StandardField;
 import application.logic.gamemodel.impl.matchfield.StartingField;
@@ -12,23 +14,79 @@ import application.logic.gamemodel.impl.player.Player;
 import application.logic.questionmanager.impl.Answer;
 import application.logic.questionmanager.impl.Question;
 import application.logic.stateMachine.port.IState;
+import application.logic.stateMachine.port.IState.State;
 
 public class View implements IObserver, IView {
 
 	// IGameLogicFactory as outer Logic Component
 	// -> Facade for operations on Model
-	// -> Every Operation should be acessible from here
-	private IGameLogicFactory gameLogicFactory;
+	// -> Every Operation should be accessible from here
+	private IGameLogicFactory logic;
+	private Controller controller;
 	
-	public View(GameLogicFactory logic) {
-		this.gameLogicFactory = IGameLogicFactory.FACTORY;
+	public View(IGameLogicFactory logic) {
+		this.logic = IGameLogicFactory.FACTORY;
 	}
-	
+
 	@Override
-	public void update(IState newSate) {
-		// TODO: React to changes in Logic depending of the given state
-		
+	public void addGameLogic(IGameLogicFactory logic) {
+		this.logic = logic;
+		this.logic.attach(this);
+		this.controller = new Controller(this.logic,this);
 	}
+
+	@Override
+	/**
+	 * React on an updated State from the Statemachine, read input from console
+	 * if necessary and invoke the corresponding functionality in the game logic
+	 */
+	public void update(IState state) {
+		IGamePlay gamePlay = this.logic.getGamePort().getGamePlay();
+		IGameStart gameStart = this.logic.getGamePort().getGameStart();
+		if (state.isSubStateOf(State.GameActive)) {
+			if (state == State.getNextPlayer) {
+				// TODO read game model from logic and print current state
+			} else if (state == State.throwDice) {
+				// TODO read game model from logic and print current state
+			} else if (state == State.chooseFigureInField) {
+				// TODO read game model from logic and print current state
+			} else if (state == State.addFigureToMatchField) {
+				// TODO read game model from logic and print current state
+			} else if (state == State.chooseCategory) {
+				// TODO read game model from logic and print current state
+			} else if (state == State.chooseNextQuestion) {
+				// TODO read game model from logic and print current state
+			} else if (state == State.checkAnswer) {
+				// TODO read game model from logic and print current state
+			} else if (state == State.moveFigure) {
+				// TODO read game model from logic and print current state
+			} else if (state == State.adjustIndicators) {
+				// TODO read game model from logic and print current state
+			}
+		} else if (state.isSubStateOf(State.ChooseSettings)) {
+			if(state == State.showTutorial) {
+				// TODO read game model from logic and print current state
+			} else if (state == State.useStandardSettings) {
+				// TODO read game model from logic and print current state
+			} else if (state == State.choosePlayerCount) {
+				// TODO read game model from logic and print current state
+			} else if (state == State.chooseFieldsPerPlayer) {
+				// TODO read game model from logic and print current state
+			} else if (state == State.chooseFiguresPerPlayer) {
+				// TODO read game model from logic and print current state
+			} else if (state == State.chooseKnowledgeInditcatorSize) {
+				// TODO read game model from logic and print current state
+			}
+		} else if (state.isSubStateOf(State.GameCompleted)) {
+			if (state == State.chooseRepeat) {
+				// TODO read game model from logic and print current state
+			}
+		} else {
+			throw new IllegalStateException("The current State \"" + state + "\" of the state-machine ist not valid.");
+		}
+	}
+
+	// ==================== Printing functions ====================
 	
 	private static void printStartSequence() {
 		System.out.println("+————————————————————————————————————————————————————————————————+");
@@ -49,7 +107,7 @@ public class View implements IObserver, IView {
 		System.out.println("|                            ENDE                                |");
 		System.out.println("+————————————————————————————————————————————————————————————————+");
 	}
-	
+
 	public void printField(AField[] fields) {
 		for(AField field: fields) {
 			String fieldViewContent = "";
@@ -98,5 +156,4 @@ public class View implements IObserver, IView {
 	public void printQuestionCountAndLocation(Question[] questions, String fileLocation) {
 		System.out.println("> " + questions.length + " questions found in " + fileLocation);
 	}
-	
 }

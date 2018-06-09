@@ -1,5 +1,6 @@
 package application.logic.gamelogic;
 
+import application.gui.port.IObserver;
 import application.logic.gamelogic.impl.GamePlay;
 import application.logic.gamelogic.impl.GameStart;
 import application.logic.gamelogic.port.IGamePlay;
@@ -12,13 +13,26 @@ import application.logic.gamesettings.port.IGameModelSettings;
 import application.logic.gamesettings.port.IGameQuestionSettings;
 import application.logic.questionmanager.impl.Question;
 import application.logic.questionmanager.impl.QuestionCategory;
+import application.logic.stateMachine.IStateMachineFactory;
+import application.logic.stateMachine.port.IState;
+import application.logic.stateMachine.port.IStateMachine;
+import application.logic.stateMachine.port.IStateMachinePort;
+import application.logic.stateMachine.port.ISubject;
 
-public class GameLogicFactory implements IGameLogicFactory, IGamePort, IGamePlay, IGameStart {
+public class GameLogicFactory implements
+		IGameLogicFactory, IGamePort, IGamePlay, IGameStart {
 
 	private IGamePlay gamePlay;
 	private IGameStart gameStart;
 
 	public GameLogicFactory() {
+
+	}
+
+	@Override
+	public void start() {
+		this.mkGameStart();
+		this.gameStart.start();
 	}
 
 	private void mkGameStart() {
@@ -62,6 +76,42 @@ public class GameLogicFactory implements IGameLogicFactory, IGamePort, IGamePlay
 	public IGameQuestionSettings getGameQuestionSettings() {
 		this.mkGameStart();
 		return this.gameStart.getGameQuestionSettings();
+	}
+
+	@Override
+	public void handleShowTutorial(boolean controllerInput) {
+		this.mkGameStart();
+		this.gameStart.handleShowTutorial(controllerInput);
+	}
+
+	@Override
+	public void handleUseStandardSet(boolean controllerInput) {
+		this.mkGameStart();
+		this.gameStart.handleUseStandardSet(controllerInput);
+	}
+
+	@Override
+	public void handlePlayerCount(int controllerInput) {
+		this.mkGameStart();
+		this.gameStart.handlePlayerCount(controllerInput);
+	}
+
+	@Override
+	public void handleFieldsPerPlayer(int controllerInput) {
+		this.mkGameStart();
+		this.gameStart.handleFieldsPerPlayer(controllerInput);
+	}
+
+	@Override
+	public void handleFiguresPerPlayer(int controllerInput) {
+		this.mkGameStart();
+		this.gameStart.handleFiguresPerPlayer(controllerInput);
+	}
+
+	@Override
+	public void handleKnowledgeIndicatorSteps(int controllerInput) {
+		this.mkGameStart();
+		this.gameStart.handleKnowledgeIndicatorSteps(controllerInput);
 	}
 
 	// ========== Implementation of GamePlay ==========
@@ -172,6 +222,24 @@ public class GameLogicFactory implements IGameLogicFactory, IGamePort, IGamePlay
 	public void reset() {
 		this.mkGamePlay();
 		this.gamePlay.reset();
+	}
+
+	// ========== Implementation of ISubject ==========
+
+	@Override
+	public void attach(IObserver obs) {
+		System.out.println("Attach " + obs);
+		// TODO: attach Observers to Logics State Machine
+	}
+
+	@Override
+	public void detach(IObserver obs) {
+		// TODO: detach Observers from Logics State Machine
+	}
+
+	@Override
+	public void notifyObservers() {
+		// TODO call Logics State Machines notifyObservers
 	}
 
 }

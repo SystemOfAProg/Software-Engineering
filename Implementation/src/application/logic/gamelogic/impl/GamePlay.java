@@ -66,8 +66,10 @@ public class GamePlay implements IGamePlay {
 	@Override
 	public void handleCheckAnswer(int controllerInput) {
 		if (this.data.currentQuestion.isAnswerCorrect(controllerInput)) {
+			// TODO add state for answer correct in IState.State
 			// TODO set state to answer correct
 		} else {
+			// TODO add state for answer false in IState.State
 			// TODO set state to answer false
 		}
 	}

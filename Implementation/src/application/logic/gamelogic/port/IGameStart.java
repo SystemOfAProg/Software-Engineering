@@ -10,7 +10,17 @@ import application.logic.gamesettings.port.IGameQuestionSettings;
  */
 public interface IGameStart {
 
+	// Getter
 	IGameModelSettings getGameModelSettings();
 	IGameQuestionSettings getGameQuestionSettings();
-	
+	// Start the Game
+	void start();
+	// Handler for inputs given to the controller by player
+	void handleShowTutorial(boolean controllerInput);
+	void handleUseStandardSet(boolean controllerInput);
+	void handlePlayerCount(int controllerInput);
+	void handleFieldsPerPlayer(int controllerInput);
+	void handleFiguresPerPlayer(int controllerInput);
+	void handleKnowledgeIndicatorSteps(int controllerInput);
+
 }
