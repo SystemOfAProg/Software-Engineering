@@ -25,3 +25,29 @@ local.properties
 
 # Locally stored "Eclipse launch configurations"
 *.launch
+
+Implementation/out/production/Implementation/application/\.emptyDir
+
+Implementation/out/production/Implementation/application/gui/\.emptyDir
+
+Implementation/out/production/Implementation/application/logic/\.emptyDir
+
+Implementation/out/production/Implementation/application/logic/dice/\.emptyDir
+
+Implementation/out/production/Implementation/application/logic/gamelogic/\.emptyDir
+
+Implementation/out/production/Implementation/application/logic/gamelogic/impl/\.emptyDir
+
+Implementation/out/production/Implementation/application/logic/gamelogic/port/\.emptyDir
+
+Implementation/out/production/Implementation/application/logic/gamemodel/\.emptyDir
+
+Implementation/out/production/Implementation/application/logic/gamemodel/impl/\.emptyDir
+
+Implementation/out/production/Implementation/application/logic/gamemodel/impl/matchfield/\.emptyDir
+
+Implementation/out/production/Implementation/application/logic/gamemodel/impl/player/\.emptyDir
+
+Implementation/out/production/Implementation/application/logic/questionmanager/\.emptyDir
+
+Implementation/out/production/Implementation/application/logic/stateMachine/\.emptyDir
