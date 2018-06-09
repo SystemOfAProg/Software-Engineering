@@ -13,6 +13,7 @@ public class Main {
 		// Link Logic to View
 		view.getViewPort().getView().addGameLogic(logic);
 		logic.start();
+		System.out.println("Ende");
 	}
 
 }

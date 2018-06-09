@@ -90,6 +90,7 @@ public class Controller implements IObserver, IController {
 	// ======================== Read from console and parse in specified type ========================
 
 	public int readInteger(IState state) {
+		System.out.println("Bitte gebe eine ganze Zahl ein:");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		try {
 			String in = reader.readLine();
@@ -101,13 +102,13 @@ public class Controller implements IObserver, IController {
 	}
 
 	public boolean readBoolean(IState state) {
+		System.out.println("(Y/N)");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		try {
 			String in = reader.readLine().trim();
-			if (in == "Yes" || in == "yes" || in == "Ja" || in == "ja" || in == "J" || in == "j" || in == "Y"
-					|| in == "y") {
+			if (in.equalsIgnoreCase("yes") || in.equalsIgnoreCase("ja") || in.equalsIgnoreCase("j") || in.equalsIgnoreCase("y")) {
 				return true;
-			} else if (in == "No" || in == "no" || in == "Nein" || in == "nein" || in == "N" || in == "n") {
+			} else if (in.equalsIgnoreCase("no") || in.equalsIgnoreCase("nein") || in.equalsIgnoreCase("n")) {
 				return false;
 			} else {
 				throw new IllegalArgumentException(

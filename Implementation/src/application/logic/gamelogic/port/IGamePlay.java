@@ -47,4 +47,5 @@ public interface IGamePlay {
 
 	void handleChooseRepeat(boolean controllerInput);
 
+	Player getCurrentPlayer();
 }

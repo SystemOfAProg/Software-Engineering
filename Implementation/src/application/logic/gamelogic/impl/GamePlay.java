@@ -93,12 +93,16 @@ public class GamePlay implements IGamePlay {
 				.addFigureForPlayer(this.util.getCurrentPlayer());
 		if (collision.collisionHappened()) {
 			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.chooseCategory);
+		} else {
+			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.getNextPlayer);
 		}
 	}
 
 	@Override
 	public void handleChooseFigureInField(int controllerInput) {
 		this.data.currentFigureIndex = controllerInput;
+		// TODO Check if the choosen figure migth collide with one of our own figures
+		this.stateMachine.getStateMachinePort().getStateMachine().setState(State.moveFigure);
 	}
 
 	@Override
@@ -111,6 +115,7 @@ public class GamePlay implements IGamePlay {
 	@Override
 	public void handleThrowDice() {
 		int result = this.dice.getDicePort().getDice().roll();
+		System.out.println(result);
 		this.data.diceRollCounter++;
 		if (util.figureAddingAllowed(result)) {
 			if (!util.figureCanBeAdded()) {
@@ -133,6 +138,11 @@ public class GamePlay implements IGamePlay {
 	public void handleChooseRepeat(boolean controllerInput) {
 		this.reset();
 		this.stateMachine.getStateMachinePort().getStateMachine().setState(State.getNextPlayer);
+	}
+
+	@Override
+	public Player getCurrentPlayer() {
+		return this.util.getCurrentPlayer();
 	}
 
 	// ==================== Read State of Game for GUI ====================

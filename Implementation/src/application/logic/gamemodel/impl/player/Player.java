@@ -1,5 +1,6 @@
 package application.logic.gamemodel.impl.player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import application.logic.gamemodel.impl.AField;
@@ -65,9 +66,16 @@ public class Player {
 	}
 	
 	public Figure[] getFiguresInField() {
-		return (Figure[]) Arrays.stream(this.figures).filter(figure -> {
-			return figure.isInField();
-		}).toArray();
+		int figuresInFieldCount = Arrays.stream(this.figures).filter(figure -> figure.isInField()).toArray().length;
+		Figure[] figuresInField = new Figure[figuresInFieldCount];
+		int j = 0;
+		for(int i=0; i<this.figures.length; i++) {
+			if(this.figures[i].isInField()) {
+				figuresInField[j] = this.figures[i];
+				j++;
+			}
+		}
+		return figuresInField;
 	}
 		
 	/**

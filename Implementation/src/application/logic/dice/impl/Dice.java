@@ -27,7 +27,7 @@ public class Dice implements IDice{
 	
 	@Override
 	public int roll() {
-		this.lastResult = (random.nextInt(upperBound - lowerBound) + lowerBound);
+		this.lastResult = (random.nextInt((upperBound + 1) - lowerBound ) + lowerBound);
 		return this.lastResult;
 	}
 

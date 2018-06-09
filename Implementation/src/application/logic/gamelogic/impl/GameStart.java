@@ -42,7 +42,11 @@ public class GameStart implements IGameStart {
 
 	@Override
 	public void handleUseStandardSet(boolean controllerInput) {
-		this.stateMachine.setState(State.choosePlayerCount);
+		if(controllerInput) {
+			this.stateMachine.setState(State.getNextPlayer);
+		} else {
+			this.stateMachine.setState(State.choosePlayerCount);
+		}
 	}
 
 	@Override

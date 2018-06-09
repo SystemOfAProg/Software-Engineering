@@ -45,9 +45,9 @@ public class View implements IObserver, IView {
 		IGameStart gameStart = this.logic.getGamePort().getGameStart();
 		if (state.isSubStateOf(State.GameActive)) {
 			if (state == State.getNextPlayer) {
-				// TODO read game model from logic and print current state
+				this.printCurrentPlayer();
 			} else if (state == State.throwDice) {
-				// TODO read game model from logic and print current state
+				this.printRollDice();
 			} else if (state == State.chooseFigureInField) {
 				// TODO read game model from logic and print current state
 			} else if (state == State.addFigureToMatchField) {
@@ -86,6 +86,14 @@ public class View implements IObserver, IView {
 		}
 	}
 
+	private void printCurrentPlayer() {
+		System.out.println("Current Player: " + this.logic.getGamePort().getGamePlay().getCurrentPlayer().getPlayerName());
+	}
+
+	private void printRollDice() {
+		System.out.println("Rolling the Dice");
+	}
+
 	// ==================== Printing functions ====================
 	
 	private static void printStartSequence() {
@@ -108,7 +116,8 @@ public class View implements IObserver, IView {
 		System.out.println("+————————————————————————————————————————————————————————————————+");
 	}
 
-	public void printField(AField[] fields) {
+	public void printField() {
+		AField[] fields = this.logic.getGamePort().getGamePlay().getMatchfield().getAllFields();
 		for(AField field: fields) {
 			String fieldViewContent = "";
 			if(!(field.getFigures().isEmpty())) {

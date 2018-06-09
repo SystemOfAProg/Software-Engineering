@@ -24,6 +24,7 @@ public class GameLogicFactory implements
 
 	private IGamePlay gamePlay;
 	private IGameStart gameStart;
+	private IStateMachineFactory stateMachineFactory = IStateMachineFactory.FACTORY;
 
 	public GameLogicFactory() {
 
@@ -219,6 +220,12 @@ public class GameLogicFactory implements
 	}
 
 	@Override
+	public Player getCurrentPlayer() {
+		this.mkGamePlay();
+		return this.gamePlay.getCurrentPlayer();
+	}
+
+	@Override
 	public void reset() {
 		this.mkGamePlay();
 		this.gamePlay.reset();
@@ -228,8 +235,7 @@ public class GameLogicFactory implements
 
 	@Override
 	public void attach(IObserver obs) {
-		System.out.println("Attach " + obs);
-		// TODO: attach Observers to Logics State Machine
+		this.stateMachineFactory.getStateMachinePort().getStateMachine().attach(obs);
 	}
 
 	@Override
