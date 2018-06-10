@@ -1,0 +1,40 @@
+.button {
+    -fx-background-color: #990b24;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 8 20 8 20;
+    -fx-font-size: 16px;
+    -fx-min-width: 200px;
+}
+
+.button:hover {
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.25) , 10.0, 0.0 , 0 , 1 );
+}
+
+.button-secondary {
+    -fx-background-color: #90A4AE;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 8 20 8 20;
+    -fx-font-size: 16px;
+    -fx-min-width: 200px;
+}
+
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color: #455A64;
+    -fx-border-radius:3px;
+    -fx-text-fill: #455A64;
+    -fx-font-size: 16px;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #455A64;
+    -fx-border-color: #455A64;
+}

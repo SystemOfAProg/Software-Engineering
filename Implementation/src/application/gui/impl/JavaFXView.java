@@ -7,16 +7,22 @@ import application.logic.gamelogic.port.IGamePlay;
 import application.logic.gamelogic.port.IGameStart;
 import application.logic.stateMachine.port.IState;
 import javafx.application.Application;
-import javafx.scene.layout.StackPane;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
+import javafx.stage.StageStyle;
 import javafx.scene.Scene;
+
+import java.io.IOException;
 
 public class JavaFXView extends Application implements IObserver, IView {
 
     IGameLogicFactory gameLogicFactory;
-    Button startGameButton;
-    Button editQuestionsButton;
+    private double xOffset = 0;
+    private double yOffset = 0;
+    private String pathToScene = "../resources/scenes/scene.fxml";
 
     public JavaFXView() { }
 
@@ -24,24 +30,44 @@ public class JavaFXView extends Application implements IObserver, IView {
     public void startView(IGameLogicFactory logic, String[] args) {
         this.gameLogicFactory = logic;
         this.gameLogicFactory.attach(this);
-        // TODO maybe initialize an controller
+        // TODO check how controller can be added
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Ich weiß was, was du nicht weißt.");
-        this.startGameButton = new Button("Start the game");
-        this.editQuestionsButton = new Button("Edit Questions");
-        StackPane layout = new StackPane();
-        layout.getChildren().add(startGameButton);
-        layout.getChildren().add(editQuestionsButton);
-        Scene scene = new Scene(layout);
-        primaryStage.setScene(scene);
-        primaryStage.setMinWidth(800);
-        primaryStage.setMinHeight(600);
-        primaryStage.setFullScreen(true);
-        primaryStage.show();
+    public void start(Stage stage) throws Exception {
+
+        stage.setTitle("Ich weiß was, was du nicht weißt.");
+        Scene scene = new Scene(this.loadSceneBorderLess(stage));
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        stage.setX(bounds.getMinX() + bounds.getWidth()*0.05);
+        stage.setY(bounds.getMinY() + bounds.getHeight()*0.05);
+        stage.setWidth(bounds.getWidth() - bounds.getWidth()*0.1);
+        stage.setHeight(bounds.getHeight() - bounds.getHeight()*0.1);
+        stage.setMinWidth(1280);
+        stage.setMinHeight(720);
+        stage.setScene(scene);
+        stage.setResizable(true);
+        stage.show();
+    }
+
+    public Parent loadScene(Stage stage) throws IOException {
+        return FXMLLoader.load(getClass().getResource(this.pathToScene));
+    }
+
+    public Parent loadSceneBorderLess(Stage stage) throws IOException {
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.initStyle(StageStyle.UNDECORATED);
+        Parent root = FXMLLoader.load(getClass().getResource(this.pathToScene));
+        root.setOnMousePressed(event -> {
+            this.xOffset = event.getSceneX();
+            this.yOffset = event.getSceneY();
+        });
+        root.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - this.xOffset);
+            stage.setY(event.getScreenY() - this.yOffset);
+        });
+        return root;
     }
 
     @Override
