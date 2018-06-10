@@ -15,14 +15,17 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.Scene;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 
 public class JavaFXView extends Application implements IObserver, IView {
 
     IGameLogicFactory gameLogicFactory;
     private double xOffset = 0;
     private double yOffset = 0;
-    private String pathToScene = "../resources/scenes/scene.fxml";
+    private String pathToStartingScene = "../resources/scenes/scene.fxml";
 
     public JavaFXView() { }
 
@@ -38,7 +41,15 @@ public class JavaFXView extends Application implements IObserver, IView {
     public void start(Stage stage) throws Exception {
 
         stage.setTitle("Ich weiß was, was du nicht weißt.");
-        Scene scene = new Scene(this.loadSceneBorderLess(stage));
+        this.setStageSize(stage);
+        Scene startingScene = new Scene(this.loadScene(this.pathToStartingScene));
+        stage.setScene(startingScene);
+        stage.setResizable(true);
+        this.setApplicationIcon();
+        stage.show();
+    }
+
+    public void setStageSize(Stage stage) {
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
         stage.setX(bounds.getMinX() + bounds.getWidth()*0.05);
         stage.setY(bounds.getMinY() + bounds.getHeight()*0.05);
@@ -46,19 +57,27 @@ public class JavaFXView extends Application implements IObserver, IView {
         stage.setHeight(bounds.getHeight() - bounds.getHeight()*0.1);
         stage.setMinWidth(1280);
         stage.setMinHeight(720);
-        stage.setScene(scene);
-        stage.setResizable(true);
-        stage.show();
     }
 
-    public Parent loadScene(Stage stage) throws IOException {
-        return FXMLLoader.load(getClass().getResource(this.pathToScene));
+    public void setApplicationIcon() {
+        try {
+            // macOS
+            URL iconURL = JavaFXView.class.getResource("../resources/icons/icon.png");
+            Image image = new ImageIcon(iconURL).getImage();
+            com.apple.eawt.Application.getApplication().setDockIconImage(image);
+        } catch (Exception e) {
+            // Windows and Linux
+        }
+    }
+
+    public Parent loadScene(String pathToScene) throws IOException {
+        return FXMLLoader.load(getClass().getResource(pathToScene));
     }
 
     public Parent loadSceneBorderLess(Stage stage) throws IOException {
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.initStyle(StageStyle.UNDECORATED);
-        Parent root = FXMLLoader.load(getClass().getResource(this.pathToScene));
+        Parent root = FXMLLoader.load(getClass().getResource(this.pathToStartingScene));
         root.setOnMousePressed(event -> {
             this.xOffset = event.getSceneX();
             this.yOffset = event.getSceneY();
