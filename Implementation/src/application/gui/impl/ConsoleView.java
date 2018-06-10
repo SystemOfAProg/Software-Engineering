@@ -2,7 +2,6 @@ package application.gui.impl;
 
 import application.gui.port.IObserver;
 import application.gui.port.IView;
-import application.logic.gamelogic.GameLogicFactory;
 import application.logic.gamelogic.IGameLogicFactory;
 import application.logic.gamelogic.port.IGamePlay;
 import application.logic.gamelogic.port.IGameStart;
@@ -16,23 +15,21 @@ import application.logic.questionmanager.impl.Question;
 import application.logic.stateMachine.port.IState;
 import application.logic.stateMachine.port.IState.State;
 
-public class View implements IObserver, IView {
+public class ConsoleView implements IObserver, IView {
 
 	// IGameLogicFactory as outer Logic Component
 	// -> Facade for operations on Model
 	// -> Every Operation should be accessible from here
 	private IGameLogicFactory logic;
-	private Controller controller;
+	private ConsoleController consoleController;
 	
-	public View(IGameLogicFactory logic) {
-		this.logic = IGameLogicFactory.FACTORY;
-	}
+	public ConsoleView() { }
 
 	@Override
-	public void addGameLogic(IGameLogicFactory logic) {
+	public void startView(IGameLogicFactory logic, String[] args) {
 		this.logic = logic;
 		this.logic.attach(this);
-		this.controller = new Controller(this.logic,this);
+		this.consoleController = new ConsoleController(this.logic,this);
 	}
 
 	@Override

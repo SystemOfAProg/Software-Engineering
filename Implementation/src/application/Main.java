@@ -11,7 +11,7 @@ public class Main {
 		// Create Game View
 		IViewFactory view = IViewFactory.FACTORY;
 		// Link Logic to View
-		view.getViewPort().getView().addGameLogic(logic);
+		view.getViewPort().getView().startView(logic, args);
 		logic.start();
 		System.out.println("Ende");
 	}

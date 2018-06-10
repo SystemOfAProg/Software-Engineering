@@ -14,13 +14,13 @@ import application.logic.gamelogic.port.IGameStart;
 import application.logic.stateMachine.port.IState;
 import application.logic.stateMachine.port.IState.State;
 
-public class Controller implements IObserver, IController {
+public class ConsoleController implements IObserver, IController {
 
 	private IGameLogicFactory logic;
 	private IView view;
-	private final static Logger LOGGER = Logger.getLogger(Controller.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(ConsoleController.class.getName());
 
-	public Controller(IGameLogicFactory gameLogic, IView view) {
+	public ConsoleController(IGameLogicFactory gameLogic, IView view) {
 		this.logic = gameLogic;
 		this.view = view;
 		this.logic.attach(this);
