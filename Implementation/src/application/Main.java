@@ -13,7 +13,6 @@ public class Main {
 		// Link Logic to View
 		view.getViewPort().getView().startView(logic, args);
 		logic.start();
-		System.out.println("Ende");
 	}
 
 }

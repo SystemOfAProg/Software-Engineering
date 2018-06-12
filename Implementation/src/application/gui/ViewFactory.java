@@ -12,7 +12,7 @@ public class ViewFactory implements IViewFactory, IViewPort, IView, IController 
 	IController controller;
 	IView view;
 
-	boolean consoleVersion = false;
+	boolean consoleVersion = true;
 
 	public ViewFactory() { }
 

@@ -63,8 +63,13 @@ public class GamePlayUtils {
 	}
 
 	public QuestionCategory getCurrentCategory() {
-		return this.questions.getQuestionManagerPort().getQuestionAsker()
-				.getQuestionCategories()[this.data.currentCategoryIndex];
+		QuestionCategory[] categories = this.questions.getQuestionManagerPort().getQuestionAsker()
+				.getQuestionCategories();
+		if(this.data.currentFigureIndex > categories.length && categories.length != 0) {
+			return categories[categories.length -1];
+		} else {
+			return categories[this.data.currentCategoryIndex - 1];
+		}
 	}
 
 	public boolean existsWinner() {
@@ -73,7 +78,12 @@ public class GamePlayUtils {
 	}
 
 	public Figure getCurrentFigure() {
-		return this.getCurrentPlayer().getFiguresInField()[this.data.currentFigureIndex];
+		Figure[] figuresInField = this.getCurrentPlayer().getFiguresInField();
+		if(this.data.currentFigureIndex > figuresInField.length) {
+			return figuresInField[figuresInField.length -1];
+		} else {
+			return figuresInField[this.data.currentFigureIndex - 1];
+		}
 	}
 
 }

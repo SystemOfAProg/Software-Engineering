@@ -33,7 +33,7 @@ public class QuestionAsker implements IQuestionAsker{
 			LinkedList<Question> alreadyAdded = (this.toAsk.get(cat) == null)? new LinkedList<>():this.toAsk.get(cat);
 			alreadyAdded.add(question);
 			this.toAsk.put(cat, alreadyAdded);
-			if(categories.indexOf(cat) != -1) {
+			if(categories.indexOf(cat) == -1) {
 				categories.add(cat);
 			}
 		}
