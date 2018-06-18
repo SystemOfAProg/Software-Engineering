@@ -54,6 +54,33 @@ public class GameModelImplTest {
 		game.moveFigure(1, figure);
 		assertEquals(0, figure.getCurrentLocation().getFieldCounter());
 	}
+
+	@Test
+	public void testCalcStepsBetweenFields() {
+		IGameModelSettings settings = IGameSettingsFactory.FACTORY.getGameSettingsPort().getGameModelSettings();
+		GameModel game = new GameModel(settings);
+		Player player = game.getPlayers()[0];
+		Figure figure = player.getFigures()[0];
+		game.addFigureForPlayer(player);
+		// Move Figure by 10 steps
+		AField start = figure.getCurrentLocation();
+		game.moveFigure(6, figure);
+		AField stop = figure.getCurrentLocation();
+		int steps = game.getMatchfield().calculateStepsBetweenFields(start,stop);
+		assertEquals(6, steps);
+		// Move Figure by 0 steps
+		start = figure.getCurrentLocation();
+		game.moveFigure(0, figure);
+		stop = figure.getCurrentLocation();
+		steps = game.getMatchfield().calculateStepsBetweenFields(start,stop);
+		assertEquals(0, steps);
+		// Move Figure more steps than field-size
+		start = figure.getCurrentLocation();
+		game.moveFigure(game.getMatchfieldSize()+10, figure);
+		stop = figure.getCurrentLocation();
+		steps = game.getMatchfield().calculateStepsBetweenFields(start,stop);
+		assertEquals(10, steps);
+	}
 	
 	@Test
 	public void testGameModelResetFigurePositions() {

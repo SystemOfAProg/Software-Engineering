@@ -13,6 +13,8 @@ import application.logic.gamelogic.port.IGamePlay;
 import application.logic.gamelogic.port.IGameStart;
 import application.logic.stateMachine.port.IState;
 import application.logic.stateMachine.port.IState.State;
+import com.sun.javaws.exceptions.InvalidArgumentException;
+import com.sun.tools.corba.se.idl.InvalidArgument;
 
 public class ConsoleController implements IObserver, IController {
 
@@ -40,8 +42,16 @@ public class ConsoleController implements IObserver, IController {
 			} else if (state == State.throwDice) {
 				gamePlay.handleThrowDice();
 			} else if (state == State.chooseFigureInField) {
-				int controllerInput = this.readInteger(state);
-				gamePlay.handleChooseFigureInField(controllerInput);
+				boolean validInput = false;
+				do {
+					try {
+						int controllerInput = this.readInteger(state);
+						gamePlay.handleChooseFigureInField(controllerInput);
+						validInput = true;
+					} catch (Exception iae) {
+						LOGGER.log(Level.SEVERE, "Das ist nicht gut");
+					}
+				} while (!validInput);
 			} else if (state == State.addFigureToMatchField) {
 				gamePlay.handleAddFigureToMatchfield();
 			} else if (state == State.chooseCategory) {
@@ -92,13 +102,21 @@ public class ConsoleController implements IObserver, IController {
 	public int readInteger(IState state) {
 		System.out.println("Bitte gebe eine ganze Zahl ein:");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		try {
-			String in = reader.readLine();
-			return Integer.parseInt(in);
-		} catch (Exception e) {
-			LOGGER.log(Level.SEVERE, "Current State of State Machine: " + state, e);
-			return 0;
-		}
+		boolean unvalidInput = false;
+		do {
+			System.out.print(">");
+			try {
+				String in = reader.readLine();
+				int value = Integer.parseInt(in);
+				unvalidInput = true;
+				return value;
+			} catch (Exception e) {
+				LOGGER.log(Level.SEVERE, "The input could not be parsed as an Integer. Please retry with an other input.");
+				LOGGER.log(Level.SEVERE, "Current State of State Machine: " + state, e);
+				return 0;
+			}
+		} while (!unvalidInput);
+
 	}
 
 	public boolean readBoolean(IState state) {

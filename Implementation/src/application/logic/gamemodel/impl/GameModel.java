@@ -7,6 +7,9 @@ import application.logic.gamemodel.impl.player.Player;
 import application.logic.gamemodel.port.IGameModel;
 import application.logic.gamesettings.port.IGameModelSettings;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameModel implements IGameModel{
 
 	private Player[] players;

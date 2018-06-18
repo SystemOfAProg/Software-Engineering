@@ -100,9 +100,24 @@ public class GamePlay implements IGamePlay {
 
 	@Override
 	public void handleChooseFigureInField(int controllerInput) {
-		this.data.currentFigureIndex = controllerInput;
-		// TODO Check if the choosen figure migth collide with one of our own figures
-		this.stateMachine.getStateMachinePort().getStateMachine().setState(State.moveFigure);
+		if(figureInFieldIndexValid(controllerInput)) {
+			this.data.currentFigureIndex = controllerInput;
+			if(this.util.wouldCollideWithFigureFromSamePlayer()) {
+				throw new IllegalArgumentException(
+						"The chosen figure would collide with a figure of the same player, wich is not allowed."
+				);
+			} else {
+				this.stateMachine.getStateMachinePort().getStateMachine().setState(State.moveFigure);
+			}
+		} else {
+			throw new IllegalArgumentException(
+					"The input is not valid. There are less figures of this player in field than the parameter requires."
+			);
+		}
+	}
+
+	private boolean figureInFieldIndexValid(int figureIndex) {
+		return (this.util.getCurrentPlayer().getFiguresInField().length > figureIndex) && (figureIndex >= 0);
 	}
 
 	@Override

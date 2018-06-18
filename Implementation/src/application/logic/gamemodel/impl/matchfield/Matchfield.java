@@ -41,5 +41,19 @@ public class Matchfield {
 		}
 		return newField;
 	}
+
+	public int calculateStepsBetweenFields(AField start, AField stop) {
+		if(start instanceof HomeField || stop instanceof HomeField) {
+			return -1;
+		} else {
+			int steps = 0;
+			AField current = start;
+			while (stop != current) {
+				current = this.calculateNewField(current,1);
+				steps++;
+			}
+			return steps;
+		}
+	}
 	
 }

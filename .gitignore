@@ -51,3 +51,5 @@ Implementation/out/production/Implementation/application/logic/gamemodel/impl/pl
 Implementation/out/production/Implementation/application/logic/questionmanager/\.emptyDir
 
 Implementation/out/production/Implementation/application/logic/stateMachine/\.emptyDir
+
+Implementation/\.idea/
