@@ -1,6 +1,7 @@
 package application.gui.impl;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +50,8 @@ public class ConsoleController implements IObserver, IController {
 						gamePlay.handleChooseFigureInField(controllerInput);
 						validInput = true;
 					} catch (Exception iae) {
-						LOGGER.log(Level.SEVERE, "Das ist nicht gut");
+						System.err.println("The Figure you have chosen could not be moved. Please check, if there are enough " +
+								"figures in the matchfield to fit your given figure-number ");
 					}
 				} while (!validInput);
 			} else if (state == State.addFigureToMatchField) {
@@ -100,42 +102,51 @@ public class ConsoleController implements IObserver, IController {
 	// ======================== Read from console and parse in specified type ========================
 
 	public int readInteger(IState state) {
-		System.out.println("Bitte gebe eine ganze Zahl ein:");
+		System.out.println("Please insert a number:");
+		System.out.print("> ");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		boolean unvalidInput = false;
+		int value = 0;
 		do {
-			System.out.print(">");
 			try {
 				String in = reader.readLine();
-				int value = Integer.parseInt(in);
+				value = Integer.parseInt(in);
 				unvalidInput = true;
-				return value;
-			} catch (Exception e) {
-				LOGGER.log(Level.SEVERE, "The input could not be parsed as an Integer. Please retry with an other input.");
-				LOGGER.log(Level.SEVERE, "Current State of State Machine: " + state, e);
-				return 0;
+			} catch (NumberFormatException nfe) {
+				System.err.print("The input could not be parsed as an Integer. Please retry with an other input:\n> ");
+			} catch (IOException ioe) {
+				System.err.print("Buffer could not read line from command line interface:\n> ");
 			}
 		} while (!unvalidInput);
-
+		return value;
 	}
 
 	public boolean readBoolean(IState state) {
-		System.out.println("(Y/N)");
+		System.out.println("Please insert true or false (Y/N):");
+		System.out.print("> ");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		try {
-			String in = reader.readLine().trim();
-			if (in.equalsIgnoreCase("yes") || in.equalsIgnoreCase("ja") || in.equalsIgnoreCase("j") || in.equalsIgnoreCase("y")) {
-				return true;
-			} else if (in.equalsIgnoreCase("no") || in.equalsIgnoreCase("nein") || in.equalsIgnoreCase("n")) {
-				return false;
-			} else {
-				throw new IllegalArgumentException(
-						"Console input " + in + " could not be determined as true or false.");
+		boolean validInput = false;
+		boolean result = false;
+		do {
+			try {
+				String in = reader.readLine().trim();
+				if (in.equalsIgnoreCase("yes") || in.equalsIgnoreCase("ja") || in.equalsIgnoreCase("j") || in.equalsIgnoreCase("y")) {
+					validInput = true;
+					result = true;
+				} else if (in.equalsIgnoreCase("no") || in.equalsIgnoreCase("nein") || in.equalsIgnoreCase("n")) {
+					validInput = true;
+					result = false;
+				} else {
+					throw new IllegalArgumentException(
+							"Console input " + in + " could not be determined as true or false.");
+				}
+			} catch (IllegalArgumentException iae) {
+				System.err.print(iae.getMessage()+ " Please try again:\n> ");
+			} catch (IOException ioe) {
+				System.err.print("There is a problem when trying to read your input. Please check and try again:\n> ");
 			}
-		} catch (Exception e) {
-			LOGGER.log(Level.SEVERE, "Current State of State Machine: " + state, e);
-			return false;
-		}
+		} while(!validInput);
+		return result;
 	}
 
 }
