@@ -160,6 +160,23 @@ public class ConsoleView implements IObserver, IView {
 	}
 	
 	public void printQuestionCountAndLocation(Question[] questions, String fileLocation) {
-		System.out.println("> " + questions.length + " questions found in " + fileLocation);
+		System.out.println(questions.length + " questions found in " + fileLocation);
 	}
+
+	public void showInputBoolean(String questionToAsk) {
+		System.out.println(questionToAsk + ": (Y/N)");
+		System.out.print("> ");
+	}
+
+	@Override
+	public void showRetryInput(Exception exception) {
+		System.err.print(exception.getMessage() + " Please retry with an other input:\n> ");
+	}
+
+	@Override
+	public void showInputNumber(int min, int max) {
+		System.out.println("Please insert a number: (" + min + "..." + max + ")");
+		System.out.print("> ");
+	}
+
 }

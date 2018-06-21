@@ -27,6 +27,21 @@ public class ViewFactory implements IViewFactory, IViewPort, IView, IController 
 	}
 
 	@Override
+	public void showInputBoolean(String questionToAsk) {
+		this.view.showInputBoolean(questionToAsk);
+	}
+
+	@Override
+	public void showRetryInput(Exception iae) {
+		this.view.showRetryInput(iae);
+	}
+
+	@Override
+	public void showInputNumber(int min, int max) {
+		this.view.showInputNumber(min, max);
+	}
+
+	@Override
 	public IViewPort getViewPort() {
 		return this;
 	}

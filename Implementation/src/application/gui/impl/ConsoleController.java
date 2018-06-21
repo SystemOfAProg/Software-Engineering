@@ -46,23 +46,24 @@ public class ConsoleController implements IObserver, IController {
 				boolean validInput = false;
 				do {
 					try {
-						int controllerInput = this.readInteger(state);
+						int controllerInput = this.readInteger(state, 1,gamePlay.getPlayers().length);
 						gamePlay.handleChooseFigureInField(controllerInput);
 						validInput = true;
-					} catch (Exception iae) {
-						System.err.println("The Figure you have chosen could not be moved. Please check, if there are enough " +
-								"figures in the matchfield to fit your given figure-number ");
+					} catch (IllegalArgumentException iae) {
+						iae.printStackTrace();
+						this.view.showRetryInput(new Exception("The Figure you have chosen could not be moved. Please check, if there are enough" +
+								"figures in the matchfield to fit your given figure-number."));
 					}
 				} while (!validInput);
 			} else if (state == State.addFigureToMatchField) {
 				gamePlay.handleAddFigureToMatchfield();
 			} else if (state == State.chooseCategory) {
-				int controllerInput = this.readInteger(state);
+				int controllerInput = this.readInteger(state, 1, gamePlay.getQuestionCategories().length);
 				gamePlay.handleChooseCategory(controllerInput);
 			} else if (state == State.chooseNextQuestion) {
 				gamePlay.handleChooseNextQuestion();
 			} else if (state == State.checkAnswer) {
-				int controllerInput = this.readInteger(state);
+				int controllerInput = this.readInteger(state, 1 , 4);
 				gamePlay.handleCheckAnswer(controllerInput);
 			} else if (state == State.moveFigure) {
 				gamePlay.handleMoveFigure();
@@ -71,27 +72,30 @@ public class ConsoleController implements IObserver, IController {
 			}
 		} else if (state.isSubStateOf(State.ChooseSettings)) {
 			if(state == State.showTutorial) {
-				boolean controllerInput = this.readBoolean(state);
+				String questionToAsk = "Do you want to see the tutorial?";
+				boolean controllerInput = this.readBoolean(state, questionToAsk);
 				gameStart.handleShowTutorial(controllerInput);
 			} else if (state == State.useStandardSettings) {
-				boolean controllerInput = this.readBoolean(state);
+				String questionToAsk = "Do you want to use the standard-settings?";
+				boolean controllerInput = this.readBoolean(state, questionToAsk);
 				gameStart.handleUseStandardSet(controllerInput);
 			} else if (state == State.choosePlayerCount) {
-				int controllerInput = this.readInteger(state);
+				int controllerInput = this.readInteger(state, 2,6);
 				gameStart.handlePlayerCount(controllerInput);
 			} else if (state == State.chooseFieldsPerPlayer) {
-				int controllerInput = this.readInteger(state);
+				int controllerInput = this.readInteger(state , 3, 10);
 				gameStart.handleFieldsPerPlayer(controllerInput);
 			} else if (state == State.chooseFiguresPerPlayer) {
-				int controllerInput = this.readInteger(state);
+				int controllerInput = this.readInteger(state, 2,4);
 				gameStart.handleFiguresPerPlayer(controllerInput);
 			} else if (state == State.chooseKnowledgeInditcatorSize) {
-				int controllerInput = this.readInteger(state);
+				int controllerInput = this.readInteger(state,2,6);
 				gameStart.handleKnowledgeIndicatorSteps(controllerInput);
 			}
 		} else if (state.isSubStateOf(State.GameCompleted)) {
 			if (state == State.chooseRepeat) {
-				boolean controllerInput = readBoolean(state);
+				String questionToAsk = "Do you want to repeat the game?";
+				boolean controllerInput = readBoolean(state, questionToAsk);
 				gamePlay.handleChooseRepeat(controllerInput);
 			}
 		} else {
@@ -101,9 +105,8 @@ public class ConsoleController implements IObserver, IController {
 
 	// ======================== Read from console and parse in specified type ========================
 
-	public int readInteger(IState state) {
-		System.out.println("Please insert a number:");
-		System.out.print("> ");
+	public int readInteger(IState state, int min, int max) {
+		this.view.showInputNumber(min, max);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		boolean unvalidInput = false;
 		int value = 0;
@@ -113,17 +116,16 @@ public class ConsoleController implements IObserver, IController {
 				value = Integer.parseInt(in);
 				unvalidInput = true;
 			} catch (NumberFormatException nfe) {
-				System.err.print("The input could not be parsed as an Integer. Please retry with an other input:\n> ");
+				this.view.showRetryInput(new Exception("Your input could not be interpreted as a number."));
 			} catch (IOException ioe) {
-				System.err.print("Buffer could not read line from command line interface:\n> ");
+				this.view.showRetryInput(new Exception("The buffer could not read properly from the command line."));
 			}
 		} while (!unvalidInput);
 		return value;
 	}
 
-	public boolean readBoolean(IState state) {
-		System.out.println("Please insert true or false (Y/N):");
-		System.out.print("> ");
+	public boolean readBoolean(IState state, String questionToAsk) {
+		this.view.showInputBoolean(questionToAsk);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		boolean validInput = false;
 		boolean result = false;
@@ -141,9 +143,9 @@ public class ConsoleController implements IObserver, IController {
 							"Console input " + in + " could not be determined as true or false.");
 				}
 			} catch (IllegalArgumentException iae) {
-				System.err.print(iae.getMessage()+ " Please try again:\n> ");
+				this.view.showRetryInput(iae);
 			} catch (IOException ioe) {
-				System.err.print("There is a problem when trying to read your input. Please check and try again:\n> ");
+				this.view.showRetryInput(new Exception("There is a problem when trying to read your input."));
 			}
 		} while(!validInput);
 		return result;

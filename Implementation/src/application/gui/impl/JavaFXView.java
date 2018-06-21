@@ -38,6 +38,21 @@ public class JavaFXView extends Application implements IObserver, IView {
     }
 
     @Override
+    public void showInputBoolean(String questionToAsk) {
+        // TODO: implement method to choose a boolean value
+    }
+
+    @Override
+    public void showRetryInput(Exception iae) {
+        // TODO: implement method to retry an input
+    }
+
+    @Override
+    public void showInputNumber(int min, int max) {
+        // TODO: implement method to choose a number
+    }
+
+    @Override
     public void start(Stage stage) throws Exception {
 
         stage.setTitle("Ich weiß was, was du nicht weißt.");
@@ -64,6 +79,7 @@ public class JavaFXView extends Application implements IObserver, IView {
             // macOS
             URL iconURL = JavaFXView.class.getResource("../resources/icons/icon.png");
             Image image = new ImageIcon(iconURL).getImage();
+            // TODO: uncomment following line for building in windows or linux
             com.apple.eawt.Application.getApplication().setDockIconImage(image);
         } catch (Exception e) {
             // Windows and Linux

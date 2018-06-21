@@ -82,7 +82,7 @@ public class GamePlayUtils {
 	public QuestionCategory getCurrentCategory() {
 		QuestionCategory[] categories = this.questions.getQuestionManagerPort().getQuestionAsker()
 				.getQuestionCategories();
-		if(this.data.currentFigureIndex > categories.length && categories.length != 0) {
+		if(this.data.currentCategoryIndex > categories.length && this.data.currentCategoryIndex > 0 &&  categories.length != 0) {
 			return categories[categories.length -1];
 		} else {
 			return categories[this.data.currentCategoryIndex - 1];
