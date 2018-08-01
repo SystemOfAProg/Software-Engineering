@@ -42,6 +42,8 @@ public class ConsoleController implements IObserver, IController {
 				gamePlay.handleGetNextPlayer();
 			} else if (state == State.throwDice) {
 				gamePlay.handleThrowDice();
+			} else if (state == State.diceThrown) {
+				gamePlay.handleDiceThrown();
 			} else if (state == State.chooseFigureInField) {
 				boolean validInput = false;
 				do {
@@ -50,8 +52,7 @@ public class ConsoleController implements IObserver, IController {
 						gamePlay.handleChooseFigureInField(controllerInput);
 						validInput = true;
 					} catch (IllegalArgumentException iae) {
-						iae.printStackTrace();
-						this.view.showRetryInput(new Exception("The Figure you have chosen could not be moved. Please check, if there are enough" +
+						this.view.showRetryInput(new Exception("The Figure you have chosen could not be moved. Please check, if there are enough " +
 								"figures in the matchfield to fit your given figure-number."));
 					}
 				} while (!validInput);

@@ -1,5 +1,7 @@
 package application.logic.gamelogic.port;
 
+import application.logic.dice.port.IDice;
+import application.logic.gamelogic.impl.GamePlayData;
 import application.logic.gamemodel.impl.AField;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.player.Player;
@@ -48,4 +50,10 @@ public interface IGamePlay {
 	void handleChooseRepeat(boolean controllerInput);
 
 	Player getCurrentPlayer();
+
+	void handleDiceThrown();
+
+	GamePlayData getGameData();
+
+	IDice getGameDice();
 }

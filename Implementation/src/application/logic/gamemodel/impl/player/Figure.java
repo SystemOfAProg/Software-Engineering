@@ -26,7 +26,7 @@ public class Figure {
 	}
 	
 	public String getFigureIdentifier() {
-		return "figure " + this.player.getPlayerCount() + "." + this.figureCount;
+		return "FIG " + this.player.getPlayerCount() + "." + this.figureCount;
 	}
 	
 	/**

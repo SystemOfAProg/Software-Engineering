@@ -1,7 +1,9 @@
 package application.logic.gamelogic;
 
 import application.gui.port.IObserver;
+import application.logic.dice.port.IDice;
 import application.logic.gamelogic.impl.GamePlay;
+import application.logic.gamelogic.impl.GamePlayData;
 import application.logic.gamelogic.impl.GameStart;
 import application.logic.gamelogic.port.IGamePlay;
 import application.logic.gamelogic.port.IGamePort;
@@ -223,6 +225,24 @@ public class GameLogicFactory implements
 	public Player getCurrentPlayer() {
 		this.mkGamePlay();
 		return this.gamePlay.getCurrentPlayer();
+	}
+
+	@Override
+	public void handleDiceThrown() {
+		this.mkGamePlay();
+		this.gamePlay.handleDiceThrown();
+	}
+
+	@Override
+	public GamePlayData getGameData() {
+		this.mkGamePlay();
+		return this.gamePlay.getGameData();
+	}
+
+	@Override
+	public IDice getGameDice() {
+		this.mkGamePlay();
+		return this.gamePlay.getGameDice();
 	}
 
 	@Override

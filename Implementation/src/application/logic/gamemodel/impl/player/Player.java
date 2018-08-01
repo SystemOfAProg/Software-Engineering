@@ -23,7 +23,7 @@ public class Player {
 	
 	public Player(GameModel game, int count, Matchfield field, int figuresPerPlayer) {
 		this.game = game;
-		this.name = "Player "+ Integer.toString(count);
+		this.name = "Player "+ Integer.toString(count + 1);
 		this.playerCounter = count;
 		this.figuresCount = figuresPerPlayer;
 		setStartField(field);

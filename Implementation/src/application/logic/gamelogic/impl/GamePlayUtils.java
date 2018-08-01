@@ -96,7 +96,7 @@ public class GamePlayUtils {
 
 	public Figure getCurrentFigure() {
 		Figure[] figuresInField = this.getCurrentPlayer().getFiguresInField();
-		if((this.data.currentFigureIndex < figuresInField.length) && !(this.data.currentFigureIndex < 0)) {
+		if((this.data.currentFigureIndex <= figuresInField.length) && !(this.data.currentFigureIndex <= 0)) {
 			return figuresInField[figuresInField.length -1];
 		} else {
 			return figuresInField[this.data.currentFigureIndex - 1];

@@ -18,9 +18,9 @@ public interface IState {
 		ChooseSettings(showTutorial, useStandardSettings, choosePlayerCount, chooseFieldsPerPlayer,
 				chooseFiguresPerPlayer, chooseKnowledgeInditcatorSize),
 		// Substates for gameActive
-		getNextPlayer, throwDice, chooseFigureInField, addFigureToMatchField, chooseCategory, chooseNextQuestion, checkAnswer, moveFigure, adjustIndicators,
+		getNextPlayer, throwDice, diceThrown, chooseFigureInField, addFigureToMatchField, chooseCategory, chooseNextQuestion, checkAnswer, moveFigure, adjustIndicators,
 		// Complex State Game Active
-		GameActive(getNextPlayer, throwDice, chooseFigureInField, addFigureToMatchField, chooseCategory,
+		GameActive(getNextPlayer, throwDice, diceThrown, chooseFigureInField, addFigureToMatchField, chooseCategory,
 				chooseNextQuestion, checkAnswer, moveFigure, adjustIndicators),
 		// Game completed
 		chooseRepeat, GameCompleted(chooseRepeat);

@@ -1,6 +1,7 @@
 package application.logic.gamelogic.impl;
 
 import application.logic.dice.IDiceFactory;
+import application.logic.dice.port.IDice;
 import application.logic.gamelogic.port.IGamePlay;
 import application.logic.gamemodel.IGameModelFactory;
 import application.logic.gamemodel.impl.AField;
@@ -12,6 +13,7 @@ import application.logic.questionmanager.IQuestionManagerFactory;
 import application.logic.questionmanager.impl.Question;
 import application.logic.questionmanager.impl.QuestionCategory;
 import application.logic.stateMachine.IStateMachineFactory;
+import application.logic.stateMachine.port.IState;
 import application.logic.stateMachine.port.IState.State;
 
 // Utility for delegating requests for Game-Play Functions
@@ -117,7 +119,7 @@ public class GamePlay implements IGamePlay {
 	}
 
 	private boolean figureInFieldIndexValid(int figureIndex) {
-		return (this.util.getCurrentPlayer().getFiguresInField().length > figureIndex) && (figureIndex >= 0);
+		return (this.util.getCurrentPlayer().getFiguresInField().length >= figureIndex) && (figureIndex >= 0);
 	}
 
 	@Override
@@ -129,8 +131,13 @@ public class GamePlay implements IGamePlay {
 
 	@Override
 	public void handleThrowDice() {
-		int result = this.dice.getDicePort().getDice().roll();
-		System.out.println(result);
+		this.dice.getDicePort().getDice().roll();
+		this.stateMachine.getStateMachinePort().getStateMachine().setState(State.diceThrown);
+	}
+
+	@Override
+	public void handleDiceThrown() {
+		int result = this.dice.getDicePort().getDice().getLastResult();
 		this.data.diceRollCounter++;
 		if (util.figureAddingAllowed(result)) {
 			if (!util.figureCanBeAdded()) {
@@ -147,6 +154,16 @@ public class GamePlay implements IGamePlay {
 				this.stateMachine.getStateMachinePort().getStateMachine().setState(State.getNextPlayer);
 			}
 		}
+	}
+
+	@Override
+	public GamePlayData getGameData() {
+		return this.data;
+	}
+
+	@Override
+	public IDice getGameDice() {
+		return this.dice.getDicePort().getDice();
 	}
 
 	@Override
