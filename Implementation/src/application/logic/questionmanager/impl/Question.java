@@ -11,7 +11,8 @@ public class Question {
 		this.question = question;
 		this.category = category;
 		this.answers = answers;
-		this.correctAnswerIndex = correctAnswerIndex;
+		// Inputs are always starting with 1
+		this.correctAnswerIndex = (correctAnswerIndex + 1);
 	}
 	
 	public boolean isAnswerCorrect(int index) {

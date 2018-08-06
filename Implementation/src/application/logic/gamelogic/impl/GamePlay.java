@@ -80,6 +80,7 @@ public class GamePlay implements IGamePlay {
 	public void handleChooseNextQuestion() {
 		this.data.currentQuestion = this.questions.getQuestionManagerPort().getQuestionAsker()
 				.getNextQuestion(this.util.getCurrentCategory());
+		this.stateMachine.getStateMachinePort().getStateMachine().setState(State.checkAnswer);
 
 	}
 

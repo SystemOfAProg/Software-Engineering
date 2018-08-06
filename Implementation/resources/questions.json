@@ -16,11 +16,11 @@
 			{
 				"question" : "Wie viele Ecken hat ein Kreis?",
 				"answers" : [ "Kein", "Unendlich Viele", "Alle",	"4" ],
-				"correct" : 0,
+				"correct" : 1,
 				"category": 0
 			},
 			{
-				"question" : "Wie viele Chicken Tender gibt es für 40GBP?",
+				"question" : "Wie viele Chicken Tender gibt es für 40 Good Boi Points?",
 				"answers" : [ "2", "3",	"11",	"keine, reeeeeee" ],
 				"correct" : 0,
 				"category": 0
@@ -44,7 +44,7 @@
 				"category": 1
 			},
 			{
-				"question" : "Wie viele Finger hat ein Pinguin?",
+				"question" : "Wie viele Finger hat ein Pinguin? Wie viele Finger hat ein Pinguin? Wie viele Finger hat ein Pinguin? Wie viele Finger hat ein Pinguin? Wie viele Finger hat ein Pinguin?",
 				"answers" : [ "27", "35", "123456", "Backe, Backe Kuchen." ],
 				"correct" : 2,
 				"category": 2

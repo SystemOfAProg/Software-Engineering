@@ -36,6 +36,7 @@ public class GameStart implements IGameStart {
 	}
 
 	@Override
+	// TODO new state for tutorial and handler
 	public void handleShowTutorial(boolean controllerInput) {
 		this.stateMachine.setState(State.useStandardSettings);
 	}

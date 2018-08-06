@@ -6,18 +6,16 @@ import application.logic.gamelogic.IGameLogicFactory;
 import application.logic.gamelogic.port.IGamePlay;
 import application.logic.gamelogic.port.IGameStart;
 import application.logic.gamemodel.impl.AField;
-import application.logic.gamemodel.impl.matchfield.StandardField;
-import application.logic.gamemodel.impl.matchfield.StartingField;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.questionmanager.impl.Answer;
 import application.logic.questionmanager.impl.Question;
+import application.logic.questionmanager.impl.QuestionCategory;
 import application.logic.stateMachine.port.IState;
 import application.logic.stateMachine.port.IState.State;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 public class ConsoleView implements IObserver, IView {
 
@@ -42,94 +40,96 @@ public class ConsoleView implements IObserver, IView {
 	 * if necessary and invoke the corresponding functionality in the game logic
 	 */
 	public void update(IState state) {
-		IGamePlay gamePlay = this.logic.getGamePort().getGamePlay();
-		IGameStart gameStart = this.logic.getGamePort().getGameStart();
 		if (state.isSubStateOf(State.GameActive)) {
-			if (state == State.getNextPlayer) {
-				if(this.logic.getGamePort().getGamePlay().getGameData().roundCounter != 0) {
-					this.pressEnterToContinue();
-				}
-				this.logic.getGamePort().getGamePlay().getGameData().roundCounter++;
-				this.printCurrentPlayer();
-				this.printField();
-			} else if (state == State.throwDice) {
-				this.printRollDice();
-			} else if (state == State.diceThrown) {
-				this.printDiceResults();
-			} else if (state == State.chooseFigureInField) {
-				this.printFiguresInFieldForCurrentPlayer();
-			} else if (state == State.addFigureToMatchField) {
-				// TODO read game model from logic and print current state
-				System.out.println("##### Add Figure To Matchfield #####");
-			} else if (state == State.chooseCategory) {
-				// TODO read game model from logic and print current state
-				System.out.println("##### Choose Question Category #####");
-			} else if (state == State.chooseNextQuestion) {
-				// TODO read game model from logic and print current state
-				System.out.println("##### Choose Next Question #####");
-			} else if (state == State.checkAnswer) {
-				// TODO read game model from logic and print current state
-				System.out.println("##### Check Given Answer #####");
-			} else if (state == State.moveFigure) {
-				// TODO read game model from logic and print current state
-				System.out.println("##### Move Figure #####");
-			} else if (state == State.adjustIndicators) {
-				// TODO read game model from logic and print current state
-				System.out.println("##### Adjust Knowledge Indicators #####");
-			}
+			this.updateGameActive(state);
 		} else if (state.isSubStateOf(State.ChooseSettings)) {
-			if(state == State.showTutorial) {
-				// TODO read game model from logic and print current state
-				System.out.println("##### Show Tutorial #####");
-			} else if (state == State.useStandardSettings) {
-				// TODO read game model from logic and print current state
-				System.out.println("##### Use Standard Settings? #####");
-			} else if (state == State.choosePlayerCount) {
-				// TODO read game model from logic and print current state
-				System.out.println("##### Choose Player Count #####");
-			} else if (state == State.chooseFieldsPerPlayer) {
-				// TODO read game model from logic and print current state
-				System.out.println("##### Choose Fields Per Player #####");
-			} else if (state == State.chooseFiguresPerPlayer) {
-				// TODO read game model from logic and print current state
-				System.out.println("##### Choose Figures Per Player #####");
-			} else if (state == State.chooseKnowledgeInditcatorSize) {
-				// TODO read game model from logic and print current state
-				System.out.println("##### choose Knoledge Indicator Size #####");
-			}
+			this.updateChooseSettings(state);
 		} else if (state.isSubStateOf(State.GameCompleted)) {
-			if (state == State.chooseRepeat) {
-				// TODO read game model from logic and print current state
-				System.out.println("##### Choose if game should be repeated #####");
-			}
+			this.updateGameCompleted(state);
 		} else {
 			throw new IllegalStateException("The current State \"" + state + "\" of the state-machine ist not valid.");
 		}
 	}
 
-	// Wait for enter input for next step
-	private void pressEnterToContinue() {
-		System.out.println("");
-		System.out.println("                 ––– Press ENTER to continue ––––                 ");
-		System.out.println("");
-		try {
-			System.in.read();
-		} catch (IOException e) {
-			e.printStackTrace();
+	public void updateChooseSettings(IState state) {
+		if(state == State.showTutorial) {
+			this.printStartSequence();
+		} else if (state == State.useStandardSettings) {
+			// TODO read game model from logic and print current state
+			System.out.println("##### Use Standard Settings? #####");
+		} else if (state == State.choosePlayerCount) {
+			// TODO read game model from logic and print current state
+			System.out.println("##### Choose Player Count #####");
+		} else if (state == State.chooseFieldsPerPlayer) {
+			// TODO read game model from logic and print current state
+			System.out.println("##### Choose Fields Per Player #####");
+		} else if (state == State.chooseFiguresPerPlayer) {
+			// TODO read game model from logic and print current state
+			System.out.println("##### Choose Figures Per Player #####");
+		} else if (state == State.chooseKnowledgeInditcatorSize) {
+			// TODO read game model from logic and print current state
+			System.out.println("##### choose Knoledge Indicator Size #####");
 		}
 	}
 
-	// Wait n seconds before continuing execution
-	private void waitForSeconds(int n) {
-		try {
-			TimeUnit.SECONDS.sleep(n);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+	public void updateGameActive(IState state) {
+		if (state == State.getNextPlayer) {
+			if(this.logic.getGamePort().getGamePlay().getGameData().roundCounter != 0) {
+				this.pressEnterToContinue();
+			}
+			this.logic.getGamePort().getGamePlay().getGameData().roundCounter++;
+			this.printCurrentPlayer();
+			this.printField();
+		} else if (state == State.throwDice) {
+			this.printRollDice();
+		} else if (state == State.diceThrown) {
+			this.printDiceResults();
+		} else if (state == State.chooseFigureInField) {
+			this.printFiguresInFieldForCurrentPlayer();
+		} else if (state == State.addFigureToMatchField) {
+			this.printAddFigureToMatchfield();
+		} else if (state == State.chooseCategory) {
+			this.printQuestionCategories();
+		} else if (state == State.chooseNextQuestion) {
+			// question print after controller chose next question -> print question in next state
+		} else if (state == State.checkAnswer) {
+			this.printNextQuestion();
+		} else if (state == State.moveFigure) {
+			// TODO read game model from logic and print current state
+			// Check player who won, check player who lost question round and print to console
+			System.out.println("##### Move Figure #####");
+		} else if (state == State.adjustIndicators) {
+			// TODO read game model from logic and print current state
+			//
+			System.out.println("##### Adjust Knowledge Indicators #####");
 		}
+	}
+
+	// ==================== Printing functions ====================
+
+	private static void printStartSequence() {
+		System.out.println("+————————————————————————————————————————————————————————————————+");
+		System.out.println("|        _____ _    _  _    _  _    _______ _   _ _    _         |");
+		System.out.println("|       |_   _| |  | || |  | || |  | |  _  \\ \\ | | |  | |        |");
+		System.out.println("|         | | | |  | || |  | || |  | | | | |  \\| | |  | |        |");
+		System.out.println("|         | | | |/\\| || |/\\| || |/\\| | | | | . ` | |/\\| |        |");
+		System.out.println("|        _| |_\\  /\\  /\\  /\\  /\\  /\\  / |/ /| |\\  \\  /\\  /        |");
+		System.out.println("|        \\___/ \\/  \\/  \\/  \\/  \\/  \\/|___/ \\_| \\_/\\/  \\/         |");
+		System.out.println("|                Ich weiß was, was du nicht weißt©               |");
+		System.out.println("+————————————————————————————————————————————————————————————————+");
+		System.out.println();
+	}
+
+	private static void printEndSequence() {
+		System.out.println();
+		System.out.println("+————————————————————————————————————————————————————————————————+");
+		System.out.println("|                            ENDE                                |");
+		System.out.println("+————————————————————————————————————————————————————————————————+");
 	}
 
 	private void printCurrentPlayer() {
 		String currentPlayer = String.format("%-45s", this.logic.getGamePort().getGamePlay().getCurrentPlayer().getPlayerName());
+		String currentRoundNumber = String.format("%3s", this.logic.getGamePort().getGamePlay().getGameData().roundCounter).replace(" ", "0");
 		System.out.println();
 		System.out.println();
 		System.out.println();
@@ -138,7 +138,7 @@ public class ConsoleView implements IObserver, IView {
 		System.out.println();
 		System.out.println();
 		System.out.println("+————————————————————————————————————————————————————————————–————+");
-		System.out.println("| ||||||||||||||||||||||| New Round ||||||||||||||||||||||||||||| |");
+		System.out.println("| ||||||||||||||||||||||| Round " + currentRoundNumber + " ||||||||||||||||||||||||||||| |");
 		System.out.println("+—————————————————————————————————————————————————————————————–———+");
 		System.out.println("|   Current Player: " + currentPlayer                         + " |");
 		System.out.println("+—————————————————————————————————————————————————————————————–———+");
@@ -163,28 +163,6 @@ public class ConsoleView implements IObserver, IView {
 		System.out.println("               |  Result: " + resultPadded      + " |   ");
 		System.out.println("			   +––––––––––––––––––––––––––––––+   ");
 		this.waitForSeconds(1);
-	}
-
-	// ==================== Printing functions ====================
-	
-	private static void printStartSequence() {
-		System.out.println("+————————————————————————————————————————————————————————————————+");
-		System.out.println("|        _____ _    _  _    _  _    _______ _   _ _    _         |");
-		System.out.println("|       |_   _| |  | || |  | || |  | |  _  \\ \\ | | |  | |        |");
-		System.out.println("|         | | | |  | || |  | || |  | | | | |  \\| | |  | |        |");
-		System.out.println("|         | | | |/\\| || |/\\| || |/\\| | | | | . ` | |/\\| |        |");
-		System.out.println("|        _| |_\\  /\\  /\\  /\\  /\\  /\\  / |/ /| |\\  \\  /\\  /        |");
-		System.out.println("|        \\___/ \\/  \\/  \\/  \\/  \\/  \\/|___/ \\_| \\_/\\/  \\/         |");
-		System.out.println("|                Ich weiß was, was du nicht weißt©               |");
-		System.out.println("+————————————————————————————————————————————————————————————————+");
-		System.out.println();
-	}
-	
-	private static void printEndSequence() {
-		System.out.println();
-		System.out.println("+————————————————————————————————————————————————————————————————+");
-		System.out.println("|                            ENDE                                |");
-		System.out.println("+————————————————————————————————————————————————————————————————+");
 	}
 
 	public void printField() {
@@ -219,6 +197,60 @@ public class ConsoleView implements IObserver, IView {
 		}
 		System.out.println("+———————————+—————————————————————————————————————————————————————+");
 	}
+
+	private void printAddFigureToMatchfield() {
+		System.out.println("+—————————————————————————————————————————————————————————————————+");
+		System.out.println("|                  Hooray, you have thrown a 6.                   |");
+		System.out.println("|     If possible, we add an other figure to the matchfield.      |");
+		System.out.println("+—————————————————————————————————————————————————————————————————+");
+	}
+
+	private void printQuestionCategories() {
+		QuestionCategory[] categories = this.logic.getGamePort().getGamePlay().getQuestionCategories();
+		System.out.println("Please choose a category, whose question you want to be answered:");
+		System.out.println("+———————————+—————————————————————————————————————————————————————+");
+		System.out.println("|   Number  |  Question Category                                  |");
+		System.out.println("+———————————+—————————————————————————————————————————————————————+");
+		for(int i=0; i<categories.length; i++) {
+			String currentIndexPadded = String.format("%7s", i+1 );
+			String categoryPadded = String.format("%-50s", categories[i].getName());
+			System.out.println("|  " + currentIndexPadded + "  |  " + categoryPadded + " |");
+		}
+		System.out.println("+———————————+—————————————————————————————————————————————————————+");
+	}
+
+	private void printNextQuestion() {
+		Question currentQuestion = this.logic.getGamePort().getGamePlay().getGameData().currentQuestion;
+		String currentQuestionString = this.formatQuestionSentence(currentQuestion.getQuestionSentence());
+		Answer[] answersToCurrentQuestion = currentQuestion.getAnswers();
+		System.out.println("+—————————————————————————————————————————————————————————————————+");
+		System.out.println( currentQuestionString );
+		System.out.println("+———————————+—————————————————————————————————————————————————————+");
+		for(int i=0; i<answersToCurrentQuestion.length; i++) {
+			String currentIndexPadded = String.format("%7s", i+1 );
+			String categoryPadded = String.format("%-50s", answersToCurrentQuestion[i].getAnswerSentence());
+			System.out.println("|  " + currentIndexPadded + "  |  " + categoryPadded + " |");
+		}
+		System.out.println("+———————————+—————————————————————————————————————————————————————+");
+	}
+
+	private String formatQuestionSentence(String question) {
+		int partCount = (question.length() / 64) + 1;
+		String[] substrings = new String[partCount];
+		question = String.format("%-" + partCount * 64 + "s", question);
+		for (int i = 0; i < question.length(); i += 64) {
+				substrings[i/64] = question.substring(i, Math.min(i + 64, question.length()));
+				substrings[i/64] = "| " + substrings[i/64] + " |";
+		}
+		return String.join("\n", substrings);
+	}
+
+	private void updateGameCompleted(IState state) {
+		if (state == State.chooseRepeat) {
+			this.printEndSequence();
+			this.showInputBoolean("Do you want to repeat this game?");
+		}
+	}
 	
 	public void printCurrentState(Player[] players) {
 		// TODO: print summary of the current status of the game
@@ -251,6 +283,20 @@ public class ConsoleView implements IObserver, IView {
 		System.out.println(questions.length + " questions found in " + fileLocation);
 	}
 
+	// ========================= Interaction Prints =========================
+
+	// Wait for enter input for next step
+	private void pressEnterToContinue() {
+		System.out.println("");
+		System.out.println("                 ––– Press ENTER to continue ––––                 ");
+		System.out.println("");
+		try {
+			System.in.read();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void showInputBoolean(String questionToAsk) {
 		System.out.println(questionToAsk + ": (Y/N)");
 		System.out.print("> ");
@@ -258,13 +304,22 @@ public class ConsoleView implements IObserver, IView {
 
 	@Override
 	public void showRetryInput(Exception exception) {
-		System.err.print(exception.getMessage() + " Please retry with an other input:\n> ");
+		System.err.print(exception.getMessage() + " Please retry with an other input.");
 	}
 
 	@Override
 	public void showInputNumber(int min, int max) {
 		System.out.println("Please insert a number: (" + min + "..." + max + ")");
 		System.out.print("> ");
+	}
+
+	// Wait n seconds before continuing execution
+	private void waitForSeconds(int n) {
+		try {
+			TimeUnit.SECONDS.sleep(n);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
