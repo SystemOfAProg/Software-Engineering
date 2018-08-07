@@ -58,13 +58,13 @@ public class StateMachineComponentTest {
 		assertEquals(State.checkAnswer, this.stateMachine.getState());
 		assertEquals(State.checkAnswer, observer.getCurrentState());
 
-		this.stateMachine.setState(State.moveFigure);
-		assertEquals(State.moveFigure, this.stateMachine.getState());
-		assertEquals(State.moveFigure, observer.getCurrentState());
+		this.stateMachine.setState(State.questionAnsweredCorrectly);
+		assertEquals(State.questionAnsweredCorrectly, this.stateMachine.getState());
+		assertEquals(State.questionAnsweredCorrectly, observer.getCurrentState());
 
-		this.stateMachine.setState(State.adjustIndicators);
-		assertEquals(State.adjustIndicators, this.stateMachine.getState());
-		assertEquals(State.adjustIndicators, observer.getCurrentState());
+		this.stateMachine.setState(State.questionAnsweredWrong);
+		assertEquals(State.questionAnsweredWrong, this.stateMachine.getState());
+		assertEquals(State.questionAnsweredWrong, observer.getCurrentState());
 
 		// End Game
 		this.stateMachine.setState(State.GameCompleted);

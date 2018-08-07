@@ -16,10 +16,6 @@ import application.logic.gamesettings.port.IGameQuestionSettings;
 import application.logic.questionmanager.impl.Question;
 import application.logic.questionmanager.impl.QuestionCategory;
 import application.logic.stateMachine.IStateMachineFactory;
-import application.logic.stateMachine.port.IState;
-import application.logic.stateMachine.port.IStateMachine;
-import application.logic.stateMachine.port.IStateMachinePort;
-import application.logic.stateMachine.port.ISubject;
 
 public class GameLogicFactory implements
 		IGameLogicFactory, IGamePort, IGamePlay, IGameStart {
@@ -46,7 +42,7 @@ public class GameLogicFactory implements
 
 	private void mkGamePlay() {
 		if (this.gamePlay == null) {
-			this.gamePlay = new GamePlay(this.gameStart.getGameModelSettings());
+			this.gamePlay = new GamePlay(this.gameStart.getGameModelSettings(), this.gameStart.getGameQuestionSettings());
 		}
 	}
 
@@ -162,9 +158,15 @@ public class GameLogicFactory implements
 	}
 
 	@Override
-	public void handleAdjustIndicators() {
+	public void handleIncreaseIndicators() {
 		this.mkGamePlay();
-		this.gamePlay.handleAdjustIndicators();
+		this.gamePlay.handleIncreaseIndicators();
+	}
+
+	@Override
+	public void handleDecreaseIndicators() {
+		this.mkGamePlay();
+		this.gamePlay.handleDecreaseIndicators();
 	}
 
 	@Override

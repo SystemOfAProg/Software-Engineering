@@ -17,6 +17,9 @@ public interface IKnowledgeIndicatorManager {
 	 */
 	KnowledgeIndicator[] getKnowledgeIndicators(Player player);
 
+	void setPlayers(Player[] players);
+	void setKnowledgeIndicatorSize(int min, int max);
+
 	/**
 	 * Increases a players Knowledge Indicator for a specific question category.
 	 * 

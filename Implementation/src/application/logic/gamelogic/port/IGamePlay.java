@@ -29,7 +29,9 @@ public interface IGamePlay {
 	void reset();
 
 	// Handle Requests from Controller
-	void handleAdjustIndicators();
+	void handleIncreaseIndicators();
+
+	void handleDecreaseIndicators();
 
 	void handleMoveFigure();
 

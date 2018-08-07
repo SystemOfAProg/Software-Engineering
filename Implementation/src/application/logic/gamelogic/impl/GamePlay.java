@@ -9,6 +9,7 @@ import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.gamesettings.port.IGameModelSettings;
+import application.logic.gamesettings.port.IGameQuestionSettings;
 import application.logic.questionmanager.IQuestionManagerFactory;
 import application.logic.questionmanager.impl.Question;
 import application.logic.questionmanager.impl.QuestionCategory;
@@ -21,6 +22,7 @@ import application.logic.stateMachine.port.IState.State;
 public class GamePlay implements IGamePlay {
 
 	private IGameModelSettings gameModelSettings;
+	private IGameQuestionSettings gameQuestionSettings;
 	private IGameModelFactory game = IGameModelFactory.FACTORY;
 	private IQuestionManagerFactory questions = IQuestionManagerFactory.FACTORY;
 	private IDiceFactory dice = IDiceFactory.FACTORY;
@@ -29,21 +31,24 @@ public class GamePlay implements IGamePlay {
 	private GamePlayData data = new GamePlayData();
 	private GamePlayUtils util = new GamePlayUtils(this.game, this.questions, this.dice, this.data);
 
-	public GamePlay(IGameModelSettings gameModelSettings) {
+	public GamePlay(IGameModelSettings gameModelSettings, IGameQuestionSettings gameQuestionSettings) {
 		this.gameModelSettings = gameModelSettings;
+		this.gameQuestionSettings = gameQuestionSettings;
 		this.reset();
 	}
 
 	@Override
 	public void reset() {
 		this.game.getGameModelPort().getGameModel().setSettingsAndReset(this.gameModelSettings);
+		this.questions.getQuestionManagerPort().getKnowledgeIndicatorManager().setPlayers(this.getPlayers());
+		this.questions.getQuestionManagerPort().getKnowledgeIndicatorManager().setKnowledgeIndicatorSize(0, this.gameQuestionSettings.getKnowledgeIndicatorSize());
 		this.data.reset();
 	}
 
 	// ==================== Reaction to explicit states ====================
 
 	@Override
-	public void handleAdjustIndicators() {
+	public void handleIncreaseIndicators() {
 		this.questions.getQuestionManagerPort().getKnowledgeIndicatorManager().increase(util.getCurrentPlayer(),
 				util.getCurrentCategory());
 		if (util.existsWinner()) {
@@ -52,6 +57,12 @@ public class GamePlay implements IGamePlay {
 		} else {
 			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.getNextPlayer);
 		}
+	}
+
+	@Override
+	public void handleDecreaseIndicators() {
+		this.questions.getQuestionManagerPort().getKnowledgeIndicatorManager().decrease(util.getCurrentPlayer(),
+				util.getCurrentCategory());
 	}
 
 	@Override
@@ -68,11 +79,9 @@ public class GamePlay implements IGamePlay {
 	@Override
 	public void handleCheckAnswer(int controllerInput) {
 		if (this.data.currentQuestion.isAnswerCorrect(controllerInput)) {
-			// TODO add state for answer correct in IState.State
-			// TODO set state to answer correct
+			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.questionAnsweredCorrectly);
 		} else {
-			// TODO add state for answer false in IState.State
-			// TODO set state to answer false
+			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.questionAnsweredWrong);
 		}
 	}
 

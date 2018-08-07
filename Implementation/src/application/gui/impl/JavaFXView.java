@@ -124,9 +124,9 @@ public class JavaFXView extends Application implements IObserver, IView {
                 // TODO read game model from logic and print current state
             } else if (state == IState.State.checkAnswer) {
                 // TODO read game model from logic and print current state
-            } else if (state == IState.State.moveFigure) {
+            } else if (state == IState.State.questionAnsweredCorrectly) {
                 // TODO read game model from logic and print current state
-            } else if (state == IState.State.adjustIndicators) {
+            } else if (state == IState.State.questionAnsweredWrong) {
                 // TODO read game model from logic and print current state
             }
         } else if (state.isSubStateOf(IState.State.ChooseSettings)) {

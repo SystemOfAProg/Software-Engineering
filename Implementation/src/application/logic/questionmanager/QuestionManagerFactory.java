@@ -26,9 +26,25 @@ public class QuestionManagerFactory implements
 	private void mkQuestionAsker() {
 		if(this.questionAsker == null) {
 			this.questionAsker = new QuestionAsker();
+			this.categories = questionAsker.getQuestionCategories();
 		}
 	}
-	
+
+	@Override
+	public void setPlayers(Player[] players) {
+		this.players = players;
+	}
+
+	@Override
+	public void setKnowledgeIndicatorSize(int min, int max) {
+		this.indicatorMin = min;
+		this.indicatorMax = max;
+	}
+
+	/* TODO
+	 * get players, categories ...
+	 */
+
 	// For Lazy Creation of Components
 	private void mkKnowledgeIndicatorManager() {
 		if(this.knowledgeIndicatorManager == null) {

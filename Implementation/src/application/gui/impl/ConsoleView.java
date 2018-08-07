@@ -94,11 +94,11 @@ public class ConsoleView implements IObserver, IView {
 			// question print after controller chose next question -> print question in next state
 		} else if (state == State.checkAnswer) {
 			this.printNextQuestion();
-		} else if (state == State.moveFigure) {
+		} else if (state == State.questionAnsweredCorrectly) {
 			// TODO read game model from logic and print current state
 			// Check player who won, check player who lost question round and print to console
 			System.out.println("##### Move Figure #####");
-		} else if (state == State.adjustIndicators) {
+		} else if (state == State.questionAnsweredWrong) {
 			// TODO read game model from logic and print current state
 			//
 			System.out.println("##### Adjust Knowledge Indicators #####");
@@ -235,12 +235,12 @@ public class ConsoleView implements IObserver, IView {
 	}
 
 	private String formatQuestionSentence(String question) {
-		int partCount = (question.length() / 64) + 1;
+		int partCount = (question.length() / 63) + 1;
 		String[] substrings = new String[partCount];
-		question = String.format("%-" + partCount * 64 + "s", question);
+		question = String.format("%-" + partCount * 63 + "s", question);
 		for (int i = 0; i < question.length(); i += 64) {
-				substrings[i/64] = question.substring(i, Math.min(i + 64, question.length()));
-				substrings[i/64] = "| " + substrings[i/64] + " |";
+				substrings[i/63] = question.substring(i, Math.min(i + 63, question.length()));
+				substrings[i/63] = "| " + substrings[i/63] + " |";
 		}
 		return String.join("\n", substrings);
 	}
@@ -304,7 +304,7 @@ public class ConsoleView implements IObserver, IView {
 
 	@Override
 	public void showRetryInput(Exception exception) {
-		System.err.print(exception.getMessage() + " Please retry with an other input.");
+		System.err.print(exception.getMessage() + " Please retry with an other input.\n> ");
 	}
 
 	@Override

@@ -105,4 +105,15 @@ public class KnowledgeIndicatorManager implements IKnowledgeIndicatorManager {
 		return this.indicators.get(player);
 	}
 
+	@Override
+	public void setPlayers(Player[] players) {
+		this.players = players;
+	}
+
+	@Override
+	public void setKnowledgeIndicatorSize(int min, int max) {
+		this.indicatorMin = min;
+		this.indicatorMax = max;
+	}
+
 }

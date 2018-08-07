@@ -3,7 +3,6 @@ package application.gui.impl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import application.gui.port.IView;
@@ -14,8 +13,6 @@ import application.logic.gamelogic.port.IGamePlay;
 import application.logic.gamelogic.port.IGameStart;
 import application.logic.stateMachine.port.IState;
 import application.logic.stateMachine.port.IState.State;
-import com.sun.javaws.exceptions.InvalidArgumentException;
-import com.sun.tools.corba.se.idl.InvalidArgument;
 
 public class ConsoleController implements IObserver, IController {
 	private IGameLogicFactory logic;
@@ -43,6 +40,31 @@ public class ConsoleController implements IObserver, IController {
 			this.updateGameCompleted(state);
 		} else {
 			throw new IllegalStateException("The current State \"" + state + "\" of the state-machine ist not valid.");
+		}
+	}
+
+	private void updateChooseSettings(IState state) {
+		IGameStart gameStart = this.logic.getGamePort().getGameStart();
+		if(state == State.showTutorial) {
+			String questionToAsk = "Do you want to see the tutorial?";
+			boolean controllerInput = this.readBoolean(state, questionToAsk);
+			gameStart.handleShowTutorial(controllerInput);
+		} else if (state == State.useStandardSettings) {
+			String questionToAsk = "Do you want to use the standard-settings?";
+			boolean controllerInput = this.readBoolean(state, questionToAsk);
+			gameStart.handleUseStandardSet(controllerInput);
+		} else if (state == State.choosePlayerCount) {
+			int controllerInput = this.readInteger(state, 2,6);
+			gameStart.handlePlayerCount(controllerInput);
+		} else if (state == State.chooseFieldsPerPlayer) {
+			int controllerInput = this.readInteger(state , 2, 10);
+			gameStart.handleFieldsPerPlayer(controllerInput);
+		} else if (state == State.chooseFiguresPerPlayer) {
+			int controllerInput = this.readInteger(state, 2,4);
+			gameStart.handleFiguresPerPlayer(controllerInput);
+		} else if (state == State.chooseKnowledgeInditcatorSize) {
+			int controllerInput = this.readInteger(state,2,6);
+			gameStart.handleKnowledgeIndicatorSteps(controllerInput);
 		}
 	}
 
@@ -78,33 +100,10 @@ public class ConsoleController implements IObserver, IController {
 			gamePlay.handleCheckAnswer(controllerInput);
 		} else if (state == State.moveFigure) {
 			gamePlay.handleMoveFigure();
-		} else if (state == State.adjustIndicators) {
-			gamePlay.handleAdjustIndicators();
-		}
-	}
-
-	private void updateChooseSettings(IState state) {
-		IGameStart gameStart = this.logic.getGamePort().getGameStart();
-		if(state == State.showTutorial) {
-			String questionToAsk = "Do you want to see the tutorial?";
-			boolean controllerInput = this.readBoolean(state, questionToAsk);
-			gameStart.handleShowTutorial(controllerInput);
-		} else if (state == State.useStandardSettings) {
-			String questionToAsk = "Do you want to use the standard-settings?";
-			boolean controllerInput = this.readBoolean(state, questionToAsk);
-			gameStart.handleUseStandardSet(controllerInput);
-		} else if (state == State.choosePlayerCount) {
-			int controllerInput = this.readInteger(state, 2,6);
-			gameStart.handlePlayerCount(controllerInput);
-		} else if (state == State.chooseFieldsPerPlayer) {
-			int controllerInput = this.readInteger(state , 3, 10);
-			gameStart.handleFieldsPerPlayer(controllerInput);
-		} else if (state == State.chooseFiguresPerPlayer) {
-			int controllerInput = this.readInteger(state, 2,4);
-			gameStart.handleFiguresPerPlayer(controllerInput);
-		} else if (state == State.chooseKnowledgeInditcatorSize) {
-			int controllerInput = this.readInteger(state,2,6);
-			gameStart.handleKnowledgeIndicatorSteps(controllerInput);
+		} else if( state == State.questionAnsweredCorrectly) {
+			gamePlay.handleIncreaseIndicators();
+		} else if (state == State.questionAnsweredWrong) {
+			gamePlay.handleDecreaseIndicators();
 		}
 	}
 
