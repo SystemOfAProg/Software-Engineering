@@ -56,6 +56,14 @@ public interface IGameModel {
 	Collision moveFigure(int steps, Figure figure);
 
 	/**
+	 * Move a specific figure to a specific field
+	 * @param moveHere Where is the destination of this figure
+	 * @param figure Which Figure should be moved?
+	 * @return Collision Object that represents the state and information if collision happened
+	 */
+	Collision moveFigure(AField moveHere, Figure figure);
+
+	/**
 	 * Add a Figure from outside the matchfield to the actual matchfield
 	 * @param player Player whose figure shall be added
 	 * @return Collision Object representing the potential Collision that happens at the figure movement

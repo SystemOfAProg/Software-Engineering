@@ -78,6 +78,12 @@ public class GameModelFactory implements IGameModelFactory, IGameModelPort, IGam
 	}
 
 	@Override
+	public Collision moveFigure(AField moveHere, Figure figure) {
+		this.mkGameModel();
+		return this.game.moveFigure(moveHere, figure);
+	}
+
+	@Override
 	public Collision addFigureForPlayer(Player player) {
 		this.mkGameModel();
 		return this.game.addFigureForPlayer(player);

@@ -8,6 +8,7 @@ import application.logic.gamemodel.impl.AField;
 import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.player.Player;
+import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamesettings.port.IGameModelSettings;
 import application.logic.gamesettings.port.IGameQuestionSettings;
 import application.logic.questionmanager.IQuestionManagerFactory;
@@ -48,9 +49,10 @@ public class GamePlay implements IGamePlay {
 	// ==================== Reaction to explicit states ====================
 
 	@Override
-	public void handleIncreaseIndicators() {
+	public void handleAnswerCorrect(Figure figureToMove) {
 		this.questions.getQuestionManagerPort().getKnowledgeIndicatorManager().increase(util.getCurrentPlayer(),
 				util.getCurrentCategory());
+		this.game.getGameModelPort().getGameModel().moveFigure(figureToMove.getPlayer().getStartingField(),figureToMove);
 		if (util.existsWinner()) {
 			// Game is completed, ask if game should be repeated
 			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.chooseRepeat);
@@ -60,9 +62,10 @@ public class GamePlay implements IGamePlay {
 	}
 
 	@Override
-	public void handleDecreaseIndicators() {
+	public void handleAnswerWrong(Figure figureToMove) {
 		this.questions.getQuestionManagerPort().getKnowledgeIndicatorManager().decrease(util.getCurrentPlayer(),
 				util.getCurrentCategory());
+		this.game.getGameModelPort().getGameModel().moveFigure(figureToMove.getPlayer().getStartingField(),figureToMove);
 	}
 
 	@Override

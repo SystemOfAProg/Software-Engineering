@@ -94,6 +94,11 @@ public class GameModel implements IGameModel{
 	}
 
 	@Override
+	public Collision moveFigure(AField destination, Figure figure) {
+		return figure.move(destination);
+	}
+
+	@Override
 	public Collision addFigureForPlayer(Player player) throws IllegalAccessError {
 		for(Figure figure: player.getFigures()) {
 			if(!figure.isInField()) {

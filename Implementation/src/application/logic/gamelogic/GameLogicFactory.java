@@ -11,6 +11,7 @@ import application.logic.gamelogic.port.IGameStart;
 import application.logic.gamemodel.impl.AField;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.player.Player;
+import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamesettings.port.IGameModelSettings;
 import application.logic.gamesettings.port.IGameQuestionSettings;
 import application.logic.questionmanager.impl.Question;
@@ -158,15 +159,15 @@ public class GameLogicFactory implements
 	}
 
 	@Override
-	public void handleIncreaseIndicators() {
+	public void handleAnswerCorrect(Figure figureToMove) {
 		this.mkGamePlay();
-		this.gamePlay.handleIncreaseIndicators();
+		this.gamePlay.handleAnswerCorrect(figureToMove);
 	}
 
 	@Override
-	public void handleDecreaseIndicators() {
+	public void handleAnswerWrong(Figure figureToMove) {
 		this.mkGamePlay();
-		this.gamePlay.handleDecreaseIndicators();
+		this.gamePlay.handleAnswerWrong(figureToMove);
 	}
 
 	@Override

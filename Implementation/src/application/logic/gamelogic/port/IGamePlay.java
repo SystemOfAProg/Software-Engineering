@@ -5,6 +5,7 @@ import application.logic.gamelogic.impl.GamePlayData;
 import application.logic.gamemodel.impl.AField;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.player.Player;
+import application.logic.gamemodel.impl.player.Figure;
 import application.logic.questionmanager.impl.Question;
 import application.logic.questionmanager.impl.QuestionCategory;
 
@@ -29,9 +30,9 @@ public interface IGamePlay {
 	void reset();
 
 	// Handle Requests from Controller
-	void handleIncreaseIndicators();
+	void handleAnswerCorrect(Figure figureToMove);
 
-	void handleDecreaseIndicators();
+	void handleAnswerWrong(Figure figureToMove);
 
 	void handleMoveFigure();
 

@@ -101,9 +101,11 @@ public class ConsoleController implements IObserver, IController {
 		} else if (state == State.moveFigure) {
 			gamePlay.handleMoveFigure();
 		} else if( state == State.questionAnsweredCorrectly) {
-			gamePlay.handleIncreaseIndicators();
+			// TODO: get Figure of Player that has chosen the question & replace null
+			gamePlay.handleAnswerCorrect(null);
 		} else if (state == State.questionAnsweredWrong) {
-			gamePlay.handleDecreaseIndicators();
+			// TODO: get Figure of Player that has answered the question & replace null
+			gamePlay.handleAnswerWrong(null);
 		}
 	}
 
