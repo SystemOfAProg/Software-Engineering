@@ -3,8 +3,6 @@ package application.gui.impl;
 import application.gui.port.IObserver;
 import application.gui.port.IView;
 import application.logic.gamelogic.IGameLogicFactory;
-import application.logic.gamelogic.port.IGamePlay;
-import application.logic.gamelogic.port.IGameStart;
 import application.logic.gamemodel.impl.AField;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
@@ -68,7 +66,7 @@ public class ConsoleView implements IObserver, IView {
 			System.out.println("##### Choose Figures Per Player #####");
 		} else if (state == State.chooseKnowledgeInditcatorSize) {
 			// TODO read game model from logic and print current state
-			System.out.println("##### choose Knoledge Indicator Size #####");
+			System.out.println("##### choose Knowledge Indicator Size #####");
 		}
 	}
 
@@ -95,13 +93,9 @@ public class ConsoleView implements IObserver, IView {
 		} else if (state == State.checkAnswer) {
 			this.printNextQuestion();
 		} else if (state == State.questionAnsweredCorrectly) {
-			// TODO read game model from logic and print current state
-			// Check player who won, check player who lost question round and print to console
-			System.out.println("##### Move Figure #####");
+			this.printQuestionAnsweredRight();
 		} else if (state == State.questionAnsweredWrong) {
-			// TODO read game model from logic and print current state
-			//
-			System.out.println("##### Adjust Knowledge Indicators #####");
+			this.printQuestionAnsweredWrong();
 		}
 	}
 
@@ -243,6 +237,16 @@ public class ConsoleView implements IObserver, IView {
 				substrings[i/63] = "| " + substrings[i/63] + " |";
 		}
 		return String.join("\n", substrings);
+	}
+
+	private void printQuestionAnsweredWrong() {
+		// TODO read game model from logic and print current state
+		System.out.println("##### Adjust Knowledge Indicators #####");
+	}
+
+	private void printQuestionAnsweredRight() {
+		// TODO Check player who won, check player who lost question round and print to console
+		System.out.println("##### Move Figure #####");
 	}
 
 	private void updateGameCompleted(IState state) {

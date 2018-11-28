@@ -41,10 +41,6 @@ public class QuestionManagerFactory implements
 		this.indicatorMax = max;
 	}
 
-	/* TODO
-	 * get players, categories ...
-	 */
-
 	// For Lazy Creation of Components
 	private void mkKnowledgeIndicatorManager() {
 		if(this.knowledgeIndicatorManager == null) {

@@ -1,5 +1,6 @@
 package application.logic.gamelogic.impl;
 
+import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.questionmanager.impl.Question;
 
 public class GamePlayData {
@@ -7,6 +8,7 @@ public class GamePlayData {
 	public int roundCounter;
 	public int currentPlayerIndex;
 	public int currentFigureIndex;
+	public Collision lastHappenedCollision;
 	public int currentCategoryIndex;
 	public int diceRollCounter;
 	public Question currentQuestion;
@@ -20,6 +22,7 @@ public class GamePlayData {
 		this.currentFigureIndex = 0;
 		this.currentCategoryIndex = 0;
 		this.diceRollCounter = 0;
+		this.lastHappenedCollision = null;
 	}
 
 }

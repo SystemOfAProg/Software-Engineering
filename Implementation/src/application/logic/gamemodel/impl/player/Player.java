@@ -94,5 +94,13 @@ public class Player {
 	public AField getStartingField() {
 		return this.start;
 	}
+
+	public AField getHomeFieldOfFigure(Figure figure) {
+		if (figure.getPlayer().equals(this)) {
+			return homes[figure.getFigureCount()];
+		} else {
+			return null;
+		}
+	}
 	
 }

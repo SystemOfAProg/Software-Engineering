@@ -63,8 +63,8 @@ public class GameModelComponentTest {
 		Collision collision3 = game.moveFigure(this.fieldsPerPlayer, player1.getFigures()[0]);
 		assert(collision3.collisionHappened());
 		// Test Order of Players in which they were added to the field
-		assertEquals(collision3.getFirstPlayer().getPlayerCount(),  player2.getPlayerCount());
-		assertEquals(collision3.getSecondPlayer().getPlayerCount(), player1.getPlayerCount());
+		assertEquals(collision3.getFirstFigure().getPlayer().getPlayerCount(),  player2.getPlayerCount());
+		assertEquals(collision3.getSecondFigure().getPlayer(), player1.getPlayerCount());
 	}
 	
 }

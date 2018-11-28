@@ -263,12 +263,12 @@ public class GameLogicFactory implements
 
 	@Override
 	public void detach(IObserver obs) {
-		// TODO: detach Observers from Logics State Machine
+		this.stateMachineFactory.getStateMachinePort().getStateMachine().detach(obs);
 	}
 
 	@Override
 	public void notifyObservers() {
-		// TODO call Logics State Machines notifyObservers
+		this.stateMachineFactory.getStateMachinePort().getStateMachine().notifyObservers();
 	}
 
 }

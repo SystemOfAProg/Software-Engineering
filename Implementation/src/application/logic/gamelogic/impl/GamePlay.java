@@ -66,12 +66,14 @@ public class GamePlay implements IGamePlay {
 		this.questions.getQuestionManagerPort().getKnowledgeIndicatorManager().decrease(util.getCurrentPlayer(),
 				util.getCurrentCategory());
 		this.game.getGameModelPort().getGameModel().moveFigure(figureToMove.getPlayer().getStartingField(),figureToMove);
+		this.stateMachine.getStateMachinePort().getStateMachine().setState(State.getNextPlayer);
 	}
 
 	@Override
 	public void handleMoveFigure() {
 		Collision potentialCollision = this.game.getGameModelPort().getGameModel()
 				.moveFigure(this.dice.getDicePort().getDice().getLastResult(), this.util.getCurrentFigure());
+		this.data.lastHappenedCollision = potentialCollision;
 		if (potentialCollision.collisionHappened()) {
 			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.chooseCategory);
 		} else {
@@ -106,6 +108,7 @@ public class GamePlay implements IGamePlay {
 	public void handleAddFigureToMatchfield() {
 		Collision collision = this.game.getGameModelPort().getGameModel()
 				.addFigureForPlayer(this.util.getCurrentPlayer());
+		this.data.lastHappenedCollision = collision;
 		if (collision.collisionHappened()) {
 			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.chooseCategory);
 		} else {
@@ -180,9 +183,13 @@ public class GamePlay implements IGamePlay {
 	}
 
 	@Override
-	public void handleChooseRepeat(boolean controllerInput) {
-		this.reset();
-		this.stateMachine.getStateMachinePort().getStateMachine().setState(State.getNextPlayer);
+	public void handleChooseRepeat(boolean gameShouldBeRepeated) {
+		if(gameShouldBeRepeated) {
+			this.reset();
+			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.getNextPlayer);
+		} else {
+			this.reset();
+		}
 	}
 
 	@Override

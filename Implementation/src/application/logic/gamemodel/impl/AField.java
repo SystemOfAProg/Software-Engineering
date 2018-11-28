@@ -16,8 +16,7 @@ public abstract class AField {
 		this.occupied = true;
 		Collision collision;
 		if( !this.figuresOnThisField.isEmpty()) {
-			Player playerOnField = this.figuresOnThisField.getFirst().getPlayer();
-			collision = new Collision(playerOnField, newFigure.getPlayer(), this);
+			collision = new Collision(this.figuresOnThisField.getFirst(), newFigure, this);
 		} else {
 			collision = new Collision();
 		}

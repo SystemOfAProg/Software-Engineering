@@ -2,6 +2,7 @@ package application.logic.gamemodel.impl;
 
 import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
+import application.logic.gamemodel.impl.matchfield.StartingField;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.gamemodel.port.IGameModel;
@@ -24,10 +25,7 @@ public class GameModel implements IGameModel{
 	// ~~~~~~~~~~~~~~~~~ Create new Game ~~~~~~~~~~~~~~~~~~
 	/**
 	 * Creates a new game with all its neccessary components
-	 * @param gameFieldSizeFactor 	How many Fields per Players:
-	 * 								4 Players, Factor 10 -> 40 Fields
-	 * @param playerCount 			Count of Players
-	 * @param figureForPlayer		How many figures should be added for each player
+	 * @param settings Setting for the game
 	 */
 	public GameModel(IGameModelSettings settings) {
 		this.gameFieldSizeFactor = settings.getFieldsPerPlayer();
@@ -87,9 +85,12 @@ public class GameModel implements IGameModel{
 	// ~~~~~~~~~~~~~~~~~ Changing current State of Game ~~~~~~~~~~~~~~~~~~
 	@Override
 	public Collision moveFigure(int steps, Figure figure) {
-		Player player = figure.getPlayer();
 		AField oldField = figure.getCurrentLocation();
 		AField newField = this.field.calculateNewField(oldField, steps);
+		if (newField instanceof StartingField && ((StartingField) newField).getPlayer().equals(figure.getPlayer())
+				&& newField.isOccupied() && newField.getFigures().getFirst().getPlayer().equals(figure.getPlayer())) {
+			newField = figure.getPlayer().getHomeFieldOfFigure(figure);
+		}
 		return figure.move(newField);
 	}
 

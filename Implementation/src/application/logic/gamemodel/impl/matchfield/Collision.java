@@ -1,13 +1,13 @@
 package application.logic.gamemodel.impl.matchfield;
 
 import application.logic.gamemodel.impl.AField;
-import application.logic.gamemodel.impl.player.Player;
+import application.logic.gamemodel.impl.player.Figure;
 
 public class Collision {
 
 	private boolean isCollision;
-	private Player first;
-	private Player second;
+	private Figure first;
+	private Figure second;
 	private AField field;
 	
 	/**
@@ -26,7 +26,7 @@ public class Collision {
 	 * @param second 	Player that was newly moved to the field
 	 * @param field 	Field where the collision happened
 	 */
-	public Collision(Player first, Player second, AField field) {
+	public Collision(Figure first, Figure second, AField field) {
 		this.isCollision = true;
 		this.first = first;
 		this.second = second;
@@ -37,11 +37,11 @@ public class Collision {
 		return this.isCollision;
 	}
 	
-	public Player getFirstPlayer() {
+	public Figure getFirstFigure() {
 		return this.first;
 	}
 	
-	public Player getSecondPlayer() {
+	public Figure getSecondFigure() {
 		return this.second;
 	}
 	

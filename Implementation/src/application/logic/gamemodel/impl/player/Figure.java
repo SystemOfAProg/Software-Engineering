@@ -28,6 +28,10 @@ public class Figure {
 	public String getFigureIdentifier() {
 		return "FIG " + this.player.getPlayerCount() + "." + this.figureCount;
 	}
+
+	public int getFigureCount() {
+		return this.figureCount;
+	}
 	
 	/**
 	 * Moves a figure to a given location and sets 
