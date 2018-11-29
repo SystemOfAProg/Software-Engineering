@@ -6,6 +6,7 @@ import application.logic.gamemodel.impl.AField;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.gamemodel.impl.player.Figure;
+import application.logic.questionmanager.impl.KnowledgeIndicator;
 import application.logic.questionmanager.impl.Question;
 import application.logic.questionmanager.impl.QuestionCategory;
 
@@ -19,6 +20,8 @@ public interface IGamePlay {
 	Question[] getQuestions();
 
 	QuestionCategory[] getQuestionCategories();
+
+	KnowledgeIndicator[] getKnowledgeIndicatorsFor(Player currentPlayer);
 
 	AField[] getFigurePositionsOfPlayer(Player player);
 
@@ -59,4 +62,5 @@ public interface IGamePlay {
 	GamePlayData getGameData();
 
 	IDice getGameDice();
+
 }

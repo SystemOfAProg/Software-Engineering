@@ -54,13 +54,14 @@ public class KnowledgeIndicatorManager implements IKnowledgeIndicatorManager {
 
 	@Override
 	public boolean hasPlayerAllIndicatorsAtMax(Player player) {
-		boolean isAtMax = false;
 		for(Player p: this.indicators.keySet()) {
 			for(KnowledgeIndicator ki: this.indicators.get(p)) {
-				isAtMax = (ki.isAtMax())? true: isAtMax;
+				if(!ki.isAtMax()) {
+					return false;
+				}
 			}
 		}
-		return isAtMax;
+		return true;
 	}
 
 	@Override

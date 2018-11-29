@@ -11,6 +11,7 @@ import application.gui.port.IObserver;
 import application.logic.gamelogic.IGameLogicFactory;
 import application.logic.gamelogic.port.IGamePlay;
 import application.logic.gamelogic.port.IGameStart;
+import application.logic.gamemodel.impl.player.Figure;
 import application.logic.stateMachine.port.IState;
 import application.logic.stateMachine.port.IState.State;
 
@@ -80,7 +81,9 @@ public class ConsoleController implements IObserver, IController {
 			boolean validInput = false;
 			do {
 				try {
-					int controllerInput = this.readInteger(state, 1,gamePlay.getCurrentPlayer().getFiguresInField().length);
+				    int firstFigureCount = gamePlay.getCurrentPlayer().getFiguresInField()[0].getFigureCount() + 1;
+				    int maxValue = firstFigureCount + gamePlay.getCurrentPlayer().getFiguresInField().length - 1;
+					int controllerInput = this.readInteger(state, firstFigureCount, maxValue);
 					gamePlay.handleChooseFigureInField(controllerInput);
 					validInput = true;
 				} catch (IllegalArgumentException iae) {

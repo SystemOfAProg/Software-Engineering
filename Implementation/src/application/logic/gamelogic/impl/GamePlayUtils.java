@@ -10,7 +10,7 @@ import application.logic.questionmanager.IQuestionManagerFactory;
 import application.logic.questionmanager.impl.QuestionCategory;
 
 /**
- * Utility class for common ise functions for GamePlay Only purpose is cleaning
+ * Utility class for common functions for GamePlay Only purpose is cleaning
  * up the gameplay-code a little bit
  * 
  * @author fabiansorn
@@ -60,8 +60,8 @@ public class GamePlayUtils {
 		Figure currentF = this.getCurrentFigure();
 		for(Figure figure: this.getCurrentPlayer().getFiguresInField()) {
 			if(figure != currentF) {
-				AField start = figure.getCurrentLocation();
-				AField stop = currentF.getCurrentLocation();
+				AField start = currentF.getCurrentLocation();
+				AField stop = figure.getCurrentLocation();
 				Matchfield field = this.game.getGameModelPort().getGameModel().getMatchfield();
 				if (field.calculateStepsBetweenFields(start,stop) == this.dice.getDicePort().getDice().getLastResult()) {
 					return true;
@@ -96,7 +96,7 @@ public class GamePlayUtils {
 
 	public Figure getCurrentFigure() {
 		Figure[] figuresInField = this.getCurrentPlayer().getFiguresInField();
-		if((this.data.currentFigureIndex <= figuresInField.length) && !(this.data.currentFigureIndex <= 0)) {
+		if((this.data.currentFigureIndex >= figuresInField.length) && !(this.data.currentFigureIndex <= 0)) {
 			return figuresInField[figuresInField.length -1];
 		} else {
 			return figuresInField[this.data.currentFigureIndex - 1];

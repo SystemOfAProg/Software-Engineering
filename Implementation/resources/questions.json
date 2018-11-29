@@ -38,7 +38,7 @@
 				"category": 1
 			},
 			{
-				"question" : "Aus wie vielen Bits besteht ein Integer Variable in einem Betriebssystem mit LP64 Datenformat?",
+				"question" : "Aus wie vielen Bits besteht ein Long Variable in einem Betriebssystem mit LP64 Datenformat?",
 				"answers" : [ "64", "4", "32", "8" ],
 				"correct" : 0,
 				"category": 1

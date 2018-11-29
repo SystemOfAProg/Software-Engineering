@@ -39,5 +39,8 @@ public class KnowledgeIndicator {
 	public QuestionCategory getCategory() {
 		return this.category;
 	}
-	
+
+    public int getCurrentPosition() {
+		return this.position;
+    }
 }

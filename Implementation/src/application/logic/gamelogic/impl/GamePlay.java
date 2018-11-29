@@ -7,11 +7,13 @@ import application.logic.gamemodel.IGameModelFactory;
 import application.logic.gamemodel.impl.AField;
 import application.logic.gamemodel.impl.matchfield.Collision;
 import application.logic.gamemodel.impl.matchfield.Matchfield;
+import application.logic.gamemodel.impl.matchfield.StartingField;
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamesettings.port.IGameModelSettings;
 import application.logic.gamesettings.port.IGameQuestionSettings;
 import application.logic.questionmanager.IQuestionManagerFactory;
+import application.logic.questionmanager.impl.KnowledgeIndicator;
 import application.logic.questionmanager.impl.Question;
 import application.logic.questionmanager.impl.QuestionCategory;
 import application.logic.stateMachine.IStateMachineFactory;
@@ -29,11 +31,13 @@ public class GamePlay implements IGamePlay {
 	private IDiceFactory dice = IDiceFactory.FACTORY;
 	private IStateMachineFactory stateMachine = IStateMachineFactory.FACTORY;
 
-	private GamePlayData data = new GamePlayData();
-	private GamePlayUtils util = new GamePlayUtils(this.game, this.questions, this.dice, this.data);
+	private GamePlayData data;
+	private GamePlayUtils util;
 
 	public GamePlay(IGameModelSettings gameModelSettings, IGameQuestionSettings gameQuestionSettings) {
 		this.gameModelSettings = gameModelSettings;
+		this.data = new GamePlayData();
+		this.util = new GamePlayUtils(this.game, this.questions, this.dice, this.data);
 		this.gameQuestionSettings = gameQuestionSettings;
 		this.reset();
 	}
@@ -48,24 +52,44 @@ public class GamePlay implements IGamePlay {
 
 	// ==================== Reaction to explicit states ====================
 
+	/**
+	 * Move Figure of player that was on field back to its starting-field, if it is occupied,
+	 * remove the figure from the match-field
+	 * @param figureToMove
+	 */
 	@Override
 	public void handleAnswerCorrect(Figure figureToMove) {
 		this.questions.getQuestionManagerPort().getKnowledgeIndicatorManager().increase(util.getCurrentPlayer(),
 				util.getCurrentCategory());
-		this.game.getGameModelPort().getGameModel().moveFigure(figureToMove.getPlayer().getStartingField(),figureToMove);
+		AField destination = figureToMove.getPlayer().getStartingField();
+		if(destination.isOccupied()) {
+			destination = figureToMove.getHomeField();
+		}
+		this.game.getGameModelPort().getGameModel().moveFigure(destination,figureToMove);
 		if (util.existsWinner()) {
 			// Game is completed, ask if game should be repeated
 			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.chooseRepeat);
 		} else {
+			this.util.IncrCurrentPlayerIndex();
 			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.getNextPlayer);
 		}
 	}
 
+	/**
+	 * Move figure of player, that has answered the question wrong back to its starting-field
+	 * If the startingfield is occupied, remove the fignure from the match-field
+	 * @param figureToMove
+	 */
 	@Override
 	public void handleAnswerWrong(Figure figureToMove) {
 		this.questions.getQuestionManagerPort().getKnowledgeIndicatorManager().decrease(util.getCurrentPlayer(),
 				util.getCurrentCategory());
-		this.game.getGameModelPort().getGameModel().moveFigure(figureToMove.getPlayer().getStartingField(),figureToMove);
+		AField destination = figureToMove.getPlayer().getStartingField();
+		if(destination.getFigures().size() > 0) {
+			destination = figureToMove.getHomeField();
+		}
+		this.game.getGameModelPort().getGameModel().moveFigure(destination,figureToMove);
+		this.util.IncrCurrentPlayerIndex();
 		this.stateMachine.getStateMachinePort().getStateMachine().setState(State.getNextPlayer);
 	}
 
@@ -77,6 +101,7 @@ public class GamePlay implements IGamePlay {
 		if (potentialCollision.collisionHappened()) {
 			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.chooseCategory);
 		} else {
+			this.util.IncrCurrentPlayerIndex();
 			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.getNextPlayer);
 		}
 	}
@@ -112,6 +137,7 @@ public class GamePlay implements IGamePlay {
 		if (collision.collisionHappened()) {
 			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.chooseCategory);
 		} else {
+			this.util.IncrCurrentPlayerIndex();
 			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.getNextPlayer);
 		}
 	}
@@ -135,12 +161,13 @@ public class GamePlay implements IGamePlay {
 	}
 
 	private boolean figureInFieldIndexValid(int figureIndex) {
-		return (this.util.getCurrentPlayer().getFiguresInField().length >= figureIndex) && (figureIndex >= 0);
+		Figure figure = (this.util.getCurrentPlayer().getFigures().length >= figureIndex && figureIndex >= 0) ?
+				this.util.getCurrentPlayer().getFigures()[figureIndex - 1] : null;
+		return figure != null && figure.isInField();
 	}
 
 	@Override
 	public void handleGetNextPlayer() {
-		this.util.IncrCurrentPlayerIndex();
 		this.data.diceRollCounter = 0;
 		this.stateMachine.getStateMachinePort().getStateMachine().setState(State.throwDice);
 	}
@@ -167,6 +194,7 @@ public class GamePlay implements IGamePlay {
 			} else if (!util.currentPlayerHasFigureInField() && this.data.diceRollCounter < 3) {
 				this.stateMachine.getStateMachinePort().getStateMachine().setState(State.throwDice);
 			} else {
+				this.util.IncrCurrentPlayerIndex();
 				this.stateMachine.getStateMachinePort().getStateMachine().setState(State.getNextPlayer);
 			}
 		}
@@ -217,6 +245,11 @@ public class GamePlay implements IGamePlay {
 	@Override
 	public QuestionCategory[] getQuestionCategories() {
 		return this.questions.getQuestionManagerPort().getQuestionAsker().getQuestionCategories();
+	}
+
+	@Override
+	public KnowledgeIndicator[] getKnowledgeIndicatorsFor(Player player) {
+		return this.questions.getQuestionManagerPort().getKnowledgeIndicatorManager().getKnowledgeIndicators(player);
 	}
 
 	@Override

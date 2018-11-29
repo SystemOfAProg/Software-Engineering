@@ -12,7 +12,6 @@ public class HomeField extends AField {
 	
 	public HomeField(Player player, int fieldCounter) { 
 		this.player = player;
-		this.occupied = true;
 		this.fieldCounter = fieldCounter;
 		this.figuresOnThisField = new LinkedList<Figure>();
 	}

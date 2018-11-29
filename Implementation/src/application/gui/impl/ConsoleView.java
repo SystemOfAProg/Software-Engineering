@@ -7,6 +7,7 @@ import application.logic.gamemodel.impl.AField;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamemodel.impl.player.Player;
 import application.logic.questionmanager.impl.Answer;
+import application.logic.questionmanager.impl.KnowledgeIndicator;
 import application.logic.questionmanager.impl.Question;
 import application.logic.questionmanager.impl.QuestionCategory;
 import application.logic.stateMachine.port.IState;
@@ -52,22 +53,8 @@ public class ConsoleView implements IObserver, IView {
 	public void updateChooseSettings(IState state) {
 		if(state == State.showTutorial) {
 			this.printStartSequence();
-		} else if (state == State.useStandardSettings) {
-			// TODO read game model from logic and print current state
-			System.out.println("##### Use Standard Settings? #####");
-		} else if (state == State.choosePlayerCount) {
-			// TODO read game model from logic and print current state
-			System.out.println("##### Choose Player Count #####");
-		} else if (state == State.chooseFieldsPerPlayer) {
-			// TODO read game model from logic and print current state
-			System.out.println("##### Choose Fields Per Player #####");
-		} else if (state == State.chooseFiguresPerPlayer) {
-			// TODO read game model from logic and print current state
-			System.out.println("##### Choose Figures Per Player #####");
-		} else if (state == State.chooseKnowledgeInditcatorSize) {
-			// TODO read game model from logic and print current state
-			System.out.println("##### choose Knowledge Indicator Size #####");
 		}
+		// Other states do not need extra output
 	}
 
 	public void updateGameActive(IState state) {
@@ -239,14 +226,39 @@ public class ConsoleView implements IObserver, IView {
 		return String.join("\n", substrings);
 	}
 
+	// TODO: investigate, if this shows before or after controller update
 	private void printQuestionAnsweredWrong() {
-		// TODO read game model from logic and print current state
-		System.out.println("##### Adjust Knowledge Indicators #####");
+		System.out.println("Congratulations, you have answered this question correct. Your Knowledge");
+		System.out.println("Indicators now look like this:");
+		printKnowledgeIndicators();
 	}
 
+	// TODO: investigate, if this shows before or after controller update
 	private void printQuestionAnsweredRight() {
-		// TODO Check player who won, check player who lost question round and print to console
-		System.out.println("##### Move Figure #####");
+		System.out.println("It seems like you haven't answered this question correctly. Your Knowledge");
+		System.out.println("Indicators now look like this:");
+		printKnowledgeIndicators();
+	}
+
+	public void printKnowledgeIndicators() {
+		QuestionCategory[] categories = this.logic.getGamePort().getGamePlay().getQuestionCategories();
+		Player currentPlayer = this.logic.getGamePort().getGamePlay().getCurrentPlayer();
+		KnowledgeIndicator[] indicators = this.logic.getGamePort().getGamePlay().getKnowledgeIndicatorsFor(currentPlayer);
+		System.out.println("+———————————+—————————————————————————————————————————————————————+");
+		System.out.println("|   Value   |  Knowledge Indicator                                |");
+		System.out.println("+———————————+—————————————————————————————————————————————————————+");
+		for(QuestionCategory category: categories) {
+			int value = 0;
+			for(KnowledgeIndicator ki: indicators) {
+				if(ki.getCategory().equals(category)) {
+					value = ki.getCurrentPosition();
+				}
+			}
+			String valuePadded = String.format("%7s", value );
+			String categoryPadded = String.format("%-50s", category.getName());
+			System.out.println("|  " + valuePadded + "  |  " + categoryPadded + " |");
+		}
+		System.out.println("+———————————+—————————————————————————————————————————————————————+");
 	}
 
 	private void updateGameCompleted(IState state) {

@@ -14,6 +14,7 @@ import application.logic.gamemodel.impl.player.Player;
 import application.logic.gamemodel.impl.player.Figure;
 import application.logic.gamesettings.port.IGameModelSettings;
 import application.logic.gamesettings.port.IGameQuestionSettings;
+import application.logic.questionmanager.impl.KnowledgeIndicator;
 import application.logic.questionmanager.impl.Question;
 import application.logic.questionmanager.impl.QuestionCategory;
 import application.logic.stateMachine.IStateMachineFactory;
@@ -138,6 +139,12 @@ public class GameLogicFactory implements
 	public QuestionCategory[] getQuestionCategories() {
 		this.mkGamePlay();
 		return this.gamePlay.getQuestionCategories();
+	}
+
+	@Override
+	public KnowledgeIndicator[] getKnowledgeIndicatorsFor(Player player) {
+		this.mkGamePlay();
+		return this.gamePlay.getKnowledgeIndicatorsFor(player);
 	}
 
 	@Override

@@ -52,7 +52,7 @@ Implementation/out/production/Implementation/application/logic/questionmanager/\
 
 Implementation/out/production/Implementation/application/logic/stateMachine/\.emptyDir
 
-Implementation/\.idea/
+**/.idea/**
 
 # Created by https://www.gitignore.io/api/intellij
 
@@ -61,28 +61,28 @@ Implementation/\.idea/
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/dictionaries
+Implementation/.idea/workspace.xml
+Implementation/.idea/tasks.xml
+Implementation/.idea/dictionaries
 
 # Sensitive or high-churn files:
-.idea/**/dataSources/
-.idea/**/dataSources.ids
-.idea/**/dataSources.xml
-.idea/**/dataSources.local.xml
-.idea/**/sqlDataSources.xml
-.idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
+Implementation/.idea/**/dataSources/
+Implementation/.idea/**/dataSources.ids
+Implementation/.idea/**/dataSources.xml
+Implementation/.idea/**/dataSources.local.xml
+Implementation/.idea/**/sqlDataSources.xml
+Implementation/.idea/**/dynamic.xml
+Implementation/.idea/**/uiDesigner.xml
 
 # Gradle:
-.idea/**/gradle.xml
-.idea/**/libraries
+Implementation/.idea/**/gradle.xml
+Implementation/.idea/**/libraries
 
 # CMake
 cmake-build-debug/
 
 # Mongo Explorer plugin:
-.idea/**/mongoSettings.xml
+Implementation/.idea/**/mongoSettings.xml
 
 ## File-based project format:
 *.iws

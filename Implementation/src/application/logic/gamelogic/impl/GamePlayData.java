@@ -13,8 +13,7 @@ public class GamePlayData {
 	public int diceRollCounter;
 	public Question currentQuestion;
 
-	public GamePlayData() {
-	}
+	public GamePlayData() { }
 
 	public void reset() {
 		this.roundCounter = 0;

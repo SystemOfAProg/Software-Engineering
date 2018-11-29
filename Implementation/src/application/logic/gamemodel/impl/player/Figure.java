@@ -24,6 +24,10 @@ public class Figure {
 	public AField getCurrentLocation() {
 		return this.currentLocation;
 	}
+
+	public AField getHomeField() {
+		return this.player.getHomeFieldOfFigure(this);
+	}
 	
 	public String getFigureIdentifier() {
 		return "FIG " + this.player.getPlayerCount() + "." + this.figureCount;

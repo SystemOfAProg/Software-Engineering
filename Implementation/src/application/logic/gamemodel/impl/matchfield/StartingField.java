@@ -12,7 +12,6 @@ public class StartingField extends AField {
 	
 	public StartingField(Player player, int fieldCounter) { 
 		this.player = player;
-		this.occupied = false;
 		this.fieldCounter = fieldCounter;
 		this.figuresOnThisField = new LinkedList<Figure>();
 	}
