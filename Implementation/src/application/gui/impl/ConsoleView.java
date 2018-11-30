@@ -53,8 +53,15 @@ public class ConsoleView implements IObserver, IView {
 	public void updateChooseSettings(IState state) {
 		if(state == State.showTutorial) {
 			this.printStartSequence();
+		} else if (state == State.choosePlayerCount) {
+			System.out.println("How many players do you want to add?");
+		} else if (state == State.chooseFieldsPerPlayer) {
+			System.out.println("How many fields per player do you want to add to the match-field?");
+		} else if (state == State.chooseFiguresPerPlayer) {
+			System.out.println("How many fields per figures do you want to add per player?");
+		} else if (state == State.chooseKnowledgeInditcatorSize) {
+			System.out.println("How many steps do you want in your Knowledge Indicators?");
 		}
-		// Other states do not need extra output
 	}
 
 	public void updateGameActive(IState state) {
@@ -266,7 +273,6 @@ public class ConsoleView implements IObserver, IView {
 	private void updateGameCompleted(IState state) {
 		if (state == State.chooseRepeat) {
 			this.printEndSequence();
-			this.showInputBoolean("Do you want to repeat this game?");
 		}
 	}
 	
