@@ -2,28 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d474651e-e9ac-43f5-83cd-cb9039c7eb98" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_8_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/questions.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/questions.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/gui/impl/ConsoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/gui/impl/ConsoleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/gui/impl/ConsoleView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/gui/impl/ConsoleView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/logic/gamelogic/GameLogicFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/logic/gamelogic/GameLogicFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlayData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlayData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlayUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlayUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/logic/gamelogic/port/IGamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/logic/gamelogic/port/IGamePlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/logic/gamemodel/impl/AField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/logic/gamemodel/impl/AField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/logic/gamemodel/impl/matchfield/HomeField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/logic/gamemodel/impl/matchfield/HomeField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/logic/gamemodel/impl/matchfield/StandardField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/logic/gamemodel/impl/matchfield/StandardField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/logic/gamemodel/impl/matchfield/StartingField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/logic/gamemodel/impl/matchfield/StartingField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/logic/gamemodel/impl/player/Figure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/logic/gamemodel/impl/player/Figure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/logic/questionmanager/impl/KnowledgeIndicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/logic/questionmanager/impl/KnowledgeIndicator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/logic/questionmanager/impl/KnowledgeIndicatorManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/logic/questionmanager/impl/KnowledgeIndicatorManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/logic/stateMachine/port/IState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/logic/stateMachine/port/IState.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,8 +27,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/gui/impl/ConsoleController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="107" column="23" selection-start-line="107" selection-start-column="23" selection-end-line="107" selection-end-column="23" />
+            <state relative-caret-position="346">
+              <caret line="110" column="56" selection-start-line="110" selection-start-column="56" selection-end-line="110" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -51,32 +36,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/port/IGamePlay.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/gui/port/IObserver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="23" lean-forward="true" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/GameLogicFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="146" column="61" selection-start-line="146" selection-start-column="61" selection-end-line="146" selection-end-column="61" />
-              <folding>
-                <element signature="e#6240#6241#0" expanded="true" />
-                <element signature="e#6323#6324#0" expanded="true" />
-                <element signature="e#6368#6369#0" expanded="true" />
-                <element signature="e#6457#6458#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="170">
+              <caret line="39" column="41" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -84,8 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/application/gui/impl/ConsoleView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="239" column="35" selection-start-line="239" selection-start-column="35" selection-end-line="239" selection-end-column="35" />
+            <state relative-caret-position="153">
+              <caret line="108" column="91" lean-forward="true" selection-start-line="108" selection-start-column="91" selection-end-line="108" selection-end-column="91" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -94,13 +55,17 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/logic/questionmanager/impl/KnowledgeIndicator.java">
+        <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/GameLogicFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="43" column="11" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="11" />
+            <state relative-caret-position="-1318">
+              <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
               <folding>
-                <element signature="e#875#876#0" expanded="true" />
-                <element signature="e#895#896#0" expanded="true" />
+                <element signature="e#6340#6341#0" expanded="true" />
+                <element signature="e#6423#6424#0" expanded="true" />
+                <element signature="e#6472#6473#0" expanded="true" />
+                <element signature="e#6555#6556#0" expanded="true" />
+                <element signature="e#6600#6601#0" expanded="true" />
+                <element signature="e#6689#6690#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -109,33 +74,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlay.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2624">
-              <caret line="63" selection-start-line="63" selection-end-line="63" />
-              <folding>
-                <element signature="e#8498#8499#0" expanded="true" />
-                <element signature="e#8540#8541#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="248">
+              <caret line="75" column="97" selection-start-line="75" selection-start-column="85" selection-end-line="75" selection-end-column="97" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/questions.json">
+        <entry file="file://$PROJECT_DIR$/src/application/logic/stateMachine/port/IState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="40" column="66" selection-start-line="40" selection-start-column="66" selection-end-line="40" selection-end-column="66" />
+            <state relative-caret-position="-7">
+              <caret line="35" column="28" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlayData.java">
+        <entry file="file://$PROJECT_DIR$/src/application/logic/stateMachine/StateMachineFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-7">
+              <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -143,8 +101,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlayUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1168">
-              <caret line="92" column="29" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="29" />
+            <state relative-caret-position="153">
+              <caret line="93" selection-start-line="93" selection-end-line="93" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/logic/questionmanager/QuestionManagerFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="142" selection-start-line="142" selection-end-line="142" />
+              <folding>
+                <element signature="e#1910#1911#0" expanded="true" />
+                <element signature="e#1928#1929#0" expanded="true" />
+                <element signature="e#2153#2154#0" expanded="true" />
+                <element signature="e#2171#2172#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/logic/questionmanager/impl/KnowledgeIndicatorManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="61" selection-start-line="61" selection-end-line="61" />
             </state>
           </provider>
         </entry>
@@ -185,6 +167,11 @@
       <find>nextPlayer</find>
       <find>getQuestion</find>
       <find>winner</find>
+      <find>this.util.IncrCurrentPlayerIndex();</find>
+      <find>handleAn</find>
+      <find>Ende</find>
+      <find>printEndSequence</find>
+      <find>getCurrentPlayer</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -216,7 +203,6 @@
         <option value="$PROJECT_DIR$/src/application/logic/questionmanager/impl/Question.java" />
         <option value="$PROJECT_DIR$/src/application/logic/stateMachine/tests/StateMachineComponentTest.java" />
         <option value="$PROJECT_DIR$/src/application/gui/impl/JavaFXView.java" />
-        <option value="$PROJECT_DIR$/src/application/logic/stateMachine/port/IState.java" />
         <option value="$PROJECT_DIR$/src/application/logic/questionmanager/port/IKnowledgeIndicatorManager.java" />
         <option value="$PROJECT_DIR$/src/application/logic/gamemodel/impl/matchfield/Collision.java" />
         <option value="$PROJECT_DIR$/src/application/logic/gamemodel/test/GameModelComponentTest.java" />
@@ -229,15 +215,16 @@
         <option value="$PROJECT_DIR$/src/application/logic/gamemodel/impl/matchfield/StartingField.java" />
         <option value="$PROJECT_DIR$/src/application/logic/gamemodel/impl/matchfield/HomeField.java" />
         <option value="$PROJECT_DIR$/src/application/logic/gamemodel/impl/AField.java" />
-        <option value="$PROJECT_DIR$/src/application/logic/questionmanager/impl/KnowledgeIndicatorManager.java" />
         <option value="$PROJECT_DIR$/resources/questions.json" />
-        <option value="$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlayUtils.java" />
         <option value="$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlayData.java" />
+        <option value="$PROJECT_DIR$/src/application/logic/questionmanager/impl/KnowledgeIndicator.java" />
+        <option value="$PROJECT_DIR$/src/application/logic/stateMachine/port/IState.java" />
+        <option value="$PROJECT_DIR$/src/application/gui/impl/ConsoleController.java" />
         <option value="$PROJECT_DIR$/src/application/logic/gamelogic/port/IGamePlay.java" />
         <option value="$PROJECT_DIR$/src/application/logic/gamelogic/GameLogicFactory.java" />
+        <option value="$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlayUtils.java" />
         <option value="$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlay.java" />
-        <option value="$PROJECT_DIR$/src/application/logic/questionmanager/impl/KnowledgeIndicator.java" />
-        <option value="$PROJECT_DIR$/src/application/gui/impl/ConsoleController.java" />
+        <option value="$PROJECT_DIR$/src/application/logic/questionmanager/impl/KnowledgeIndicatorManager.java" />
         <option value="$PROJECT_DIR$/src/application/gui/impl/ConsoleView.java" />
       </list>
     </option>
@@ -253,8 +240,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -282,6 +267,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -295,7 +282,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -436,6 +423,7 @@
       <workItem from="1543506183866" duration="4537000" />
       <workItem from="1543510846410" duration="259000" />
       <workItem from="1543511211001" duration="8118000" />
+      <workItem from="1543565539446" duration="2997000" />
     </task>
     <servers />
   </component>
@@ -469,7 +457,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78077000" />
+    <option name="totallyTimeSpent" value="81074000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -482,19 +470,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.36746988" visible="true" weight="0.2453505" />
-      <window_info id="Structure" order="1" sideWeight="0.6325301" side_tool="true" visible="true" weight="0.2453505" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.36622807" visible="true" weight="0.2546495" />
+      <window_info id="Structure" order="1" sideWeight="0.63377196" side_tool="true" visible="true" weight="0.2546495" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32650602" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.42099056" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4506024" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.4506024" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3493976" />
@@ -504,7 +492,7 @@
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32891566" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.3296593" />
-      <window_info anchor="right" id="Maven" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -515,6 +503,7 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.32916668" />
+      <window_info anchor="right" id="Maven" order="10" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,6 +534,20 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -557,28 +560,21 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlay.java</url>
-          <line>63</line>
-          <properties />
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlay.java</url>
-          <line>86</line>
+          <line>91</line>
           <properties />
           <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <condition expression="getCurrentFigure().getPlayer().getFiguresInField().length &gt; 1" language="JAVA" />
-          <url>file://$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlayUtils.java</url>
-          <line>59</line>
-          <properties />
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/application/logic/questionmanager/impl/KnowledgeIndicatorManager.java</url>
-          <line>63</line>
+          <line>61</line>
           <properties />
           <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlay.java</url>
+          <line>75</line>
+          <properties />
+          <option name="timeStamp" value="74" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -676,20 +672,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/gui/impl/ConsoleDiceView.java" />
-    <entry file="file://$PROJECT_DIR$/src/application/logic/stateMachine/port/IStateMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/logic/stateMachine/StateMachineFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/application/logic/questionmanager/impl/QuestionAsker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -715,13 +697,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
           <caret line="128" column="44" selection-start-line="128" selection-start-column="44" selection-end-line="128" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/logic/stateMachine/port/IState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="22" column="89" selection-start-line="22" selection-start-column="89" selection-end-line="22" selection-end-column="89" />
         </state>
       </provider>
     </entry>
@@ -896,26 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/logic/questionmanager/QuestionManagerFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="142" selection-start-line="142" selection-end-line="142" />
-          <folding>
-            <element signature="e#1910#1911#0" expanded="true" />
-            <element signature="e#1928#1929#0" expanded="true" />
-            <element signature="e#2153#2154#0" expanded="true" />
-            <element signature="e#2171#2172#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/logic/questionmanager/impl/KnowledgeIndicatorManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="89" selection-start-line="89" selection-end-line="89" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/application/logic/gamemodel/impl/AField.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -923,23 +878,6 @@
           <folding>
             <element signature="e#1053#1054#0" expanded="true" />
             <element signature="e#1101#1102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/questions.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="40" column="66" selection-start-line="40" selection-start-column="66" selection-end-line="40" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlayData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -955,73 +893,129 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlayUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/application/gui/port/IObserver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1168">
-          <caret line="92" column="29" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/GameLogicFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="146" column="61" selection-start-line="146" selection-start-column="61" selection-end-line="146" selection-end-column="61" />
-          <folding>
-            <element signature="e#6240#6241#0" expanded="true" />
-            <element signature="e#6323#6324#0" expanded="true" />
-            <element signature="e#6368#6369#0" expanded="true" />
-            <element signature="e#6457#6458#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="60">
+          <caret line="4" column="23" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/logic/questionmanager/impl/KnowledgeIndicator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
+        <state relative-caret-position="570">
           <caret line="43" column="11" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="11" />
           <folding>
             <element signature="e#875#876#0" expanded="true" />
-            <element signature="e#895#896#0" expanded="true" />
+            <element signature="e#905#906#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlay.java">
+    <entry file="file://$PROJECT_DIR$/resources/questions.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2624">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
+        <state>
+          <caret line="40" column="66" selection-start-line="40" selection-start-column="66" selection-end-line="40" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlayData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
           <folding>
-            <element signature="e#8498#8499#0" expanded="true" />
-            <element signature="e#8540#8541#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/gui/impl/ConsoleController.java">
+    <entry file="file://$PROJECT_DIR$/src/application/logic/stateMachine/port/IStateMachine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="107" column="23" selection-start-line="107" selection-start-column="23" selection-end-line="107" selection-end-column="23" />
+        <state relative-caret-position="-7">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/gui/port/IObserver.java">
+    <entry file="file://$PROJECT_DIR$/src/application/logic/stateMachine/StateMachineFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="23" lean-forward="true" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="26" />
+        <state relative-caret-position="-7">
+          <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/logic/stateMachine/port/IState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="35" column="28" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/port/IGamePlay.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="39" column="41" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/gui/impl/ConsoleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="110" column="56" selection-start-line="110" selection-start-column="56" selection-end-line="110" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/GameLogicFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1318">
+          <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+          <folding>
+            <element signature="e#6340#6341#0" expanded="true" />
+            <element signature="e#6423#6424#0" expanded="true" />
+            <element signature="e#6472#6473#0" expanded="true" />
+            <element signature="e#6555#6556#0" expanded="true" />
+            <element signature="e#6600#6601#0" expanded="true" />
+            <element signature="e#6689#6690#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlayUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/logic/questionmanager/QuestionManagerFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="142" selection-start-line="142" selection-end-line="142" />
+          <folding>
+            <element signature="e#1910#1911#0" expanded="true" />
+            <element signature="e#1928#1929#0" expanded="true" />
+            <element signature="e#2153#2154#0" expanded="true" />
+            <element signature="e#2171#2172#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/logic/questionmanager/impl/KnowledgeIndicatorManager.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/logic/gamelogic/impl/GamePlay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="75" column="97" selection-start-line="75" selection-start-column="85" selection-end-line="75" selection-end-column="97" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/gui/impl/ConsoleView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="239" column="35" selection-start-line="239" selection-start-column="35" selection-end-line="239" selection-end-column="35" />
+        <state relative-caret-position="153">
+          <caret line="108" column="91" lean-forward="true" selection-start-line="108" selection-start-column="91" selection-end-line="108" selection-end-column="91" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

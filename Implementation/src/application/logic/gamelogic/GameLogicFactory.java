@@ -44,7 +44,8 @@ public class GameLogicFactory implements
 
 	private void mkGamePlay() {
 		if (this.gamePlay == null) {
-			this.gamePlay = new GamePlay(this.gameStart.getGameModelSettings(), this.gameStart.getGameQuestionSettings());
+			this.gamePlay = new GamePlay(
+			        this.gameStart.getGameModelSettings(), this.gameStart.getGameQuestionSettings());
 		}
 	}
 
@@ -175,6 +176,12 @@ public class GameLogicFactory implements
 	public void handleAnswerWrong(Figure figureToMove) {
 		this.mkGamePlay();
 		this.gamePlay.handleAnswerWrong(figureToMove);
+	}
+
+	@Override
+	public void handleKnowledgeIndicatorAdjusted() {
+		this.mkGamePlay();
+		this.gamePlay.handleKnowledgeIndicatorAdjusted();
 	}
 
 	@Override

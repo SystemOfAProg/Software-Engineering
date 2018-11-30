@@ -107,6 +107,8 @@ public class ConsoleController implements IObserver, IController {
 			gamePlay.handleAnswerCorrect(gamePlay.getGameData().lastHappenedCollision.getFirstFigure());
 		} else if (state == State.questionAnsweredWrong) {
 			gamePlay.handleAnswerWrong(gamePlay.getGameData().lastHappenedCollision.getSecondFigure());
+		} else if (state == State.knowledgeIndicatorAdjusted) {
+			gamePlay.handleKnowledgeIndicatorAdjusted();
 		}
 	}
 

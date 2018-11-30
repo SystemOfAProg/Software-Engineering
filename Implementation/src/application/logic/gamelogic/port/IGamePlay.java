@@ -37,6 +37,8 @@ public interface IGamePlay {
 
 	void handleAnswerWrong(Figure figureToMove);
 
+	void handleKnowledgeIndicatorAdjusted();
+
 	void handleMoveFigure();
 
 	void handleCheckAnswer(int controllerInput);

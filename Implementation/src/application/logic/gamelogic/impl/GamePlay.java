@@ -66,6 +66,11 @@ public class GamePlay implements IGamePlay {
 			destination = figureToMove.getHomeField();
 		}
 		this.game.getGameModelPort().getGameModel().moveFigure(destination,figureToMove);
+		this.stateMachine.getStateMachinePort().getStateMachine().setState(State.knowledgeIndicatorAdjusted);
+	}
+
+	@Override
+	public void handleKnowledgeIndicatorAdjusted() {
 		if (util.existsWinner()) {
 			// Game is completed, ask if game should be repeated
 			this.stateMachine.getStateMachinePort().getStateMachine().setState(State.chooseRepeat);
@@ -77,7 +82,7 @@ public class GamePlay implements IGamePlay {
 
 	/**
 	 * Move figure of player, that has answered the question wrong back to its starting-field
-	 * If the startingfield is occupied, remove the fignure from the match-field
+	 * If the starting-field is occupied, remove the figure from the match-field
 	 * @param figureToMove
 	 */
 	@Override
@@ -89,8 +94,7 @@ public class GamePlay implements IGamePlay {
 			destination = figureToMove.getHomeField();
 		}
 		this.game.getGameModelPort().getGameModel().moveFigure(destination,figureToMove);
-		this.util.IncrCurrentPlayerIndex();
-		this.stateMachine.getStateMachinePort().getStateMachine().setState(State.getNextPlayer);
+		this.stateMachine.getStateMachinePort().getStateMachine().setState(State.knowledgeIndicatorAdjusted);
 	}
 
 	@Override

@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface IState {
 
-	public boolean isSubStateOf(IState state);
+	boolean isSubStateOf(IState state);
 
-	public boolean isSuperStateOf(IState state);
+	boolean isSuperStateOf(IState state);
 
-	public enum State implements IState {
+	enum State implements IState {
 
 		// Substates of ChooseGameSettings
 		showTutorial, useStandardSettings, choosePlayerCount, chooseFieldsPerPlayer, chooseFiguresPerPlayer, chooseKnowledgeInditcatorSize,
@@ -18,10 +18,10 @@ public interface IState {
 		ChooseSettings(showTutorial, useStandardSettings, choosePlayerCount, chooseFieldsPerPlayer,
 				chooseFiguresPerPlayer, chooseKnowledgeInditcatorSize),
 		// Substates for gameActive
-		getNextPlayer, throwDice, diceThrown, chooseFigureInField, moveFigure, addFigureToMatchField, chooseCategory, chooseNextQuestion, checkAnswer, questionAnsweredCorrectly, questionAnsweredWrong,
+		getNextPlayer, throwDice, diceThrown, chooseFigureInField, moveFigure, addFigureToMatchField, chooseCategory, chooseNextQuestion, checkAnswer, questionAnsweredCorrectly, questionAnsweredWrong, knowledgeIndicatorAdjusted,
 		// Complex State Game Active
 		GameActive(getNextPlayer, throwDice, diceThrown, chooseFigureInField, moveFigure, addFigureToMatchField, chooseCategory,
-				chooseNextQuestion, checkAnswer, questionAnsweredCorrectly, questionAnsweredWrong),
+				chooseNextQuestion, checkAnswer, questionAnsweredCorrectly, questionAnsweredWrong, knowledgeIndicatorAdjusted),
 		// Game completed
 		chooseRepeat, GameCompleted(chooseRepeat);
 
@@ -33,7 +33,7 @@ public interface IState {
 
 		private List<IState> subStates;
 
-		private State(IState... subS) {
+		State(IState... subS) {
 			this.subStates = new ArrayList<>(Arrays.asList(subS));
 		}
 

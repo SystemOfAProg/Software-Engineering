@@ -83,6 +83,8 @@ public class ConsoleView implements IObserver, IView {
 			this.printQuestionAnsweredRight();
 		} else if (state == State.questionAnsweredWrong) {
 			this.printQuestionAnsweredWrong();
+		} else if (state == State.knowledgeIndicatorAdjusted) {
+			this.printKnowledgeIndicatorAdjusted();
 		}
 	}
 
@@ -101,7 +103,11 @@ public class ConsoleView implements IObserver, IView {
 		System.out.println();
 	}
 
-	private static void printEndSequence() {
+	private void printEndSequence() {
+	    System.out.println();
+	    System.out.println("Congratulations, " +
+                this.logic.getGamePort().getGamePlay().getCurrentPlayer().getPlayerName() +
+                " has won the game!");
 		System.out.println();
 		System.out.println("+————————————————————————————————————————————————————————————————+");
 		System.out.println("|                            ENDE                                |");
@@ -226,21 +232,17 @@ public class ConsoleView implements IObserver, IView {
 		return String.join("\n", substrings);
 	}
 
-	// TODO: investigate, if this shows before or after controller update
 	private void printQuestionAnsweredWrong() {
 		System.out.println("Congratulations, you have answered this question correct. Your Knowledge");
 		System.out.println("Indicators now look like this:");
-		printKnowledgeIndicators();
 	}
 
-	// TODO: investigate, if this shows before or after controller update
 	private void printQuestionAnsweredRight() {
 		System.out.println("It seems like you haven't answered this question correctly. Your Knowledge");
 		System.out.println("Indicators now look like this:");
-		printKnowledgeIndicators();
 	}
 
-	public void printKnowledgeIndicators() {
+	public void printKnowledgeIndicatorAdjusted() {
 		QuestionCategory[] categories = this.logic.getGamePort().getGamePlay().getQuestionCategories();
 		Player currentPlayer = this.logic.getGamePort().getGamePlay().getCurrentPlayer();
 		KnowledgeIndicator[] indicators = this.logic.getGamePort().getGamePlay().getKnowledgeIndicatorsFor(currentPlayer);
