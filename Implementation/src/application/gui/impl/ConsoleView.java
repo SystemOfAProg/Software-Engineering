@@ -245,7 +245,7 @@ public class ConsoleView implements IObserver, IView {
 	}
 
 	private void printQuestionAnsweredRight() {
-		System.out.println("It seems like you haven't answered this question correctly. Your Knowledge");
+		System.out.println("Woohoo. You have answered the question correclty. Your Knowledge");
 		System.out.println("Indicators now look like this:");
 	}
 
