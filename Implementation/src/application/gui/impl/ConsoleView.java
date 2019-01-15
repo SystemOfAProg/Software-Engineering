@@ -240,7 +240,7 @@ public class ConsoleView implements IObserver, IView {
 	}
 
 	private void printQuestionAnsweredWrong() {
-		System.out.println("Congratulations, you have answered this question correct. Your Knowledge");
+		System.out.println("Sorry, you seem to have answered this question wrong. Your Knowledge");
 		System.out.println("Indicators now look like this:");
 	}
 
